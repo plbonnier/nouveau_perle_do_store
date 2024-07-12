@@ -1,2 +1,107 @@
-//start coding by removing this file and adding yours ;)
-@import "wcs";
+// ---------------------variable------------------------
+// [data-theme="light"],
+// :root:not([date-theme="dark"]) {
+$backgoungColor: rgba(255, 235, 228, 0.56);
+$buttonColor:#ffebe4;
+$fontColor:#333333;
+$backgroundColorNavMobile:#ffebe4;
+$backgroundColorNavDesktop:#fefefe;
+$backgroungColorCard:#ffffff;
+// }
+
+/* Pink Dark scheme (Forced) */
+/* Enabled if forced with data-theme="dark" */
+// [data-theme="dark"] {
+//     $backgoungColor: #383507;
+//     $buttonColor:#c49a6c;
+//     $fontColor:#faefbd;
+//     $backgroundColorNavMobile:#c49a6c;
+//     $backgroundColorNavDesktop:#383507;  
+// }
+
+$fontText: verdana;
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    scroll-behavior: smooth;
+    font-family: $fontText;
+}
+
+body{
+    background-color: $backgoungColor
+
+}
+
+// ------------------mixins------------------------
+
+@mixin myText(
+    $fontFamily,
+    $fontColorText,
+    $fontSize,
+    $fontStyle,
+    $fontWeight,
+    $lineHeight
+) {
+    font-family: $fontFamily;
+    color: $fontColorText;
+    font-size: $fontSize;
+    font-style: $fontStyle;
+    font-weight: $fontWeight;
+    line-height: $lineHeight;
+}
+
+/* ---------------------navbar------------------------ */
+
+
+
+
+// ----------------------destkop------------------------
+
+@media screen and (min-width: 780px) {
+    
+    /* ---------------------navbar------------------------ */
+    
+    .navbar-mobile {
+        display: none;
+    }
+
+    .navbar-desktop {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0 6%;
+        background-color: $backgroundColorNavDesktop;
+        position: fixed;
+        width: 23vw;
+        height: 100vh;
+        z-index: 1000;
+    }
+
+    .navbar-desktop ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        height: 80%;
+        width: fit-content;
+    }
+    
+    .navbar-desktop a {
+        @include myText(
+            ($fontText), 
+            ($fontColor),
+            1rem,
+            normal,
+            400,
+            1.5);
+    }
+
+    i {
+        padding-right: 1rem;
+    }
+
+}
