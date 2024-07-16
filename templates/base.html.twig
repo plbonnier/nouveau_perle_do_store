@@ -20,19 +20,20 @@
 	</head>
 	<body>
 		<header>
-		{% block header %}
-			{% include 'components/_header.html.twig' %}
-		{% endblock %}
 			{% block navbar %}
 				{% include 'components/_navbar.html.twig' %}
 			{% endblock %}
+			{% block header %}
+				{% include 'components/_header.html.twig' %}
+			{% endblock %}
 		</header>
 		<main>
-        {% block body %}{% endblock %}
-        </main>
-        <footer>
-            {% block footer %}
-                {# {% include 'components/_footer.html.twig' %} #}
-            {% endblock %}
+			{% block body %}{% endblock %}
+		</main>
+		<footer>
+			{% block footer %}
+				{# {% include 'components/_footer.html.twig' %} #}
+			{% endblock %}
+		</body>
 	</body>
 </html>

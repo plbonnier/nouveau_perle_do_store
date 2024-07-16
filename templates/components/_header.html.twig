@@ -1,10 +1,12 @@
 {% block header %}
-	{# <a href="javascript:window.history.back();"> modifier le retour en arrière #}
+	<section
+		class="header">
+		{# <a href="javascript:window.history.back();"> modifier le retour en arrière #}
 		<i class="fa-solid fa-chevron-left"></i>
 	</a>
-	<a href="/"><img src="{{ asset('/build/images/main.623ca7c1.svg') }}" alt="logo de perle do"/></a>
-	{# <p>{{ now|date('l j F Y', 'Europe/Paris') }}</p> #}
+	<a href="/" class='a-logo-header'><img src="{{ asset('/build/images/main.623ca7c1.svg') }}" alt="logo de perle do" class="logo-header"/></a>
+	{# <p class="date-header">{{ now|date('l j F Y', 'Europe/Paris') }}</p> #}
 	<a href="/search">
 		<i class="fa-solid fa-magnifying-glass"></i>
 	</a>
-{% endblock %}
+</section>{% endblock %}

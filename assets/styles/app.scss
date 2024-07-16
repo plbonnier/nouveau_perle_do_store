@@ -6,6 +6,7 @@ $backgroungColor: #f9f9f9;
 $backgroungColor2: rgba(255, 235, 228, 0.56);
 $buttonColor:#ffebe4;
 $fontColor:#333333;
+$backgroundColorNavMobile:#ffebe4;
 $backgroundColorNavDesktop:#fefefe;
 $backgroungColorCard:#ffffff;
 // }
@@ -30,6 +31,7 @@ $fontText: verdana;
     list-style: none;
     scroll-behavior: smooth;
     font-family: $fontText;
+    color:$fontColor;
 }
 
 body{
@@ -56,6 +58,8 @@ main {
     font-weight: $fontWeight;
     line-height: $lineHeight;
 }
+
+// --------------------icone------------------------
 
 /* ---------------------navbar------------------------ */
 .logo-desktop {
@@ -92,6 +96,36 @@ nav ul {
     color: $fontColor;
 }
 
+// -------------------------header--------------------
+.header {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    background-color: $backgroundColorNavMobile;
+    padding: 1rem;
+    height: 20vh;
+}
+
+.logo-header {
+    display: grid;
+    width: 200px;
+    justify-self: center;
+}
+
+// .date-header {
+//     display: grid;
+//     grid-row: 2;
+//     grid-column-start: 1;
+//     grid-column-end: 4;
+//     justify-items: center;
+//     font-size: calc(12px + 0.390625vw);
+// }
+
+.fa-magnifying-glass {
+    display: grid;
+    justify-items: end;
+}
 
 // ----------------------destkop------------------------
 
@@ -146,4 +180,28 @@ nav ul {
         width: 11.25rem;
         height: auto;
     }
+
+    // --------------------------header--------------------------
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 10vh;
+        width: 100%;
+        padding-left: 30%;
+    }
+    
+    .a-logo-header {
+        display: none;
+    }
+
+    .logo-header {
+        display: none;
+    }
+
+    header .fa-magnifying-glass {
+        display: flex;
+        justify-content: space-between;
+    }
+    
 }
