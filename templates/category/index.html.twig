@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category index
+{% block title %}Liste des catégories
 {% endblock %}
 
 {% block body %}
@@ -10,7 +10,7 @@
 				<a href="/materials?categoryId={{ category.id }}">
 					<strong>{{ category.name }}</strong>
 				</a>
-				<a href="/category/edit?id={{ category.id }}" role="button" class="edit-button-category">
+				<a href="{{ path('app_category_edit', { id: category.id }) }}" role="button" class="edit-button-category">
 					<i class="fa-solid fa-pen"></i>
 				</a>
 			</article>
