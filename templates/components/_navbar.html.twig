@@ -1,0 +1,53 @@
+{% block navbar %}
+	<nav class="navbar-mobile">
+		<ul>
+			<li><a href="/categories"><i class="nav-icon fa-regular fa-file-lines"></i></a></li>
+			<li><a href="/customers"><i class="nav-icon fa-regular fa-user"></i></a></li>
+			<li><a href=""><i class="nav-icon fa-solid fa-chart-column"></i></a></li>
+			<li><a href=""><i class="nav-icon fa-regular fa-calendar"></i></a></li>
+			<li><a href="/invoices"><i class="nav-icon fa-solid fa-receipt"></i></a></li>
+			<li><a href="/shop"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
+		</ul>
+	</nav>
+
+	<nav class="navbar-desktop">
+			<a href="/"><img src="{{ asset('/build/images/main.623ca7c1.svg') }}" alt="logo de perle do" class="logo-desktop"></a>
+
+		<ul>
+			<li>
+				<a href="/categories">
+					<i class="nav-icon fa-regular fa-file-lines"></i>Produits</a>
+			</li>
+			<li>
+				<a href="/customers">
+					<i class="nav-icon fa-regular fa-user"></i>Fiches clients</a>
+			</li>
+			<li>
+				<a href="">
+					<i class="nav-icon fa-solid fa-chart-column"></i>Chiffre d'affaire</a>
+			</li>
+			<li>
+				<a href="">
+					<i class="nav-icon fa-regular fa-calendar"></i>Evènements</a>
+			</li>
+			<li>
+				<a href="/invoices">
+					<i class="nav-icon fa-solid fa-receipt"></i>Factures</a>
+			</li>
+			<li>
+				<a href="/shop">
+					<i class="nav-icon fa-solid fa-cart-shopping"></i>Panier</a>
+			</li>
+			<li>
+				<a href="/user">
+					<i class="nav-icon fa-solid fa-user-group"></i>Gestion utilisateur</a>
+			</li>
+			{# {% if user %}
+				<li class="logout">
+					<a href="/logout">
+						<i class="nav-icon fa-solid fa-power-off"></i>Deconnexion</a>
+				</li> #}
+			{# {% endif %} #}
+		</ul>
+	</nav>
+{% endblock %}

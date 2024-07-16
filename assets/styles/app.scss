@@ -1,2 +1,207 @@
-//start coding by removing this file and adding yours ;)
-@import "wcs";
+// ---------------------variable------------------------
+// [data-theme="light"],
+// :root:not([date-theme="dark"]) {
+
+$backgroungColor: #f9f9f9;
+$backgroungColor2: rgba(255, 235, 228, 0.56);
+$buttonColor:#ffebe4;
+$fontColor:#333333;
+$backgroundColorNavMobile:#ffebe4;
+$backgroundColorNavDesktop:#fefefe;
+$backgroungColorCard:#ffffff;
+// }
+
+/* Pink Dark scheme (Forced) */
+/* Enabled if forced with data-theme="dark" */
+// [data-theme="dark"] {
+//     $backgoungColor: #383507;
+//     $buttonColor:#c49a6c;
+//     $fontColor:#faefbd;
+//     $backgroundColorNavMobile:#c49a6c;
+//     $backgroundColorNavDesktop:#383507;  
+// }
+
+$fontText: verdana;
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    scroll-behavior: smooth;
+    font-family: $fontText;
+    color:$fontColor;
+}
+
+body{
+    background-color: $backgroungColor;
+}
+
+main {
+    height : 80 vh;
+}
+// ------------------mixins------------------------
+
+@mixin myText(
+    $fontFamily,
+    $fontColorText,
+    $fontSize,
+    $fontStyle,
+    $fontWeight,
+    $lineHeight
+) {
+    font-family: $fontFamily;
+    color: $fontColorText;
+    font-size: $fontSize;
+    font-style: $fontStyle;
+    font-weight: $fontWeight;
+    line-height: $lineHeight;
+}
+
+// --------------------icone------------------------
+
+/* ---------------------navbar------------------------ */
+.logo-desktop {
+    display: none;
+}
+
+.navbar-desktop{
+    display: none;
+}
+
+nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar-mobile {
+    z-index: 99999;
+    background-color: $backgroundColorNavDesktop;
+    position: fixed;
+    bottom: 1%;
+    border-radius: 15px;
+    width: 98%;
+    height: 4rem;
+    left: 1vw;
+    right: 1vw;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-mobile a {
+    color: $fontColor;
+}
+
+// -------------------------header--------------------
+.header {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+    background-color: $backgroundColorNavMobile;
+    padding: 1rem;
+    height: 20vh;
+}
+
+.logo-header {
+    display: grid;
+    width: 200px;
+    justify-self: center;
+}
+
+// .date-header {
+//     display: grid;
+//     grid-row: 2;
+//     grid-column-start: 1;
+//     grid-column-end: 4;
+//     justify-items: center;
+//     font-size: calc(12px + 0.390625vw);
+// }
+
+.fa-magnifying-glass {
+    display: grid;
+    justify-items: end;
+}
+
+// ----------------------destkop------------------------
+
+@media screen and (min-width: 780px) {
+    
+    /* ---------------------navbar------------------------ */
+    
+    .navbar-mobile {
+        display: none;
+    }
+
+    .navbar-desktop {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 6%;
+        background-color: $backgroundColorNavDesktop;
+        position: fixed;
+        width: 23vw;
+        height: 100vh;
+        z-index: 1000;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    }
+
+    .navbar-desktop ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        height: 65%;
+        width: fit-content;
+    }
+    
+    .navbar-desktop a {
+        @include myText(
+            ($fontText), 
+            ($fontColor),
+            .75rem,
+            normal,
+            400,
+            1.5);
+    }
+
+    i {
+        padding-right: 1rem;
+    }
+
+    .logo-desktop {
+        display: block;
+        width: 11.25rem;
+        height: auto;
+    }
+
+    // --------------------------header--------------------------
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 10vh;
+        width: 100%;
+        padding-left: 30%;
+    }
+    
+    .a-logo-header {
+        display: none;
+    }
+
+    .logo-header {
+        display: none;
+    }
+
+    header .fa-magnifying-glass {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+}
