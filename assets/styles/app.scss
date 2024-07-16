@@ -1,10 +1,11 @@
 // ---------------------variable------------------------
 // [data-theme="light"],
 // :root:not([date-theme="dark"]) {
-$backgoungColor: rgba(255, 235, 228, 0.56);
+
+$backgroungColor: #f9f9f9;
+$backgroungColor2: rgba(255, 235, 228, 0.56);
 $buttonColor:#ffebe4;
 $fontColor:#333333;
-$backgroundColorNavMobile:#ffebe4;
 $backgroundColorNavDesktop:#fefefe;
 $backgroungColorCard:#ffffff;
 // }
@@ -32,10 +33,12 @@ $fontText: verdana;
 }
 
 body{
-    background-color: $backgoungColor
-
+    background-color: $backgroungColor;
 }
 
+main {
+    height : 80 vh;
+}
 // ------------------mixins------------------------
 
 @mixin myText(
@@ -55,8 +58,39 @@ body{
 }
 
 /* ---------------------navbar------------------------ */
+.logo-desktop {
+    display: none;
+}
 
+.navbar-desktop{
+    display: none;
+}
 
+nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.navbar-mobile {
+    z-index: 99999;
+    background-color: $backgroundColorNavDesktop;
+    position: fixed;
+    bottom: 1%;
+    border-radius: 15px;
+    width: 98%;
+    height: 4rem;
+    left: 1vw;
+    right: 1vw;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-mobile a {
+    color: $fontColor;
+}
 
 
 // ----------------------destkop------------------------
@@ -71,14 +105,17 @@ body{
 
     .navbar-desktop {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
         padding: 0 6%;
         background-color: $backgroundColorNavDesktop;
         position: fixed;
         width: 23vw;
         height: 100vh;
         z-index: 1000;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     }
 
     .navbar-desktop ul {
@@ -86,7 +123,7 @@ body{
         flex-direction: column;
         justify-content: space-around;
         align-items: flex-start;
-        height: 80%;
+        height: 65%;
         width: fit-content;
     }
     
@@ -94,7 +131,7 @@ body{
         @include myText(
             ($fontText), 
             ($fontColor),
-            1rem,
+            .75rem,
             normal,
             400,
             1.5);
@@ -104,4 +141,9 @@ body{
         padding-right: 1rem;
     }
 
+    .logo-desktop {
+        display: block;
+        width: 11.25rem;
+        height: auto;
+    }
 }

@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<link rel="icon" type="image/png" href="{{ asset('build/images/logo-wild-code-school.svg') }}"/>
+		<link rel="icon" type="image/png" href="{{ asset('/build/images/main.623ca7c1.svg') }}"/>
 		<script src="https://kit.fontawesome.com/72de8a1f72.js" crossorigin="anonymous"></script>
 		<title>
 			{% block title %}Perle Do
@@ -20,6 +20,9 @@
 	</head>
 	<body>
 		<header>
+		{% block header %}
+			{% include 'components/_header.html.twig' %}
+		{% endblock %}
 			{% block navbar %}
 				{% include 'components/_navbar.html.twig' %}
 			{% endblock %}
