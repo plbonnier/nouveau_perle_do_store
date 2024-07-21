@@ -1,0 +1,6 @@
+{{ form_start(form) }}
+<div class="add-category">
+{{ form_row(form.name) }}
+    <button class="btn btn-edit">{{ button_label|default('Enregistrer la nouvelle catégorie') }}</button>
+</div>
+{{ form_end(form) }}
