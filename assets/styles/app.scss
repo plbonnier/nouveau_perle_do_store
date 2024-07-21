@@ -219,7 +219,8 @@ article {
         1.5);
 }
 
-#category_name {
+#category_name,
+#material_name {
     background-color: $backgroungColor2;
     width: 75%;
     height: 3rem;
@@ -412,7 +413,8 @@ article {
         position: fixed;
         left: 25vw;
         bottom: 1vh;
-        width: 20vw;
+        width: 15vw;
+        text-align: center;
     }
 
     article {
