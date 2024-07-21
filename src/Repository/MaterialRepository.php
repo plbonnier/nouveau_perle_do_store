@@ -16,6 +16,16 @@ class MaterialRepository extends ServiceEntityRepository
         parent::__construct($registry, Material::class);
     }
 
+    public function getAllMaterialByCategory(int $categoryId): array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.category = :categoryId')
+            ->setParameter('categoryId', $categoryId)
+            ->orderBy('m.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    /**
     //     * @return Material[] Returns an array of Material objects
     //     */

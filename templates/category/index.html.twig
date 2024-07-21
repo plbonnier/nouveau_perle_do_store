@@ -7,7 +7,8 @@
 	<div class="customer-block">
 		{% for category in categories %}
 			<article class="article-category">
-				<a href="/materials?categoryId={{ category.id }}">
+				{# <a href="/materials?categoryId={{ category.id }}"> #}
+				<a href="{{ path('app_material_index', { categoryId: category.id}) }}">
 					<strong>{{ category.name }}</strong>
 				</a>
 				<a href="{{ path('app_category_edit', { id: category.id }) }}" role="button" class="edit-button-category">
