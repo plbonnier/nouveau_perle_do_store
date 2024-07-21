@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Modifier une catégorie{% endblock %}
+{% block title %}Modifier une catégorie
+{% endblock %}
 
 {% block body %}
-    <h1>Modification d'une catégorie</h1>
+	<h1>Modification d'une catégorie</h1>
 
-    {{ include('category/_form.html.twig', {'button_label': 'Enregistrer la modification'}) }}
+	{{ include('category/_form.html.twig', {'button_label': 'Enregistrer la modification'}) }}
 
-    <a href="{{ path('app_category_index') }}">retour à la liste des catégories</a>
+	<a href="{{ path('app_category_index') }}" class="add-button-customer">retour aux catégories</a>
+
 
 {% endblock %}
