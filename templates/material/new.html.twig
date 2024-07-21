@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un matériau{% endblock %}
+
+{% block body %}
+    <h1>Create new Material</h1>
+
+    {{ include('material/_form.html.twig') }}
+
+    <a href="{{ path('app_material_index') }}" class="add-button-customer">retour aux catégories</a>
+{% endblock %}
