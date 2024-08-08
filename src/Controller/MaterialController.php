@@ -17,8 +17,6 @@ class MaterialController extends AbstractController
     #[Route('/{categoryId}', name: 'app_material_index', methods: ['GET'])]
     public function index(MaterialRepository $materialRepository, int $categoryId): Response
     {
-        // $materials = $materialRepository->findBy(['name' => 'ASC']);
-        // $materials = $materialRepository->findBy(['category' => $categoryId], ['name' => 'ASC']);
         $materials = $materialRepository->getAllMaterialByCategory($categoryId);
         return $this->render('material/index.html.twig', [
             'materials' => $materials,
