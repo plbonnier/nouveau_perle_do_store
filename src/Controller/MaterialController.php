@@ -11,15 +11,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-#[Route('/materiaux')]
+#[Route('/material')]
 class MaterialController extends AbstractController
 {
     #[Route('/{categoryId}', name: 'app_material_index', methods: ['GET'])]
     public function index(MaterialRepository $materialRepository, int $categoryId): Response
     {
-        $materials = $materialRepository->findBy(['name' => 'ASC']);
+        // $materials = $materialRepository->findBy(['name' => 'ASC']);
         // $materials = $materialRepository->findBy(['category' => $categoryId], ['name' => 'ASC']);
-        // $materials = $materialRepository->getAllMaterialByCategoryId($categoryId);
+        $materials = $materialRepository->getAllMaterialByCategory($categoryId);
         return $this->render('material/index.html.twig', [
             'materials' => $materials,
             'categoryId' => $categoryId,

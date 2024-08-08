@@ -19,35 +19,12 @@ class MaterialRepository extends ServiceEntityRepository
     public function getAllMaterialByCategory(int $categoryId): array
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.category = :categoryId')
+            ->innerJoin('m.products', 'p')
+            ->innerJoin('p.category', 'c')
+            ->andWhere('c.id = :categoryId')
             ->setParameter('categoryId', $categoryId)
             ->orderBy('m.name', 'ASC')
             ->getQuery()
             ->getResult();
     }
-
-    //    /**
-    //     * @return Material[] Returns an array of Material objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('m.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Material
-    //    {
-    //        return $this->createQueryBuilder('m')
-    //            ->andWhere('m.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
