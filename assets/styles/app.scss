@@ -76,11 +76,24 @@ strong {
     height: 1px;
     top: -0.2em;
 }
+
 h1 {
     text-align: center;
     @include myText(($fontText),
         ($fontColor),
         2.25rem,
+        normal,
+        400,
+        1.5);
+}
+
+.titre {
+    position: relative;
+    text-align: center;
+    bottom: 2rem;
+    @include myText(($fontText),
+        ($fontColor),
+        1.5rem,
         normal,
         400,
         1.5);

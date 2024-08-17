@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Material;
 use App\Form\MaterialType;
+use App\Repository\CategoryRepository;
 use App\Repository\MaterialRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,12 +16,17 @@ use Symfony\Component\Routing\Attribute\Route;
 class MaterialController extends AbstractController
 {
     #[Route('/{categoryId}', name: 'app_material_index', methods: ['GET'])]
-    public function index(MaterialRepository $materialRepository, int $categoryId): Response
-    {
+    public function index(
+        MaterialRepository $materialRepository,
+        int $categoryId,
+        CategoryRepository $categoryRepository
+    ): Response {
         $materials = $materialRepository->getAllMaterialByCategory($categoryId);
+        $category = $categoryRepository->find($categoryId);
         return $this->render('material/index.html.twig', [
             'materials' => $materials,
             'categoryId' => $categoryId,
+            'category' => $category
         ]);
     }
 
