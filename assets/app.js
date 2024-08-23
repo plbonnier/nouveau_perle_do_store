@@ -9,4 +9,10 @@
 import './styles/app.scss';
 
 // start the Stimulus application
-import './bootstrap';
+// import './bootstrap';
+
+import { Application } from '@hotwired/stimulus';
+import QuantityController from './controllers/quantity_controller';
+
+const application = Application.start();
+application.register('quantity', QuantityController);

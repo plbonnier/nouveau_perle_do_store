@@ -18,7 +18,7 @@ class MaterialFixtures extends Fixture
         ['name' => 'AMETHYSTE'],
         ['name' => 'ANGELITE'],
         ['name' => 'QUARTZ ROSE'],
-        ['name' => 'TOURMALINE NOIRE'],
+        ['name' => 'TOURMALINE'],
         ['name' => 'LAPIS LAZULI'],
         ['name' => 'CRISTAL DE ROCHE'],
         ['name' => 'AGATE'],
@@ -65,21 +65,15 @@ class MaterialFixtures extends Fixture
         ['name' => 'BOIS FOSSILE'],
         ['name' => 'FLUORITE'],
         ['name' => 'APPRET'],
-        ['name' => 'APPRET'],
         ['name' => 'RHYOLITE'],
         ['name' => 'AGATE MOUSSE'],
         ['name' => 'LEPIDOLITE'],
-        ['name' => 'LEPIDOLITE'],
         ['name' => 'RHODOCHROSITE'],
-        ['name' => 'HOWLITE'],
-        ['name' => 'CHAINE AG'],
         ['name' => 'CHAINE AG'],
         ['name' => 'PALO SANTO'],
         ['name' => 'ANGE'],
         ['name' => 'SHUNGITE'],
-        ['name' => 'HEMATITE'],
-        ['name' => 'FORFAIT REPARATION'],
-        ['name' => 'TOURMALINE'],
+        ['name' => 'FORFAIT REPARATION']
     ];
 
     public function load(ObjectManager $manager): void
@@ -88,6 +82,7 @@ class MaterialFixtures extends Fixture
             $material = new Material();
             $material->setName($materialFixture['name']);
             $manager->persist($material);
+            $this->addReference('material_' . $materialFixture['name'], $material);
         }
 
         $manager->flush();

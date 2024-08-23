@@ -76,11 +76,24 @@ strong {
     height: 1px;
     top: -0.2em;
 }
+
 h1 {
     text-align: center;
     @include myText(($fontText),
         ($fontColor),
         2.25rem,
+        normal,
+        400,
+        1.5);
+}
+
+.titre {
+    position: relative;
+    text-align: center;
+    bottom: 2rem;
+    @include myText(($fontText),
+        ($fontColor),
+        1.5rem,
         normal,
         400,
         1.5);
@@ -98,6 +111,27 @@ a.edit-button-category {
     width: 75%;
     height: 2rem;
     border-radius: 15px;
+}
+
+.add-cart {
+    width: 70%;
+    height: 2rem;
+    border-radius: 8px;
+    background-color: $buttonColor;
+    &:hover {
+        background-color: $backgroungColor2;
+    }
+}
+
+.plus,
+.minus {
+    background-color: $buttonColor;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    &:hover {
+        background-color: $backgroungColor2;
+    }
 }
 
 /* ---------------------navbar------------------------ */
@@ -177,7 +211,7 @@ article {
     padding: 1rem;
     border-radius: 15px;
     width: 80%;
-    gap: 1rem;
+    // gap: 1rem;
     margin: 1rem 0;
 }
 
@@ -255,6 +289,29 @@ article {
         400,
         1.5);
 }
+// -------------------------product-------------------
+.quantity-value {
+    width: 65%;
+    height: 2rem;
+    border-radius: 8px;
+    background-color: $backgroungColor2;
+    text-align: center;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+}
+
+.p-product {
+    @include myText(($fontText),
+        ($fontColor),
+        1.5rem,
+        normal,
+        400,
+        1.5);
+}
 
 
 // ----------------------destkop-----------------------------------------------------------------------------------
@@ -272,10 +329,19 @@ article {
 
     // -----------------------text------------------
     strong {
-        font-size: calc(10px + 0.390625vw);
+        font-size: calc(14px + 0.390625vw);
         height: 5vh;
         justify-content: center;
         align-items: center;
+    }
+
+    .p-product {
+        @include myText(($fontText),
+            ($fontColor),
+            calc(12px + 0.390625vw),
+            normal,
+            400,
+            1.5);
     }
     h1{
         display: flex;

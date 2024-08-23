@@ -3,32 +3,52 @@
 namespace App\Entity;
 
 use App\Repository\MaterialRepository;
+use App\Traits\PropertyEntityTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MaterialRepository::class)]
 class Material
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    use PropertyEntityTrait;
 
-    #[ORM\Column(length: 100)]
-    private ?string $name = null;
+    /**
+     * @var Collection<int, Product>
+     */
+    #[ORM\OneToMany(mappedBy: 'material', targetEntity: Product::class)]
+    private Collection $products;
 
-    public function getId(): ?int
+    public function __construct()
     {
-        return $this->id;
+        $this->products = new ArrayCollection();
+    }
+    /**
+     * @return Collection<int, Product>
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
     }
 
-    public function getName(): ?string
+    public function addProduct(Product $product): static
     {
-        return $this->name;
+        if (!$this->products->contains($product)) {
+            $this->products->add($product);
+            $product->setMaterial($this);
+        }
+
+        return $this;
     }
 
-    public function setName(string $name): static
+    public function removeProduct(Product $product): static
     {
-        $this->name = $name;
+        if ($this->products->removeElement($product)) {
+            // set the owning side to null (unless already changed)
+            if ($product->getMaterial() === $this) {
+                $product->setMaterial(null);
+            }
+        }
 
         return $this;
     }
