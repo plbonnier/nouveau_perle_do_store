@@ -1,41 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
+{% block title %}Liste des produits
+{% endblock %}
 
 {% block body %}
-    <h1>Product index</h1>
+	<p class="titre">
+		<a href="{{path('app_category_index')}}">
+			{{category.name}}
+		</a>
+		/
+		<a href="{{ path('app_material_index', { categoryId: category.id}) }}">
+			{{material.name}}
+		</a>
+	</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Ref</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Id</th>
-                <th>Name</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.ref }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.quantity }}</td>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="customer-block">
+		{% for product in products %}
+			<article class="article-category">
+				<a href="{{ path('app_product_show', {id: product.id}) }}">
+					<strong>{{ product.name }}</strong>
+				</a>
+				<p class="p-product">{{ product.price }}
+					€</p>
+				<p class="p-product">P{{ product.ref }}</p>
+				<form action="
+					{# {{ path('app_cart_add', {id: product.id}) }} #}
+					" method="post" class="product-quantity">
+					<div class="quantity" data-controller="quantity">
+						<button data-action="click->quantity#decrement" class="minus">-</button>
+						<input type="number" data-quantity-target="quantity" value="0" class="quantity-value">
+						<button data-action="click->quantity#increment" class="minus">+</button>
+					</div>
+					<input type="submit" value="ajouter au panier" class="add-cart">
+				</form>
+			</article>
+		{% endfor %}
+	</div>
 
-    <a href="{{ path('app_product_new') }}">Create new</a>
+	<a href="{{ path('app_product_new') }}" class="add-button-customer">Nouveau produit</a>
 {% endblock %}

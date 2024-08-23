@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\CategoryRepository;
+use App\Repository\MaterialRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,11 +17,25 @@ use Symfony\Component\Routing\Attribute\Route;
 class ProductController extends AbstractController
 {
     #[Route('/{categoryId}/{materialId}', name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository, int $categoryId, int $materialId): Response
-    {
-        $products = $productRepository->findBy(['category' => $categoryId, 'material' => $materialId]);
+    public function index(
+        ProductRepository $productRepository,
+        int $categoryId,
+        int $materialId,
+        CategoryRepository $categoryRepository,
+        MaterialRepository $materialRepository
+    ): Response {
+        $category = $categoryRepository->find($categoryId);
+        $material = $materialRepository->find($materialId);
+        $products = $productRepository->getAllProductByCategoryAndMaterial(
+            $categoryId,
+            $materialId
+        );
         return $this->render('product/index.html.twig', [
             'products' => $products,
+            'categoryId' => $categoryId,
+            'category' => $category,
+            'materialId' => $materialId,
+            'material' => $material
         ]);
     }
 

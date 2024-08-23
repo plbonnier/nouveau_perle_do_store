@@ -21,8 +21,8 @@ class MaterialController extends AbstractController
         int $categoryId,
         CategoryRepository $categoryRepository
     ): Response {
-        $materials = $materialRepository->getAllMaterialByCategory($categoryId);
         $category = $categoryRepository->find($categoryId);
+        $materials = $materialRepository->getAllMaterialByCategory($categoryId);
         return $this->render('material/index.html.twig', [
             'materials' => $materials,
             'categoryId' => $categoryId,
