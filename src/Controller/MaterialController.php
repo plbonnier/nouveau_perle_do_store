@@ -51,20 +51,37 @@ class MaterialController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_material_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Material $material, EntityManagerInterface $entityManager): Response
-    {
+    public function edit(
+        Request $request,
+        Material $material,
+        EntityManagerInterface $entityManager,
+        CategoryRepository $categoryRepository,
+        MaterialRepository $materialRepository,
+    ): Response {
+        $categoryId = intval($request->query->get('categoryId'));
+
         $form = $this->createForm(MaterialType::class, $material);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_material_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'app_material_index',
+                ['categoryId' => $categoryId],
+                Response::HTTP_SEE_OTHER
+            );
         }
+
+        $category = $categoryRepository->find($categoryId);
+        $materials = $materialRepository->getAllMaterialByCategory($categoryId);
 
         return $this->render('material/edit.html.twig', [
             'material' => $material,
             'form' => $form,
+            'category' => $category,
+            'materials' => $materials,
+            'categoryId' => $categoryId
         ]);
     }
 }

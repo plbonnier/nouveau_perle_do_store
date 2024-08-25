@@ -8,7 +8,6 @@
 
 	{{ include('material/_form.html.twig', {'button_label': 'Enregistrer la modification'}) }}
 
-	{# <a href="{{ path('app_material_index') }}" class="add-button-customer">retour à la liste des matériaux</a> #}
-	<a href="/materials?categoryId={{ category.id }}" class="add-button-customer">retour à la liste des matériaux</a>
+	<a href="{{ path('app_material_index', { categoryId: category.id}) }}" class="add-button-customer">Retour à la liste des matériaux</a>
 
 {% endblock %}
