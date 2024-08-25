@@ -11,11 +11,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 #[Route('/material')]
 class MaterialController extends AbstractController
 {
-    #[Route('/{categoryId}', name: 'app_material_index', methods: ['GET'])]
+    #[Route('/{categoryId<\d+>}', name: 'app_material_index', methods: ['GET'])]
     public function index(
         MaterialRepository $materialRepository,
         int $categoryId,
@@ -31,8 +32,21 @@ class MaterialController extends AbstractController
     }
 
     #[Route('/new', name: 'app_material_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        SessionInterface $session,
+    ): Response {
+        // Stocker le référent actuel dans la session
+        $referer = $request->headers->get('referer');
+        $referers = $session->get('referers', []);
+        array_unshift($referers, $referer);
+        if (count($referers) > 3) {
+            array_pop($referers);
+        }
+        $session->set('referers', $referers);
+
+        $categoryId = intval($request->query->get('categoryId'));
         $material = new Material();
         $form = $this->createForm(MaterialType::class, $material);
         $form->handleRequest($request);
@@ -41,12 +55,22 @@ class MaterialController extends AbstractController
             $entityManager->persist($material);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_material_index', [], Response::HTTP_SEE_OTHER);
+            // Récupérer le référent de deux pages avant
+            $referers = $session->get('referers', []);
+            $twoPagesBackReferer = $referers[1] ?? null;
+
+            if ($twoPagesBackReferer) {
+                return $this->redirect($twoPagesBackReferer);
+            }
+
+            return $this->redirectToRoute('app_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('material/new.html.twig', [
-            'material' => $material,
-            'form' => $form,
+        'material' => $material,
+        'form' => $form,
+        'categoryId' => $categoryId,
+        'referer' => $referer
         ]);
     }
 
