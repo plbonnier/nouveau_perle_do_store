@@ -6,7 +6,7 @@
 {% block body %}
 	<p class="titre">
 		<a href="{{path('app_category_index')}}">
-		{{category.name}}
+			{{category.name}}
 		</a>
 	</p>
 	<div class="customer-block">
@@ -21,6 +21,8 @@
 			</article>
 		{% endfor %}
 	</div>
-
+<div class="twobuttons">
 	<a href="{{ path('app_material_new') }}" role="button" class="add-button-customer">Nouveau matériau</a>
+	<a href="{{ path('app_product_new') }}" role="button" class="add-button-customer">Nouveau produit</a>
+</div>
 {% endblock %}

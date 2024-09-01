@@ -7,7 +7,7 @@
 	<h1>Modification d'un matériau</h1>
 
 	{{ include('material/_form.html.twig', {'button_label': 'Enregistrer la modification'}) }}
-
-	<a href="{{ path('app_material_index', { categoryId: category.id}) }}" class="add-button-customer">Retour à la liste des matériaux</a>
-
+	<div class="twobuttons">
+		<a href="{{ path('app_material_index', { categoryId: category.id}) }}" class="add-button-customer">Retour à la liste des matériaux</a>
+	</div>
 {% endblock %}

@@ -9,7 +9,9 @@
 	{{ include('material/_form.html.twig') }}
 
 	{% if referer %}
-		<a href="{{ referer }}" class="add-button-customer">
-			Liste des matériaux</a>
+		<div class="twobuttons">
+			<a href="{{ referer }}" class="add-button-customer">
+				Liste des matériaux</a>
+		</div>
 	{% endif %}
 {% endblock %}
