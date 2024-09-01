@@ -7,8 +7,8 @@
 	<h1>Modification d'une catégorie</h1>
 
 	{{ include('category/_form.html.twig', {'button_label': 'Enregistrer la modification'}) }}
-
-	<a href="{{ path('app_category_index') }}" class="add-button-customer">retour aux catégories</a>
-
+	<div class="twobuttons">
+		<a href="{{ path('app_category_index') }}" class="add-button-customer">retour aux catégories</a>
+	</div>
 
 {% endblock %}

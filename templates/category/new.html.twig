@@ -7,9 +7,7 @@
 
     {{ include('category/_form.html.twig') }}
 
-        {% if referer %}
-        <a href="{{ referer }}" class="btn btn-secondary">Retour</a>
-    {% endif %}
-
+<div class="twobuttons">
 	<a href="{{ path('app_category_index') }}" class="add-button-customer">retour aux catégories</a>
+</div>
 {% endblock %}
