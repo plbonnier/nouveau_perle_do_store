@@ -31,4 +31,14 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getLastRef(): ?int
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.ref')
+            ->orderBy('p.ref', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
 }

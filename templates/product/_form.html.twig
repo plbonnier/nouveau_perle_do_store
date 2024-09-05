@@ -1,4 +1,6 @@
 {{ form_start(form) }}
+<div class="add-category">
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-edit">{{ button_label|default('Enregistrer le nouveau produit') }}</button>
+</div>
 {{ form_end(form) }}
