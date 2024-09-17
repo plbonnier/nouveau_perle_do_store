@@ -1,37 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product{% endblock %}
+{% block title %}Product
+{% endblock %}
 
 {% block body %}
-    <h1>Product</h1>
+	<div class="block-page">
+		<h3 class="product">
+			{{ product.name}}</h3>
+		<h4>P{{ product.ref }}</h4>
+		<article class="show-customer">
+			<p>Prix :</p>
+			<p>{{ product.price }}
+				€</p>
+			<p>Quantité :
+			</p>
+			<p>{{ product.quantity }}</p>
+		</article>
+	</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Ref</th>
-                <td>{{ product.ref }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price }}</td>
-            </tr>
-            <tr>
-                <th>Quantity</th>
-                <td>{{ product.quantity }}</td>
-            </tr>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ product.name }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    {# <a href="{{ path('app_product_index') }}">back to list</a> #}
-<div class="twobuttons">
-    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-</div
+	{# <a href="{{ path('app_product_index') }}">back to list</a> #}
+	<div class="twobuttons">
+		{% if referer %}
+			<a href="{{ referer }}" role="button" class="add-button-customer"class="btn btn-secondary">Retour à la liste des produits</a>
+		{% endif %}
+		<a href="{{ path('app_product_edit', {'id': product.id}) }}" role="button" class="add-button-customer">Modifier le produit</a>
+	</div>
 {% endblock %}

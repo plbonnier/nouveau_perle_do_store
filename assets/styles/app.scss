@@ -296,6 +296,26 @@ article {
         1.5);
 }
 
+.show-customer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    background-color: $backgroungColor;
+    padding: 2rem 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    gap: 1rem;
+    @include myText($fontText,
+        $fontColor,
+        1rem,
+        normal,
+        400,
+        1);
+        margin-top: 1rem;
+}
+
 // -------------------------product-------------------
 .quantity-value {
     width: 65%;
@@ -383,6 +403,13 @@ article {
         normal,
         400,
         1);
+}
+
+.block-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 // ----------------------destkop-----------------------------------------------------------------------------------
@@ -568,4 +595,11 @@ article {
         width: 65vw;
     }
 
+    .block-page {
+        margin-left:23vw;
+        }
+
+    .show-customer {
+        width: 60vw;
+    }
 }
