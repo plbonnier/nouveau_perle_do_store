@@ -33,17 +33,32 @@ class CartService
 
         $this->getSession()->set('cart', $cart);
     }
-    // public function getCart(): array
-    // {
-    //     return $this->session->get('cart', []);
-    // }
 
-    // public function removeFromCart(int $productId): void
-    // {
-    //     $cart = $this->getCart();
-    //     unset($cart[$productId]);
-    //     $this->session->set('cart', $cart);
-    // }
+    public function getCart(): array
+    {
+        $cart = $this->getSession()->get('cart');
+        $cartData = [];
+
+        if ($cart) {
+            foreach ($cart as $productId => $product) {
+                $cartData[] = [
+                    'productId' => $productId,
+                    'productName' => $product['productName'],
+                    'price' => $product['price'],
+                    'quantity' => $product['quantity'],
+                    'total' => $product['price'] * $product['quantity'],
+                ];
+            }
+        }
+        return $cartData;
+    }
+
+    public function removeFromCart(int $productId): void
+    {
+        $cart = $this->getCart();
+        unset($cart[$productId]);
+        $this->getSession()->set('cart', $cart);
+    }
 
     // public function updateQuantity(int $productId, int $quantity): void
     // {
@@ -55,27 +70,11 @@ class CartService
     //     }
     // }
 
-    // public function clearCart(): void
-    // {
-    //     $this->session->remove('cart');
-    // }
-
-    public function getTotal(): array
+    public function clearCart(): void
     {
-        $cart = $this->getSession()->get('cart');
-        $cartData = [];
-
-        foreach ($cart as $productId => $product) {
-            $cartData[] = [
-                'productId' => $productId,
-                'productName' => $product['productName'],
-                'price' => $product['price'],
-                'quantity' => $product['quantity'],
-                'total' => $product['price'] * $product['quantity'],
-            ];
-        }
-        return $cartData;
+        $this->getSession()->remove('cart');
     }
+
 
     private function getSession(): SessionInterface
     {

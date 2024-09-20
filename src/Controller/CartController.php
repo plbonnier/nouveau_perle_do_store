@@ -13,7 +13,7 @@ class CartController extends AbstractController
     #[Route('/cart', name: 'app_cart')]
     public function index(CartService $cartService): Response
     {
-        $cart = $cartService->getTotal();
+        $cart = $cartService->getCart();
         // dd($cart);
 
         return $this->render('cart/index.html.twig', [
@@ -36,13 +36,13 @@ class CartController extends AbstractController
         return $this->redirectToRoute('app_category_index');
     }
 
-    // #[Route('/cart/remove/{productId}', name: 'app_cart_remove')]
-    // public function remove(int $productId, CartService $cartService): Response
-    // {
-    //     $cartService->removeFromCart($productId);
+    #[Route('/cart/remove/{productId<\d+>}', name: 'app_cart_remove')]
+    public function removeToCart(int $productId, CartService $cartService): Response
+    {
+        $cartService->removeFromCart($productId);
 
-    //     return $this->redirectToRoute('app_cart');
-    // }
+        return $this->redirectToRoute('app_cart');
+    }
 
     // #[Route('/cart/update/{productId}', name: 'app_cart_update', methods: ['POST'])]
     // public function update(Request $request, int $productId, CartService $cartService): Response
@@ -53,11 +53,11 @@ class CartController extends AbstractController
     //     return $this->redirectToRoute('app_cart');
     // }
 
-    // #[Route('/cart/clear', name: 'app_cart_clear')]
-    // public function clear(CartService $cartService): Response
-    // {
-    //     $cartService->clearCart();
+    #[Route('/cart/clear', name: 'app_cart_clear')]
+    public function clear(CartService $cartService): Response
+    {
+        $cartService->clearCart();
 
-    //     return $this->redirectToRoute('app_cart');
-    // }
+        return $this->redirectToRoute('app_cart');
+    }
 }
