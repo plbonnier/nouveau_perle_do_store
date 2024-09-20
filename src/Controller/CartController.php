@@ -14,10 +14,11 @@ class CartController extends AbstractController
     public function index(CartService $cartService): Response
     {
         $cart = $cartService->getCart();
-        // dd($cart);
+        $total = $cartService->getTotal();
 
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
+            'total' => $total,
         ]);
     }
 
@@ -44,14 +45,14 @@ class CartController extends AbstractController
         return $this->redirectToRoute('app_cart');
     }
 
-    // #[Route('/cart/update/{productId}', name: 'app_cart_update', methods: ['POST'])]
-    // public function update(Request $request, int $productId, CartService $cartService): Response
-    // {
-    //     $quantity = $request->request->get('quantity');
-    //     $cartService->updateQuantity($productId, $quantity);
+    #[Route('/cart/update/{productId}', name: 'app_cart_update', methods: ['POST'])]
+    public function update(Request $request, int $productId, CartService $cartService): Response
+    {
+        $quantity = $request->request->get('quantity');
+        $cartService->updateQuantity($productId, $quantity);
 
-    //     return $this->redirectToRoute('app_cart');
-    // }
+        return $this->redirectToRoute('app_cart');
+    }
 
     #[Route('/cart/clear', name: 'app_cart_clear')]
     public function clear(CartService $cartService): Response

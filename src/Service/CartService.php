@@ -60,19 +60,31 @@ class CartService
         $this->getSession()->set('cart', $cart);
     }
 
-    // public function updateQuantity(int $productId, int $quantity): void
-    // {
-    //     $cart = $this->getCart();
+    public function updateQuantity(int $productId, int $quantity): void
+    {
+        $cart = $this->getCart();
 
-    //     if (isset($cart[$productId])) {
-    //         $cart[$productId]['quantity'] = $quantity;
-    //         $this->session->set('cart', $cart);
-    //     }
-    // }
+        if (isset($cart[$productId])) {
+            $cart[$productId]['quantity'] = $quantity;
+            $this->getSession()->set('cart', $cart);
+        }
+    }
 
     public function clearCart(): void
     {
         $this->getSession()->remove('cart');
+    }
+
+    public function getTotal(): float
+    {
+        $total = 0;
+        $cart = $this->getCart();
+
+        foreach ($cart as $product) {
+            $total += $product['price'] * $product['quantity'];
+        }
+
+        return $total;
     }
 
 

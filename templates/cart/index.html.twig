@@ -21,17 +21,28 @@
 				{% for productId, item in cart %}
 					<tr>
 						<td>{{ item.productName }}</td>
-						<td>{{ item.price }}</td>
+						<td>{{ item.price }}
+							€</td>
 						<td>{{ item.quantity }}</td>
-						<td>{{ item.price * item.quantity }}</td>
+						<td>{{ item.price * item.quantity }}
+							€</td>
 						<td>
-							{# <form action="{{ path('app_cart_update', {productId: productId}) }}" method="post">
-								<input type="number" name="quantity" value="{{ item.quantity }}" min="1">
-								<button type="submit">Mettre à jour</button>
-							</form> #}
-							<a href="{{ path('app_cart_remove', {productId: productId}) }}" data-bs-toggle="tooltip" title="remove">Supprimer</a>
+							<form action="{{ path('app_cart_update', {productId: productId}) }}" method="post">
+								<div class="quantity" data-controller="quantity">
+									<button data-action="click->quantity#decrement" class="minus">-</button>
+									<input type="number" name="quantity" data-quantity-target="quantity" value="{{ item.quantity }}" class="quantity-value" min="1">
+									<button data-action="click->quantity#increment" class="minus">+</button>
+									<button type="submit">Mettre à jour</button>
+								</div>
+							</form>
+							<a href="{{ path('app_cart_remove', {productId: productId}) }}">
+								<i class="fa-solid fa-trash"></i>
+							</a>
 						</td>
 					</tr>
+					<td>
+					<p>total = {{ total }}</p>
+                    </td>
 				{% endfor %}
 			</tbody>
 		</table>
