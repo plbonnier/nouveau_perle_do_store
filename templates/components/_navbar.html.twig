@@ -3,10 +3,10 @@
 		<ul>
 			<li><a href="/category"><i class="nav-icon fa-regular fa-file-lines"></i></a></li>
 			<li><a href="/customers"><i class="nav-icon fa-regular fa-user"></i></a></li>
-			<li><a href=""><i class="nav-icon fa-solid fa-chart-column"></i></a></li>
+			<li><a href="#"><i class="nav-icon fa-solid fa-chart-column"></i></a></li>
 			<li><a href=""><i class="nav-icon fa-regular fa-calendar"></i></a></li>
 			<li><a href="/invoices"><i class="nav-icon fa-solid fa-receipt"></i></a></li>
-			<li><a href="/shop"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
+			<li><a href="{{ path('app_cart') }}"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
 		</ul>
 	</nav>
 
@@ -27,7 +27,7 @@
 					<i class="nav-icon fa-solid fa-chart-column"></i>Chiffre d'affaire</a>
 			</li>
 			<li>
-				<a href="">
+				<a href="{{ path('app_cart') }}">
 					<i class="nav-icon fa-regular fa-calendar"></i>Evènements</a>
 			</li>
 			<li>
