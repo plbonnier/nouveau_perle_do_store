@@ -5,8 +5,11 @@
 
 {% block body %}
 	<h1>Panier</h1>
+	{% set sum = 0 %}
+	{% set sumT = 0 %}
+	{% set reduce = 0 %}
 
-	{% if cart|length >0 %}
+	{% if cart|length > 0 %}
 		<table>
 			<thead>
 				<tr>
@@ -19,6 +22,7 @@
 			</thead>
 			<tbody>
 				{% for productId, item in cart %}
+					{% set sum = sum + item.price * item.quantity %}
 					<tr>
 						<td>{{ item.productName }}</td>
 						<td>{{ item.price }}
@@ -40,15 +44,25 @@
 							</a>
 						</td>
 					</tr>
-					<td>
-					<p>total = {{ total }}</p>
-                    </td>
 				{% endfor %}
+
 			</tbody>
 		</table>
+		<h3>Total :
+			<span id="cart-total">{{ sum }}
+				€</span>
+		</h3>
+
+		{# Formulaire de réduction #}
+		<form action="{{ path('app_cart_discount') }}" method="post" data-controller="discount" data-action="submit->discount#applyDiscount">
+			{{ form_start(discountForm) }}
+			{{ form_row(discountForm.discount) }}
+			{{ form_end(discountForm) }}
+		</form>
+
 		<a href="{{ path('app_cart_clear') }}">Vider le panier</a>
+
 	{% else %}
 		<p>Votre panier est vide</p>
 	{% endif %}
-
 {% endblock %}

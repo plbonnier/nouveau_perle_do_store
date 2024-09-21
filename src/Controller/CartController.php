@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Form\DiscountType;
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,12 +17,38 @@ class CartController extends AbstractController
     {
         $cart = $cartService->getCart();
         $total = $cartService->getTotal();
+        // Créer le formulaire de réduction
+        $discountForm = $this->createForm(DiscountType::class);
 
         return $this->render('cart/index.html.twig', [
             'cart' => $cart,
             'total' => $total,
+            'discountForm' => $discountForm->createView(),
         ]);
     }
+
+    #[Route('/cart/discount', name: 'app_cart_discount', methods: ['POST'])]
+    public function applyDiscount(Request $request, CartService $cartService): JsonResponse
+    {
+        $form = $this->createForm(DiscountType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $discount = $form->get('discount')->getData(); // Récupérer la réduction
+
+            // Calculer le nouveau total avec la réduction
+            $newTotal = $cartService->applyDiscount($discount);
+
+            // Renvoyer une réponse JSON avec le nouveau total
+            return new JsonResponse([
+                'newTotal' => number_format($newTotal, 2)  // Formater le total avec 2 décimales
+            ]);
+        }
+
+        // En cas de problème, retourner une erreur JSON
+        return new JsonResponse(['error' => 'Formulaire invalide'], 400);
+    }
+
 
     #[Route('/cart/add/{productId<\d+>}', name: 'app_cart_add', methods: ['POST'])]
     public function add(int $productId, Request $request, CartService $cartService): Response

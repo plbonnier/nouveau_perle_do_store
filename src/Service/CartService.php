@@ -2,7 +2,6 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -87,6 +86,12 @@ class CartService
         return $total;
     }
 
+    public function applyDiscount(float $discount): float
+    {
+        $total = $this->getTotal();
+        $discountedTotal = $total * (1 - $discount);
+        return $discountedTotal;
+    }
 
     private function getSession(): SessionInterface
     {
