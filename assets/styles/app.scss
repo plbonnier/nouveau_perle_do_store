@@ -9,6 +9,7 @@ $fontColor: #333333;
 $backgroundColorNavMobile: #ffebe4;
 $backgroundColorNavDesktop: #fefefe;
 $backgroungColorCard: #ffffff;
+$trait: #b8b5b573;
 // }
 
 /* Pink Dark scheme (Forced) */
@@ -313,7 +314,7 @@ article {
         normal,
         400,
         1);
-        margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 // -------------------------product-------------------
@@ -412,6 +413,90 @@ article {
     justify-content: center;
 }
 
+
+// --------------------------------------cart-----------------------------------
+.cart {
+    width: 90vw;
+    margin-left: 5vw;
+}
+table {
+    margin: 1vh auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    @include myText(($fontText),
+        ($fontColor),
+        0.9rem,
+        normal,
+        400,
+        1.5);
+}
+
+tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    border-bottom: 2px solid $trait;
+}
+
+.cart-body{
+    border-bottom: 1px solid $trait;
+}
+
+.minus {
+    display: none;
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+}
+
+.fa-check {
+    color: green;
+}
+
+.action-trash {
+    padding-top: 5px;
+}
+
+.no-button {
+    border: none;
+    background-color: transparent;
+}
+
+.cart-total {
+    text-align: end;
+    margin-right: 5%;
+    margin-top: 2rem;
+}
+
+.discount-form{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.discount-choice{
+    width: 40%;
+    height: 2rem;
+    border-radius: 8px;
+    background-color: $backgroungColor2;
+    text-align: center;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+}
+
 // ----------------------destkop-----------------------------------------------------------------------------------
 
 @media screen and (min-width: 780px) {
@@ -420,7 +505,8 @@ article {
     .fa-pen,
     .fa-ban,
     .fa-circle-check,
-    .fa-trash-can {
+    .fa-trash-can,
+    .fa-check {
         padding: 0;
         font-size: 1.25rem;
     }
@@ -596,10 +682,38 @@ article {
     }
 
     .block-page {
-        margin-left:23vw;
-        }
+        margin-left: 23vw;
+    }
 
     .show-customer {
         width: 60vw;
+    }
+
+    // ---------------------------------cart-----------------------------------
+    .cart-title {
+        left: 58vw;
+    }
+
+    .cart {
+        position: relative;
+        left:15vw;
+        width: 80vw;
+    }
+    
+    .cart-total {
+        margin-right: 9.5vw;
+    }
+    
+    .discount-form{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 1rem;
+        margin: 2rem 9.5vw 0 0;
+    }
+    
+    .discount-choice{
+        width: 30%;
+
     }
 }

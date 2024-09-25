@@ -4,65 +4,83 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Panier</h1>
-	{% set sum = 0 %}
-	{% set sumT = 0 %}
-	{% set reduce = 0 %}
+	<div class="cart">
+		<h1 class="cart-title">Panier</h1>
+		{% set sum = 0 %}
+		{% set sumT = 0 %}
+		{% set reduce = 0 %}
 
-	{% if cart|length > 0 %}
-		<table>
-			<thead>
-				<tr>
-					<th>Produit</th>
-					<th>Prix</th>
-					<th>Quantité</th>
-					<th>Total</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for productId, item in cart %}
-					{% set sum = sum + item.price * item.quantity %}
+		{% if cart|length > 0 %}
+			<table>
+				<thead>
 					<tr>
-						<td>{{ item.productName }}</td>
-						<td>{{ item.price }}
-							€</td>
-						<td>{{ item.quantity }}</td>
-						<td>{{ item.price * item.quantity }}
-							€</td>
-						<td>
-							<form action="{{ path('app_cart_update', {productId: productId}) }}" method="post">
-								<div class="quantity" data-controller="quantity">
-									<button data-action="click->quantity#decrement" class="minus">-</button>
-									<input type="number" name="quantity" data-quantity-target="quantity" value="{{ item.quantity }}" class="quantity-value" min="1">
-									<button data-action="click->quantity#increment" class="minus">+</button>
-									<button type="submit">Mettre à jour</button>
-								</div>
-							</form>
-							<a href="{{ path('app_cart_remove', {productId: productId}) }}">
-								<i class="fa-solid fa-trash"></i>
-							</a>
-						</td>
+						<th>Produit</th>
+						<th>Prix</th>
+						<th>Quantité</th>
+						<th>Total</th>
+						<th>Actions</th>
 					</tr>
-				{% endfor %}
+				</thead>
+				<tbody>
+					{% for productId, item in cart %}
+						{% set sum = sum + item.price * item.quantity %}
+						{% set sumT = sumT + item.price * item.quantity %}
+						<tr class="cart-body">
+							<th>{{ item.productName }}</th>
+							<td>{{ item.price }}
+								€</td>
+							<td>{{ item.quantity }}</td>
+							<td>{{ item.price * item.quantity }}
+								€</td>
+							<td class="action">
+								<form action="{{ path('app_cart_update', {productId: productId}) }}" method="post">
+									<div class="quantity" data-controller="quantity">
+										<button data-action="click->quantity#decrement" class="minus">-</button>
+										<input type="number" name="quantity" data-quantity-target="quantity" value="{{ item.quantity }}" class="quantity-value" min="1">
+										<button data-action="click->quantity#increment" class="minus">+</button>
+										<button class="no-button" type="submit">
+											<i class="fa-solid fa-check"></i>
+										</button>
+									</div>
+								</form>
+								<a href="{{ path('app_cart_remove', {productId: productId}) }}" class="action-trash">
+									<i class="fa-solid fa-trash"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
 
-			</tbody>
-		</table>
-		<h3>Total :
-			<span id="cart-total">{{ sum }}
-				€</span>
-		</h3>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>Sous-Total</td>
+						<td>{{ sumT }}
+							€</td>
+					</tr>
+				</tbody>
+			</table>
 
-		{# Formulaire de réduction #}
-		<form action="{{ path('app_cart_discount') }}" method="post" data-controller="discount" data-action="submit->discount#applyDiscount">
-			{{ form_start(discountForm) }}
-			{{ form_row(discountForm.discount) }}
-			{{ form_end(discountForm) }}
-		</form>
+			{# Formulaire de réduction #}
+			<form action="{{ path('app_cart_discount') }}" method="post" data-controller="discount" data-action="submit->discount#applyDiscount" class="discount-form">
+				{{ form_start(discountForm) }}
+				{{ form_label(discountForm.discount) }}
+				{{ form_errors(discountForm.discount) }}
+				{{ form_widget(discountForm.discount, {'attr': {'class': 'discount-choice'}}) }}
+				{{ form_row(discountForm.apply, {'attr': {'class': 'fa-solid fa-check no-button'}}) }}
+				{{ form_end(discountForm) }}
+			</form>
 
-		<a href="{{ path('app_cart_clear') }}">Vider le panier</a>
+			<h3 class="cart-total">Total :
+				<span id="cart-total">{{ sum }}
+					€</span>
+			</h3>
+			<div class="twobuttons">
+				<a href="{{ path('app_cart_clear') }}" class="add-button-customer">Vider le panier</a>
+				<div>
 
-	{% else %}
-		<p>Votre panier est vide</p>
-	{% endif %}
-{% endblock %}
+				{% else %}
+					<p>Votre panier est vide</p>
+			{% endif %}
+		</div>
+	{% endblock %}

@@ -23,7 +23,7 @@ class DiscountType extends AbstractType
                 'label' => 'Réduction',
             ])
         ->add('apply', SubmitType::class, [
-            'label' => 'Appliquer la réduction',
+            'label' => false,
         ]);
     }
 
