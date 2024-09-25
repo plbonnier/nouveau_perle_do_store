@@ -53,14 +53,11 @@ class CartController extends AbstractController
     #[Route('/cart/add/{productId<\d+>}', name: 'app_cart_add', methods: ['POST'])]
     public function add(int $productId, Request $request, CartService $cartService): Response
     {
-        // $productId = $request->request->get('productId');
         $productName = $request->request->get('productName');
         $price = $request->request->get('price');
         $quantity = $request->request->get('quantity');
 
         $cartService->addToCart($productId, $productName, $price, $quantity);
-
-        // dd($cartService);
 
         return $this->redirectToRoute('app_category_index');
     }
