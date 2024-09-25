@@ -13,6 +13,8 @@ import './styles/app.scss';
 
 import { Application } from '@hotwired/stimulus';
 import QuantityController from './controllers/quantity_controller';
+import DiscountController from './controllers/discount_controller';
 
 const application = Application.start();
 application.register('quantity', QuantityController);
+application.register('discount', DiscountController);
