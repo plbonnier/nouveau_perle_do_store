@@ -98,19 +98,101 @@ h1 {
         400,
         1.5);
 }
+// ----------------------------------------modal---------------------------------
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    background-color: $backgroungColor;
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 1rem;
+    pointer-events: none;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: $backgroungColor2;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+.modal-header,
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
 
 // -----------button----------------
+.button-cancel {
+    background-color: $backgroungColor;
+    border-radius: 15px;
+    border-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+    padding: 12px 16px;
+}
+
+.button-delete {
+    background-color: red;
+    border-radius: 15px;
+    border-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+    padding: 12px 16px;
+}
+
 a.edit-button-category {
     background-color: $buttonColor ;
     border-color: transparent;
     border-radius: 15px;
 }
 
-.btn-edit {
+.btn-edit,
+.btn-edit-customer {
     background-color: $backgroungColor2;
     width: 75%;
     height: 2rem;
     border-radius: 15px;
+}
+
+.btn-edit-customer {
+    grid-column: 1 / 3;
+    justify-self: center;
 }
 
 .add-cart {
@@ -209,12 +291,11 @@ article {
     flex-direction: column;
     align-content: center;
     top: -5vh;
-    left: 10.5vw;
+    left: 2.5vw;
     padding: 1rem;
     border-radius: 15px;
-    width: 80%;
-    // gap: 1rem;
     margin: 1rem 0;
+    width: 95vw;
 }
 
 .add-category {
@@ -317,6 +398,67 @@ article {
     margin-top: 1rem;
 }
 
+.block-page article {
+    position: relative;
+    top: -4vh;
+    width: 85%;
+    // height: 100%;
+}
+
+.show-page-customer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    width: 90vw;
+    height: auto;
+    @include myText($fontText,
+        $fontColor,
+        1rem,
+        normal,
+        400,
+        1);
+    margin-top: 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem 0 1rem 0;
+}
+
+.show-page-customer p:first-child {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    align-self: center;
+}
+
+.form-group {
+    position: relative;
+    left: 6vw;
+    width: 90vw;
+    height: 70vh;
+    background-color: $backgroundColorNavDesktop;
+    padding: 2rem 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form-group div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group div ul {
+    display: flex;
+    grid-column: 1 / 3;
+}
+.form-group div ul li{
+    color: red;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: -1rem;
+}
+
 // -------------------------product-------------------
 .quantity-value {
     width: 65%;
@@ -366,7 +508,8 @@ article {
     gap: 1rem;
 }
 
-.add-product div label {
+.add-product div label, 
+.form-group label {
     width: 75%;
     height: 1rem;
     text-align: center;
@@ -378,7 +521,8 @@ article {
         1);
 }
 
-.add-product div input {
+.add-product div input,
+.form-control {
     background-color: $backgroungColor2;
     text-align: center;
     border-radius: 15px;
@@ -419,6 +563,7 @@ article {
     width: 90vw;
     margin-left: 5vw;
 }
+
 table {
     margin: 1vh auto;
     border-collapse: collapse;
@@ -443,7 +588,7 @@ tr {
     border-bottom: 2px solid $trait;
 }
 
-.cart-body{
+.cart-body {
     border-bottom: 1px solid $trait;
 }
 
@@ -475,7 +620,7 @@ tr {
     margin-top: 2rem;
 }
 
-.discount-form{
+.discount-form {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -483,7 +628,7 @@ tr {
     margin-top: 2rem;
 }
 
-.discount-choice{
+.discount-choice {
     width: 40%;
     height: 2rem;
     border-radius: 8px;
@@ -535,6 +680,20 @@ tr {
         left: 30vw;
     }
 
+    // ----------------------------------------modal---------------------------------
+.modal {
+    left: 25vw;
+}
+
+.modal-content {
+    align-content: space-between;
+    width: 73%;
+}
+
+.modal-body {
+    margin-top: 5rem;
+}
+
     // ------------------button----------------
     a.edit-button-category {
         display: flex;
@@ -548,7 +707,8 @@ tr {
         }
     }
 
-    .btn-edit {
+    .btn-edit,
+    .btn-edit-customer {
         &:hover {
             background-color: $backgroungColor;
         }
@@ -649,7 +809,11 @@ tr {
         }
     }
 
-
+    .form-group {
+        left: 25vw;
+        top: 6vh;
+        width: 73vw;
+    }
     // -------------------customer----------------
     .customer-block {
         position: relative;
@@ -674,6 +838,11 @@ tr {
         height: auto;
     }
 
+    .block-page article {
+        position: relative;
+        top: 2vh;
+        padding: 1rem;
+    }
     // ----------------------product-------------------
     .add-product {
         top: 5vh;
@@ -696,23 +865,23 @@ tr {
 
     .cart {
         position: relative;
-        left:15vw;
+        left: 15vw;
         width: 80vw;
     }
-    
+
     .cart-total {
         margin-right: 9.5vw;
     }
-    
-    .discount-form{
+
+    .discount-form {
         display: flex;
         justify-content: end;
         align-items: center;
         gap: 1rem;
         margin: 2rem 9.5vw 0 0;
     }
-    
-    .discount-choice{
+
+    .discount-choice {
         width: 30%;
 
     }

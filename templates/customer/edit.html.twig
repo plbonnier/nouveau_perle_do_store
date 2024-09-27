@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mise à jour du client{% endblock %}
+
+{% block body %}
+    <h1>Mise à jour du Client</h1>
+
+    {{ include('customer/_form.html.twig', {'button_label': 'Mise à jour'}) }}
+
+<div class="twobuttons">
+    <a href="{{ path('app_customer_index') }}" class="add-button-customer">retour à la liste des clients</a>
+</div>
+{% endblock %}

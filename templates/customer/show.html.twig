@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client
+{% endblock %}
+
+{% block body %}
+<div class="category-block block-page">
+	<h3 class="product">{{ customer.firstname }}
+		{{ customer.lastname }}
+		- C{{ customer.id}}</h3>
+	<article class="show-page-customer">
+		<p>Adresse :</p>
+		<p>{{ customer.adress }}</p>
+		<p>{{ customer.zipcode }}
+			-
+			{{ customer.city }}</p>
+		<p>Téléphone :</p>
+		<p>{{ customer.phone }}</p>
+		<p>Mail :
+		</p>
+		<p>{{ customer.email }}</p>
+		<p>Information : </p>
+								<p>{{ customer.description }}</p>
+	{# <p>Type de clients :</p>
+						<p>{{ customer.type }}</p> #}
+		{# <p>Réduction :</p>
+					            <p>{{ type.discount }}</p>
+					            <p>Ancienne Facture :</p>
+					            
+					            {% for invoice in invoices %}
+					            <a href="/invoices/show?id={{ invoice.invoiceId }}" role="button" class='customer-show-invoice'>
+					            fac n°{{ invoice.num_invoice }} / {{ invoice.date|date('d/m/Y') }}
+					            </a>
+					            {% endfor %} #}
+
+	</article>
+</div>
+
+<div class="twobuttons">
+	<a href="{{ path('app_customer_edit', {'id': customer.id}) }}" role="button" class="add-button-customer">
+		Modifier le client
+	</a>
+	{{ include('customer/_delete_form.html.twig') }}
+</div>
+							
+
+{% endblock %}

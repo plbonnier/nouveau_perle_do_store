@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des clients
+{% endblock %}
+
+{% block body %}
+	<p class="titre">Liste des clients</p>
+
+	<div class="customer-block">
+
+		{% for customer in customers %}
+			<article class="article-category">
+				<a href="{{ path('app_customer_show', {id : customer.id}) }}">
+					<p class="p-product">
+						<strong>{{ customer.lastname }}
+							{{ customer.firstname }}
+						</strong>
+					</p>
+					<p class="p-product">
+						{{ customer.city }}
+					</p>
+					{# <p class="p-product"> {{ customer.type }} </p> #}
+				</a>
+			</article>
+		{% endfor %}
+		<div class="twobuttons">
+			<a href="{{ path('app_customer_new') }}" role="button" class="add-button-customer">
+				Nouveau client
+			</a>
+		</div>
+	</div>
+{% endblock %}
