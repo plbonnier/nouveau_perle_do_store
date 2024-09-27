@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -41,7 +42,7 @@ class CustomerType extends AbstractType
             ->add('zipcode', NumberType::class, [
                 'label' => 'Code postal',
                 'required' => false,
-                'invalid_message' => 'Veuillez entrer des chiffres',
+                'invalid_message' => 'Le code postal doit être composé uniquement de chiffres',
             ])
             ->add('city', TextType::class, [
                 'label' => 'Ville',
@@ -50,10 +51,14 @@ class CustomerType extends AbstractType
             ->add('phone', NumberType::class, [
                 'label' => 'Téléphone',
                 'required' => false,
-                'invalid_message' => 'Veuillez entrer des chiffres',
+                'invalid_message' => 'le numéro de téléphone doit être composé uniquement de chiffres',
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
+                'required' => false,
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
                 'required' => false,
             ])
         ;

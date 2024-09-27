@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Customer{% endblock %}
+{% block title %}Mise à jour du client{% endblock %}
 
 {% block body %}
-    <h1>Edit Customer</h1>
+    <h1>Mise à jour du Client</h1>
 
-    {{ include('customer/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('customer/_form.html.twig', {'button_label': 'Mise à jour'}) }}
 
-    <a href="{{ path('app_customer_index') }}">back to list</a>
-
-    {{ include('customer/_delete_form.html.twig') }}
+<div class="twobuttons">
+    <a href="{{ path('app_customer_index') }}" class="add-button-customer">retour à la liste des clients</a>
+</div>
 {% endblock %}

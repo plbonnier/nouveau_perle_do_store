@@ -291,10 +291,11 @@ article {
     flex-direction: column;
     align-content: center;
     top: -5vh;
-    left: 10.5vw;
+    left: 2.5vw;
     padding: 1rem;
     border-radius: 15px;
     margin: 1rem 0;
+    width: 95vw;
 }
 
 .add-category {
@@ -401,13 +402,15 @@ article {
     position: relative;
     top: -4vh;
     width: 85%;
-    height: 100%;
+    // height: 100%;
 }
 
 .show-page-customer {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+    width: 90vw;
+    height: auto;
     @include myText($fontText,
         $fontColor,
         1rem,
@@ -415,6 +418,9 @@ article {
         400,
         1);
     margin-top: 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem 0 1rem 0;
 }
 
 .show-page-customer p:first-child {
@@ -424,9 +430,6 @@ article {
 }
 
 .form-group {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 1rem;
     position: relative;
     left: 6vw;
     width: 90vw;
@@ -435,6 +438,25 @@ article {
     padding: 2rem 1rem;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form-group div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group div ul {
+    display: flex;
+    grid-column: 1 / 3;
+}
+.form-group div ul li{
+    color: red;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: -1rem;
 }
 
 // -------------------------product-------------------
@@ -821,7 +843,6 @@ tr {
         top: 2vh;
         padding: 1rem;
     }
-
     // ----------------------product-------------------
     .add-product {
         top: 5vh;

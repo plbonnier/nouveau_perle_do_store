@@ -1,15 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Customer
+{% block title %}Client
 {% endblock %}
 
 {% block body %}
-<p class="titre">Customer</p>
-
 <div class="category-block block-page">
 	<h3 class="product">{{ customer.firstname }}
 		{{ customer.lastname }}
-		- C{{ customer.reference}}</h3>
+		- C{{ customer.id}}</h3>
 	<article class="show-page-customer">
 		<p>Adresse :</p>
 		<p>{{ customer.adress }}</p>
@@ -21,8 +19,8 @@
 		<p>Mail :
 		</p>
 		<p>{{ customer.email }}</p>
-		{# <p>Information : </p>
-								<p>{{ customer.description }}</p> #}
+		<p>Information : </p>
+								<p>{{ customer.description }}</p>
 	{# <p>Type de clients :</p>
 						<p>{{ customer.type }}</p> #}
 		{# <p>Réduction :</p>
@@ -43,16 +41,7 @@
 		Modifier le client
 	</a>
 	{{ include('customer/_delete_form.html.twig') }}
-	{# <!-- Ajout du data-controller et des actions pour Stimulus -->
-			<button class="add-button-customer" data-controller="modal" data-action="modal#open">
-				Supprimer le client
-			</button> #}
 </div>
-
-{# <!-- Modal -->
-v
-							
-							    <a href="{{ path('app_customer_edit', {'id': customer.id}) }}">edit</a> #}
 							
 
 {% endblock %}
