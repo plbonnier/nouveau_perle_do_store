@@ -46,6 +46,10 @@ class Customer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'customers')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?TypeCustomer $type = null;
+
     #[ORM\PrePersist]
     public function setDateValue(): void
     {
@@ -173,6 +177,18 @@ class Customer
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getType(): ?TypeCustomer
+    {
+        return $this->type;
+    }
+
+    public function setType(?TypeCustomer $type): static
+    {
+        $this->type = $type;
 
         return $this;
     }

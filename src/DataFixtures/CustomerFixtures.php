@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Customer;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use DateTime;
 
-class CustomerFixtures extends Fixture
+class CustomerFixtures extends Fixture implements DependentFixtureInterface
 {
     public const CUSTOMERS = [
         [
@@ -17,7 +18,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'Peibei',
             'adress' => null,
             'zipcode' => 69340,
-            'city' => 'FRANCHEVILLE'
+            'city' => 'FRANCHEVILLE',
+            'type' => 'type_ami'
         ],
         [
             'date' => '2024-01-29',
@@ -26,7 +28,8 @@ class CustomerFixtures extends Fixture
             'firstname' => '',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_particulier'
         ],
         [
             'date' => '2024-01-29',
@@ -35,7 +38,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'Nhu Ngoc',
             'adress' => null,
             'zipcode' => 69160,
-            'city' =>  'TASSIN LA DEMI-LUNE'
+            'city' =>  'TASSIN LA DEMI-LUNE',
+            'type' => 'type_famille'
         ],
         [
             'date' => '2024-01-29',
@@ -44,7 +48,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'Charlotte',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_particulier'
         ],
         [
             'date' => '2024-01-29',
@@ -53,7 +58,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'Sylvie',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_professionnel'
         ],
         [
             'date' => '2024-01-29',
@@ -62,7 +68,8 @@ class CustomerFixtures extends Fixture
             'firstname' => '',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_famille'
         ],
         [
             'date' => '2024-01-29',
@@ -71,7 +78,8 @@ class CustomerFixtures extends Fixture
             'firstname' => '',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_carte de fidélité'
         ],
         [
             'date' => '2024-01-29',
@@ -80,7 +88,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'Andrea',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_particulier'
         ],
         [
             'date' => '2024-01-29',
@@ -89,7 +98,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'Isabelle',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_particulier'
         ],
         [
             'date' => '2024-01-2',
@@ -98,7 +108,8 @@ class CustomerFixtures extends Fixture
             'firstname' => '',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_famille'
         ],
         [
             'date' => '2024-01-2',
@@ -107,7 +118,8 @@ class CustomerFixtures extends Fixture
             'firstname' => '',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_particulier'
         ],
         [
             'date' => '2024-01-2',
@@ -116,7 +128,8 @@ class CustomerFixtures extends Fixture
             'firstname' => '',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_commerçant'
         ],
         [
             'date' => '2024-01-2',
@@ -125,7 +138,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'NAIMA',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_particulier'
         ],
         [
             'date' => '2024-01-2',
@@ -134,7 +148,8 @@ class CustomerFixtures extends Fixture
             'firstname' => 'Hsin Yi',
             'adress' => null,
             'zipcode' => null,
-            'city' => null
+            'city' => null,
+            'type' => 'type_ami'
         ]
     ];
 
@@ -149,10 +164,16 @@ class CustomerFixtures extends Fixture
             $customer->setAdress($customerFixture['adress']);
             $customer->setZipCode($customerFixture['zipcode']);
             $customer->setCity($customerFixture['city']);
-
+            $customer->setType($this->getReference($customerFixture['type']));
 
             $manager->persist($customer);
         }
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        // Retournez un tableau des classes de fixtures dont cette fixture dépend
+        return [TypeCustomerFixtures::class];
     }
 }

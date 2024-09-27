@@ -38,8 +38,12 @@
 		{{ form_label(form.description) }}
 		{{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
 	</div>
-
+	<div>
+		{{ form_label(form.type) }}
+		{{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
+	</div>
 	{{ form_widget(form) }}
 	<div>
 		<button class="btn-edit-customer">{{ button_label|default('Enregistrer le nouveau client') }}</button>
-		<div></div{{form_end(form)}}
+	</div>
+	{{form_end(form)}}
