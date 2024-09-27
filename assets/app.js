@@ -9,12 +9,14 @@
 import './styles/app.scss';
 
 // start the Stimulus application
-// import './bootstrap';
+import './bootstrap';
 
 import { Application } from '@hotwired/stimulus';
 import QuantityController from './controllers/quantity_controller';
 import DiscountController from './controllers/discount_controller';
+import ModalController from './controllers/modal_controller';
 
 const application = Application.start();
 application.register('quantity', QuantityController);
 application.register('discount', DiscountController);
+application.register('modal', ModalController);
