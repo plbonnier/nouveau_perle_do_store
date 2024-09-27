@@ -3,7 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Customer;
+use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Text;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,18 +17,45 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('created_date', null, [
-                'widget' => 'single_text',
+            ->add('civility', ChoiceType::class, [
+                'choices' => [
+                    'Madame' => 'Madame',
+                    'Monsieur' => 'Monsieur',
+                    'Monsieur et Madame' => 'Monsieur et Madame',
+                ],
+                'placeholder' => 'Choisir une civilité',
+                'label' => 'Civilité',
+                'required' => false,
             ])
-            ->add('civility')
-            ->add('lastname')
-            ->add('firstname')
-            ->add('reference')
-            ->add('adress')
-            ->add('zipcode')
-            ->add('city')
-            ->add('phone')
-            ->add('email')
+            ->add('lastname', TextType::class, [
+                'label' => 'Nom',
+            ])
+            ->add('firstname', TextType::class, [
+                'label' => 'Prénom',
+                'required' => false,
+            ])
+            ->add('adress', TextType::class, [
+                'label' => 'Adresse',
+                'required' => false,
+            ])
+            ->add('zipcode', NumberType::class, [
+                'label' => 'Code postal',
+                'required' => false,
+                'invalid_message' => 'Veuillez entrer des chiffres',
+            ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville',
+                'required' => false,
+            ])
+            ->add('phone', NumberType::class, [
+                'label' => 'Téléphone',
+                'required' => false,
+                'invalid_message' => 'Veuillez entrer des chiffres',
+            ])
+            ->add('email', EmailType::class, [
+                'label' => 'Email',
+                'required' => false,
+            ])
         ;
     }
 

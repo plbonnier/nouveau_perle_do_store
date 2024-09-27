@@ -1,4 +1,24 @@
 {{ form_start(form) }}
+<div class="form-group">
+    {{ form_label(form.civility) }}
+    {{ form_widget(form.civility, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.lastname) }}
+    {{ form_widget(form.lastname, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.firstname) }}
+    {{ form_widget(form.firstname, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.adress) }}
+    {{ form_widget(form.adress, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.zipcode) }}
+    {{ form_errors(form.zipcode, {'attr': {'class': 'form-errors'}}) }}
+    {{ form_widget(form.zipcode, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.city) }}
+    {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.phone) }}
+    {{ form_errors(form.phone, {'attr': {'class': 'form-errors'}}) }}
+    {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn-edit-customer">{{ button_label|default('Enregistrer le nouveau client') }}</button>
 {{ form_end(form) }}

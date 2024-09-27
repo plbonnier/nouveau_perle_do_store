@@ -5,8 +5,10 @@ namespace App\Entity;
 use App\Repository\CustomerRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Customer
 {
     #[ORM\Id]
@@ -26,9 +28,6 @@ class Customer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $firstname = null;
 
-    #[ORM\Column]
-    private ?int $reference = null;
-
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $adress = null;
 
@@ -43,6 +42,12 @@ class Customer
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $email = null;
+
+    #[ORM\PrePersist]
+    public function setDateValue(): void
+    {
+        $this->createdDate = new DateTime('now');
+    }
 
     public function getId(): ?int
     {
@@ -93,18 +98,6 @@ class Customer
     public function setFirstname(?string $firstname): static
     {
         $this->firstname = $firstname;
-
-        return $this;
-    }
-
-    public function getReference(): ?int
-    {
-        return $this->reference;
-    }
-
-    public function setReference(int $reference): static
-    {
-        $this->reference = $reference;
 
         return $this;
     }

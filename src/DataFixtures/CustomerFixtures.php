@@ -15,7 +15,6 @@ class CustomerFixtures extends Fixture
             'civility' => 'Madame',
             'lastname' => 'WANG',
             'firstname' => 'Peibei',
-            'reference' => 1,
             'adress' => null,
             'zipcode' => 69340,
             'city' => 'FRANCHEVILLE'
@@ -25,7 +24,6 @@ class CustomerFixtures extends Fixture
             'civility' => null,
             'lastname' => 'Client particulier',
             'firstname' => '',
-            'reference' => 2,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -35,7 +33,6 @@ class CustomerFixtures extends Fixture
             'civility' => null,
             'lastname' => 'DO',
             'firstname' => 'Nhu Ngoc',
-            'reference' => 3,
             'adress' => null,
             'zipcode' => 69160,
             'city' =>  'TASSIN LA DEMI-LUNE'
@@ -45,7 +42,6 @@ class CustomerFixtures extends Fixture
             'civility' => 'Madame',
             'lastname' => 'JOURDAN',
             'firstname' => 'Charlotte',
-            'reference' => 4,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -55,7 +51,6 @@ class CustomerFixtures extends Fixture
             'civility' => 'Madame',
             'lastname' => '',
             'firstname' => 'Sylvie',
-            'reference' => 5,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -65,7 +60,6 @@ class CustomerFixtures extends Fixture
             'civility' => 'Monsieur et Madame',
             'lastname' => 'LACROUX',
             'firstname' => '',
-            'reference' => 6,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -75,19 +69,24 @@ class CustomerFixtures extends Fixture
             'civility' => null,
             'lastname' => 'Client particulier',
             'firstname' => '',
-            'reference' => 7,
             'adress' => null,
             'zipcode' => null,
             'city' => null
         ],
-        ['date' => '2024-01-29', 'civility' => 'Madame', 'lastname' => 'POPESCU', '
-        firstname' => 'Andrea', 'reference' => 8, 'adress' => null, 'zipcode' => null,  'city' => null],
+        [
+            'date' => '2024-01-29',
+            'civility' => 'Madame',
+            'lastname' => 'POPESCU',
+            'firstname' => 'Andrea',
+            'adress' => null,
+            'zipcode' => null,
+            'city' => null
+        ],
         [
             'date' => '2024-01-29',
             'civility' => 'Madame',
             'lastname' => 'PETIT',
             'firstname' => 'Isabelle',
-            'reference' => 9,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -97,7 +96,6 @@ class CustomerFixtures extends Fixture
             'civility' =>  null,
             'lastname' => 'Famille',
             'firstname' => '',
-            'reference' => 10,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -107,7 +105,6 @@ class CustomerFixtures extends Fixture
             'civility' =>  'Monsieur',
             'lastname' => 'MERLIN',
             'firstname' => '',
-            'reference' => 11,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -117,7 +114,6 @@ class CustomerFixtures extends Fixture
             'civility' =>  null,
             'lastname' => 'Commerçant de Tassin',
             'firstname' => '',
-            'reference' => 12,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -127,7 +123,6 @@ class CustomerFixtures extends Fixture
             'civility' =>  'Madame',
             'lastname' => '',
             'firstname' => 'NAIMA',
-            'reference' => 13,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -137,7 +132,6 @@ class CustomerFixtures extends Fixture
             'civility' =>  null,
             'lastname' => '',
             'firstname' => 'Hsin Yi',
-            'reference' => 14,
             'adress' => null,
             'zipcode' => null,
             'city' => null
@@ -152,7 +146,6 @@ class CustomerFixtures extends Fixture
             $customer->setCivility($customerFixture['civility']);
             $customer->setLastname($customerFixture['lastname']);
             $customer->setFirstname($customerFixture['firstname']);
-            $customer->setReference($customerFixture['reference']);
             $customer->setAdress($customerFixture['adress']);
             $customer->setZipCode($customerFixture['zipcode']);
             $customer->setCity($customerFixture['city']);
