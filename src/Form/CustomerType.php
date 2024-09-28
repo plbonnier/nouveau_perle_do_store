@@ -3,7 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Customer;
-use PHPUnit\TextUI\XmlConfiguration\CodeCoverage\Report\Text;
+use App\Entity\TypeCustomer;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -60,6 +61,14 @@ class CustomerType extends AbstractType
             ->add('description', TextareaType::class, [
                 'label' => 'Description',
                 'required' => false,
+            ])
+            ->add('type', EntityType::class, [
+                'class' => TypeCustomer::class,
+                'choice_label' => 'type', // Le champ de l'entité TypeCustomer à afficher
+                'label' => 'Type de client',
+                'placeholder' => 'Sélectionnez un type de client',
+                'required' => true,
+                'attr' => ['class' => 'form-control'],
             ])
         ;
     }

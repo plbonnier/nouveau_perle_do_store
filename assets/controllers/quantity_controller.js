@@ -23,5 +23,6 @@ export default class extends Controller {
         const currentValue = parseInt(this.quantityTarget.value, 10);
         const newValue = currentValue + amount;
         this.quantityTarget.value = newValue >= 0 ? newValue : 0;
+        console.log(`Updated quantity: ${this.quantityTarget.value}`);
     }
 }

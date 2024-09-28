@@ -93,6 +93,18 @@ class CartService
         return $discountedTotal;
     }
 
+    public function countTotalProducts(): int
+    {
+        $cart = $this->getCart();
+        $count = 0;
+
+        foreach ($cart as $product) {
+            $count += $product['quantity'];
+        }
+
+        return $count;
+    }
+
     private function getSession(): SessionInterface
     {
         return $this->requestStack->getSession();

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\DiscountType;
+use App\Repository\CustomerRepository;
 use App\Service\CartService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,10 +14,12 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route('/cart', name: 'app_cart')]
-    public function index(CartService $cartService): Response
+    public function index(CartService $cartService, CustomerRepository $customerRepository): Response
     {
+        $customers = $customerRepository->findAll();
         $cart = $cartService->getCart();
         $total = $cartService->getTotal();
+        $totalProducts = $cartService->countTotalProducts();
         // Créer le formulaire de réduction
         $discountForm = $this->createForm(DiscountType::class);
 
@@ -24,6 +27,8 @@ class CartController extends AbstractController
             'cart' => $cart,
             'total' => $total,
             'discountForm' => $discountForm->createView(),
+            'customers' => $customers,
+            'totalProducts' => $totalProducts
         ]);
     }
 

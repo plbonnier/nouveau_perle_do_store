@@ -2,7 +2,14 @@ import { Controller } from '@hotwired/stimulus';
 import axios from 'axios';
 
 export default class extends Controller {
-    static targets = ['total'];
+    static targets = ['total','discount'];
+
+    updateDiscount(event) {
+        const selectedOption = event.target.options[event.target.selectedIndex];
+        const discount = selectedOption.getAttribute('data-discount');
+        this.discountTarget.textContent = discount > 0 ? `${discount*100}% de réduction` : 'Pas de réduction';
+        console.log(`Updated discount: ${this.discountTarget.textContent}`);
+    }
 
     applyDiscount(event) {
         event.preventDefault();  // Empêche la soumission classique du formulaire
