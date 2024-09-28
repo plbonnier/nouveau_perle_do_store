@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Customer;
 use App\Form\CustomerType;
 use App\Repository\CustomerRepository;
+use App\Repository\TypeCustomerRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,8 +18,9 @@ class CustomerController extends AbstractController
     #[Route('/', name: 'app_customer_index', methods: ['GET'])]
     public function index(CustomerRepository $customerRepository): Response
     {
+        $customer = $customerRepository->findAll();
         return $this->render('customer/index.html.twig', [
-            'customers' => $customerRepository->findAll(),
+            'customers' => $customer,
         ]);
     }
 
@@ -44,10 +46,13 @@ class CustomerController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_customer_show', methods: ['GET'])]
-    public function show(Customer $customer): Response
-    {
+    public function show(
+        Customer $customer
+    ): Response {
+        $typeCustomer = $customer->getType();
         return $this->render('customer/show.html.twig', [
             'customer' => $customer,
+            'typeCustomer' => $typeCustomer,
         ]);
     }
 
