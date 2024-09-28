@@ -11,19 +11,19 @@
 		{% set reduce = 0 %}
 
 		<form action="" method='POST' data-controller="discount">
-		<section class="cart-customer">
-			<label for="customers" class="p-product">Choix du client:</label>
-			<select id="customers" name="customers" data-action="change->discount#updateDiscount" class="discount-choice">
-				<option value="" disabled selected>Sélection</option>
-				{% for customer in customers %}
-					<option value="{{ customer.id }}" data-discount="{{ customer.type.discount }}">{{customer.lastname }}
-						{{ customer.firstname }}</option>
-				{% endfor %}
-			</select>
+			<section class="cart-customer">
+				<label for="customers" class="p-product">Choix du client:</label>
+				<select id="customers" name="customers" data-action="change->discount#updateDiscount" class="discount-choice">
+					<option value="" disabled selected>Sélection</option>
+					{% for customer in customers %}
+						<option value="{{ customer.id }}" data-discount="{{ customer.type.discount }}">{{customer.lastname }}
+							{{ customer.firstname }}</option>
+					{% endfor %}
+				</select>
 
-			<label for="discount">Réduction de base à appliquer au client:</label>
-			<p id="discount" data-discount-target="discount">Pas de réduction</p>
-		</section>
+				<label for="discount">Réduction de base à appliquer au client:</label>
+				<p id="discount" data-discount-target="discount">Pas de réduction</p>
+			</section>
 
 			<p class="p-total-product">Vous avez
 				{{ totalProducts }}
@@ -95,13 +95,33 @@
 						€</span>
 				</h3>
 
+				{# Formulaire pour le paiement #}
+				<form action="" method="POST">
+					<section class="cart-customer">
+						<p class="p-product">Moyen de paiement:</p>
+						<div class="cart-payement">
+							<div><input type="radio" id="cb" name="payement" value="carte bancaire">
+								<label for="cb" class="p-payement">CB</label>
+							</div>
+							<div><input type="radio" id="espece" name="payement" value="espèce">
+								<label for="espece" class="p-payement">Espèce</label>
+							</div>
+							<div><input type="radio" id="virement" name="payement" value="virement">
+								<label for="virement" class="p-payement">Virement</label>
+							</div>
+							<div><input type="radio" id="cheque" name="payement" value="chèque">
+								<label for="cheque" class="p-payement">Chèque</label>
+							</div>
+						</div>
+					</section>
+				</form>
 			</form>
 			<div class="twobuttons">
 				<a href="{{ path('app_cart_clear') }}" class="add-button-customer">Vider le panier</a>
-				<div>
+			</div>
 
-				{% else %}
-					<p>Votre panier est vide</p>
-			{% endif %}
-		</div>
-	{% endblock %}
+		{% else %}
+			<p class="p-product">Votre panier est vide</p>
+		{% endif %}
+	</div>
+{% endblock %}

@@ -650,6 +650,7 @@ tr {
     margin-top: 2rem;
 }
 
+.p-payement,
 .p-total-product {
     text-align: center ;
     margin: 1rem 0;
@@ -661,6 +662,13 @@ tr {
         1.5);
 }
 
+.cart-payement{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 2rem;
+}
 // ----------------------destkop-----------------------------------------------------------------------------------
 
 @media screen and (min-width: 780px) {
@@ -908,6 +916,14 @@ tr {
 
     .discount-choice {
         width: 30%;
+    }
 
+    .cart-payement{
+        width: 70%;
+        margin-bottom: 2rem;
+    }
+
+    .p-payement{
+        font-size: 1.1rem;
     }
 }
