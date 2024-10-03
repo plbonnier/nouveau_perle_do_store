@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture{% endblock %}
+
+{% block body %}
+    <h1>Facture #{{ invoice.numInvoice }}</h1>
+
+    <p>Date: {{ invoice.date|date('d/m/Y') }}</p>
+    <p>Client: {{ invoice.customer.lastname }} {{ invoice.customer.firstname }}</p>
+    <p>Type de paiement: {{ invoice.payementType }}</p>
+    <p>Réduction: {{ invoice.discount }}%</p>
+    <p>Total: {{ invoice.total }} €</p>
+
+    <h2>Produits</h2>
+    <ul>
+        {% for product in invoice.products %}
+            <li>{{ product.name }} - {{ product.price }} €</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_invoice_index') }}">back to list</a>
+{% endblock %}

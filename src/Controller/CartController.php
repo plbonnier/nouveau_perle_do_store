@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\DiscountType;
 use App\Repository\CustomerRepository;
 use App\Service\CartService;
+use App\Service\InvoiceService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -90,5 +91,32 @@ class CartController extends AbstractController
         $cartService->clearCart();
 
         return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/cart/invoice', name: 'app_cart_invoice', methods: ['POST'])]
+    public function generateInvoice(
+        Request $request,
+        CartService $cartService,
+        InvoiceService $invoiceService
+    ): Response {
+        $customerId = $request->request->get('customer');
+        $paymentMethod = $request->request->get('payement');
+        $discount = $request->request->get('discount-final'); // Récupérer la valeur de discount
+        $total = $request->request->get('total'); // Récupérer le total calculé
+
+        $cart = $cartService->getCart();
+
+        // Générer la facture
+        $invoice = $invoiceService->createInvoice(
+            $cart,
+            $paymentMethod,
+            (float)$discount,
+            (int)$customerId,
+            (float) $total
+        );
+        // Rediriger vers une page de confirmation ou afficher la facture
+        return $this->render('invoice/show.html.twig', [
+            'invoice' => $invoice,
+        ]);
     }
 }

@@ -20,3 +20,16 @@ const application = Application.start();
 application.register('quantity', QuantityController);
 application.register('discount', DiscountController);
 application.register('modal', ModalController);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Display a message to the user instead of using console.log
+            alert('Formulaire soumis');
+            this.submit();
+        });
+    }
+});
