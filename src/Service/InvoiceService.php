@@ -2,12 +2,13 @@
 
 namespace App\Service;
 
-use App\Entity\Invoice;
-use App\Entity\Product;
 use App\Entity\Customer;
+use App\Entity\Invoice;
+use App\Entity\InvoiceProduct;
+use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
-use DateTime;
 use Exception;
+use DateTime;
 
 class InvoiceService
 {
@@ -19,11 +20,11 @@ class InvoiceService
     }
 
     public function createInvoice(
+        int $customerId,
         array $cart,
         string $paymentMethod,
-        ?float $discount,
-        int $customerId,
-        float $total
+        float $total,
+        ?float $discount = 0
     ): Invoice {
         $invoice = new Invoice();
         $invoice->setNumInvoice($this->entityManager->getRepository(Invoice::class)->findLastNumInvoice() + 1);
@@ -40,14 +41,21 @@ class InvoiceService
         $invoice->setDiscount($discount ?? 0); // Utiliser 0 si discount est null
         $invoice->setTotal($total);
 
-
         foreach ($cart as $item) {
-            $product = $this->entityManager->getRepository(Product::class)->find($item['productId']);
+            $productId = $item['productId'];
+            $quantity = $item['quantity'];
+
+            $product = $this->entityManager->getRepository(Product::class)->find($productId);
             if ($product) {
-                $invoice->addProduct($product);
+                $invoiceProduct = new InvoiceProduct();
+                $invoiceProduct->setProduct($product);
+                $invoiceProduct->setInvoice($invoice);
+                $invoiceProduct->setQuantity($quantity);
+
+                $invoice->addInvoiceProduct($invoiceProduct);
+                $this->entityManager->persist($invoiceProduct);
             }
         }
-        // Vérifier que la réduction est bien assignée à l'entité
 
         // Persister l'entité Invoice
         $this->entityManager->persist($invoice);

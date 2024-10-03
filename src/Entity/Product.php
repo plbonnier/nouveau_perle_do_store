@@ -31,15 +31,16 @@ class Product
     private ?Material $material = null;
 
     /**
-     * @var Collection<int, Invoice>
+     * @var Collection<int, InvoiceProduct>
      */
-    #[ORM\ManyToMany(targetEntity: Invoice::class, mappedBy: 'products')]
-    private Collection $invoices;
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: InvoiceProduct::class)]
+    private Collection $invoiceProducts;
 
     public function __construct()
     {
-        $this->invoices = new ArrayCollection();
+        $this->invoiceProducts = new ArrayCollection();
     }
+
 
     public function getRef(): ?int
     {
@@ -102,27 +103,30 @@ class Product
     }
 
     /**
-     * @return Collection<int, Invoice>
+     * @return Collection<int, InvoiceProduct>
      */
-    public function getInvoices(): Collection
+    public function getInvoiceProducts(): Collection
     {
-        return $this->invoices;
+        return $this->invoiceProducts;
     }
 
-    public function addInvoice(Invoice $invoice): static
+    public function addInvoiceProduct(InvoiceProduct $invoiceProduct): static
     {
-        if (!$this->invoices->contains($invoice)) {
-            $this->invoices->add($invoice);
-            $invoice->addProduct($this);
+        if (!$this->invoiceProducts->contains($invoiceProduct)) {
+            $this->invoiceProducts->add($invoiceProduct);
+            $invoiceProduct->setProduct($this);
         }
 
         return $this;
     }
 
-    public function removeInvoice(Invoice $invoice): static
+    public function removeInvoiceProduct(InvoiceProduct $invoiceProduct): static
     {
-        if ($this->invoices->removeElement($invoice)) {
-            $invoice->removeProduct($this);
+        if ($this->invoiceProducts->removeElement($invoiceProduct)) {
+            // set the owning side to null (unless already changed)
+            if ($invoiceProduct->getProduct() === $this) {
+                $invoiceProduct->setProduct(null);
+            }
         }
 
         return $this;

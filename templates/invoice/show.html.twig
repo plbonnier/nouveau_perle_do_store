@@ -12,11 +12,10 @@
     <p>Total: {{ invoice.total }} €</p>
 
     <h2>Produits</h2>
-    <ul>
-        {% for product in invoice.products %}
-            <li>{{ product.name }} - {{ product.price }} €</li>
-        {% endfor %}
-    </ul>
-
+<ul>
+    {% for invoiceProduct in invoice.invoiceProducts %}
+        <li>{{ invoiceProduct.product.name }} - {{ invoiceProduct.product.price }} € - {{ invoiceProduct.quantity }}</li>
+    {% endfor %}
+</ul>
     <a href="{{ path('app_invoice_index') }}">back to list</a>
 {% endblock %}
