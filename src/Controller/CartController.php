@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Exception;
 
 class CartController extends AbstractController
 {
@@ -77,12 +78,23 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/update/{productId}', name: 'app_cart_update', methods: ['POST'])]
-    public function update(Request $request, int $productId, CartService $cartService): Response
+    public function updateQuantity(Request $request, int $productId, CartService $cartService): JsonResponse
     {
-        $quantity = $request->request->get('quantity');
-        $cartService->updateQuantity($productId, $quantity);
+        try {
+            $data = json_decode($request->getContent(), true);
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                throw new Exception('Invalid JSON');
+            }
 
-        return $this->redirectToRoute('app_cart');
+            $quantity = $data['quantity'];
+
+            // Logique pour mettre à jour la quantité du produit dans le panier
+            $cartService->updateQuantity($productId, $quantity);
+
+            return new JsonResponse(['success' => true]);
+        } catch (\Exception $e) {
+            return new JsonResponse(['success' => false, 'error' => $e->getMessage()], 400);
+        }
     }
 
     #[Route('/cart/clear', name: 'app_cart_clear')]

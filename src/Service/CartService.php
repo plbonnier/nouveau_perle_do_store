@@ -4,14 +4,17 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Psr\Log\LoggerInterface;
 
 class CartService
 {
     private RequestStack $requestStack;
+    private LoggerInterface $logger;
 
-    public function __construct(RequestStack $requestStack)
+    public function __construct(RequestStack $requestStack, LoggerInterface $logger)
     {
         $this->requestStack = $requestStack;
+        $this->logger = $logger;
     }
 
 
@@ -64,10 +67,16 @@ class CartService
         $cart = $this->getCart();
 
         if (isset($cart[$productId])) {
+            $this->logger->info("Updating quantity for product ID: $productId to $quantity");
             $cart[$productId]['quantity'] = $quantity;
-            $this->getSession()->set('cart', $cart);
+        } else {
+            $this->logger->warning("Product ID: $productId not found in cart");
         }
+
+        $this->getSession()->set('cart', $cart);
+        $this->logger->info("Cart updated: " . json_encode($cart));
     }
+
 
     public function clearCart(): void
     {
