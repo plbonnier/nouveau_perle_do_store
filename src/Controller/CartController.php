@@ -12,16 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Exception;
-use Psr\Log\LoggerInterface;
 
 class CartController extends AbstractController
 {
-    private LoggerInterface $logger;
-
-    public function __construct(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
     #[Route('/cart', name: 'app_cart')]
     public function index(CartService $cartService, CustomerRepository $customerRepository): Response
     {
@@ -77,34 +70,40 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/remove/{productId<\d+>}', name: 'app_cart_remove')]
-    public function removeToCart(int $productId, CartService $cartService): Response
-    {
-        $cartService->removeFromCart($productId);
-
-        return $this->redirectToRoute('app_cart');
-    }
-
-    #[Route('/cart/update/{productId<\d+>}', name: 'app_cart_update', methods: ['POST'])]
-    public function updateQuantity(Request $request, int $productId, CartService $cartService): JsonResponse
+    public function removeProduct(CartService $cartService, int $productId): Response
     {
         try {
-            $this->logger->info("Received request to update quantity for product ID: $productId");
+            $cartService->removeFromCart($productId);
+            return $this->redirectToRoute('app_cart');
+        } catch (Exception $e) {
+            return new Response('Erreur lors de la suppression du produit', 500);
+        }
+    }
 
+
+    #[Route('/cart/update/{productId<\d+>}', name: 'app_cart_update', methods: ['POST'])]
+    public function updateQuantity(Request $request, CartService $cartService, int $productId): JsonResponse
+    {
+        try {
             $data = json_decode($request->getContent(), true);
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                throw new Exception('Invalid JSON');
+            $quantity = $data['quantity'] ?? null;
+
+            if ($quantity === null) {
+                return new JsonResponse(['success' => false, 'error' => 'Invalid quantity'], 400);
             }
 
-            $quantity = $data['quantity'];
-            $this->logger->info("Updating quantity to: $quantity");
-
-            // Logique pour mettre à jour la quantité du produit dans le panier
             $cartService->updateQuantity($productId, $quantity);
 
-            return new JsonResponse(['success' => true]);
+            $totalProducts = $cartService->countTotalProducts();
+            $newTotal = $cartService->getTotal();
+
+            return new JsonResponse([
+                'success' => true,
+                'totalProducts' => $totalProducts,
+                'newTotal' => $newTotal,
+            ]);
         } catch (Exception $e) {
-            $this->logger->error("Error updating quantity: " . $e->getMessage());
-            return new JsonResponse(['success' => false, 'error' => $e->getMessage()], 400);
+            return new JsonResponse(['success' => false, 'error' => $e->getMessage()], 500);
         }
     }
 

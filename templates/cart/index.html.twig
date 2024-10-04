@@ -19,7 +19,8 @@
 							<option value="{{ customer.id }}" data-discount="{{ customer.type.discount }}">
 								<span class="no-show">{{ customer.id }}</span>
 								{{ customer.lastname }}
-								{{ customer.firstname }}</option>
+								{{ customer.firstname }}
+							</option>
 						{% endfor %}
 					</select>
 
@@ -28,7 +29,7 @@
 				</section>
 
 				<p class="p-total-product">Vous avez
-					{{ totalProducts }}
+					<span id="product-total" data-controller="cart" data-cart-target="productTotal">{{ totalProducts }}</span>
 					articles dans votre panier</p>
 
 				<table>
@@ -44,8 +45,10 @@
 					<tbody>
 						{% for productId, item in cart %}
 							{% set sum = sum + item.price * item.quantity %}
-							<tr class="cart-body" data-product-id="{{ productId }}">
-								<th>{{ item.productName }}</th>
+							<tr class="cart-body" data-product-id="{{ item.productId }}">
+								<th>{{ item.productName }}
+									-
+									{{ item.productId }}</th>
 								<td class="price">{{ item.price }}
 									€</td>
 								<td>
@@ -63,9 +66,11 @@
 								<td class="total">{{ item.price * item.quantity }}
 									€</td>
 								<td class="action">
-									<a href="{{ path('app_cart_remove', {productId: productId}) }}" class="action-trash">
-										<i class="fa-solid fa-trash"></i>
-									</a>
+                <form action="{{ path('app_cart_remove', {productId: item.productId}) }}" method="post">
+                    <button type="submit" class="action-trash no-button">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </form>
 								</td>
 							</tr>
 						{% endfor %}
@@ -80,10 +85,9 @@
 						</tr>
 					</tbody>
 				</table>
+
 				<section>
-					<form
-						action="{{ path('app_cart_discount') }}" method="post" data-controller="discount" data-action="submit->discount#applyDiscount" class="discount-form">
-						{# Formulaire de réduction #}
+					<form action="{{ path('app_cart_discount') }}" method="post" data-controller="discount" data-action="submit->discount#applyDiscount" class="discount-form">
 						{{ form_start(discountForm) }}
 						{{ form_label(discountForm.discount) }}
 						{{ form_errors(discountForm.discount) }}
@@ -95,16 +99,12 @@
 					</form>
 				</section>
 
-
 				<h3 class="cart-total">Total :
 					<span id="cart-total" name="total">{{ sum }}
 						€</span>
-					{# Champ caché pour le total #}
+					<!-- Champ caché pour le total -->
 					<input name="total" id="total-input" value="{{ sum }}">
 				</h3>
-
-
-				{# Formulaire pour le paiement #}
 
 				<section class="cart-customer">
 					<p class="p-product">Moyen de paiement:</p>

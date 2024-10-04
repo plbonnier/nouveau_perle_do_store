@@ -27,6 +27,7 @@ export default class extends Controller {
         const input = this.quantityTarget;
         const productId = input.closest('tr').dataset.productId;
         const quantity = input.value;
+        console.log('Product ID:', productId); // Ajout de log pour vérifier la valeur de productId
 
         if (!productId) {
             console.error('Product ID is undefined');
@@ -60,6 +61,20 @@ export default class extends Controller {
                     console.log('Calling updateSubtotal');
                     this.updateSubtotal();
                     console.log('Quantité mise à jour avec succès');
+
+                    // Mettre à jour le total des produits
+                    console.log('Total products from server:', data.totalProducts); // Ajout de log pour vérifier la valeur de totalProducts
+                    const cartElement = document.querySelector('[data-controller="cart"]');
+                    if (cartElement) {
+                        const cartController = this.application.getControllerForElementAndIdentifier(cartElement, 'cart');
+                        if (cartController) {
+                            cartController.updateProductTotal(data.totalProducts);
+                        } else {
+                            console.error('Cart controller not found');
+                        }
+                    } else {
+                        console.error('Cart element not found');
+                    }
                 } else {
                     // Gérer les erreurs
                     console.error('Erreur lors de la mise à jour de la quantité: ' + data.error);

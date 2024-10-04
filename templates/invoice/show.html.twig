@@ -3,6 +3,7 @@
 {% block title %}Facture{% endblock %}
 
 {% block body %}
+    <div class="cart">
     <h1>Facture #{{ invoice.numInvoice }}</h1>
 
     <p>Date: {{ invoice.date|date('d/m/Y') }}</p>
@@ -18,4 +19,5 @@
     {% endfor %}
 </ul>
     <a href="{{ path('app_invoice_index') }}">back to list</a>
+    </div>
 {% endblock %}

@@ -4,26 +4,18 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Psr\Log\LoggerInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Product;
+use Exception;
 
-// Add this line to import the Product class
+// Add this line to import the Exception class
 
 class CartService
 {
     private RequestStack $requestStack;
-    private LoggerInterface $logger;
-    private EntityManagerInterface $entityManager;
 
     public function __construct(
         RequestStack $requestStack,
-        LoggerInterface $logger,
-        EntityManagerInterface $entityManager
     ) {
         $this->requestStack = $requestStack;
-        $this->logger = $logger;
-        $this->entityManager = $entityManager;
     }
 
 
@@ -32,26 +24,24 @@ class CartService
     {
         $cart = $this->requestStack->getSession()->get('cart', []);
 
-        // Ajout de logs pour vérifier les valeurs des identifiants des produits
-        $this->logger->info("Adding product to cart: ID = $productId,
-        Name = $productName, Price = $price, Quantity = $quantity");
-
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity'] += $quantity;
         } else {
+            // Assurez-vous que l'ID du produit est utilisé comme clé
             $cart[$productId] = [
-                'productName' => $productName,
-                'price' => $price,
+                'productId' => $productId,
                 'quantity' => $quantity,
+                'price' => $price, // Exemple de récupération du prix du produit
+                'productName' => $productName // Exemple de récupération du nom du produit
             ];
         }
 
-        $this->getSession()->set('cart', $cart);
+        $this->saveCart($cart);
     }
 
     public function getCart(): array
     {
-        $cart = $this->getSession()->get('cart');
+        $cart = $this->getSession()->get('cart', []);
         $cartData = [];
 
         if ($cart) {
@@ -70,40 +60,27 @@ class CartService
 
     public function removeFromCart(int $productId): void
     {
-        $cart = $this->getCart();
-        unset($cart[$productId]);
-        $this->getSession()->set('cart', $cart);
+        $cart = $this->getSession()->get('cart', []);
+        if (isset($cart[$productId])) {
+            unset($cart[$productId]);
+            $this->saveCart($cart);
+        }
     }
 
     public function updateQuantity(int $productId, int $quantity): void
     {
         $cart = $this->getSession()->get('cart', []);
 
-        // Ajout de logs pour vérifier le contenu du panier avant mise à jour
-        $this->logger->info("Cart content before update: " . json_encode($cart));
-
         if (isset($cart[$productId])) {
-            $this->logger->info("Updating quantity for product ID: $productId to $quantity");
             $cart[$productId]['quantity'] = $quantity;
-
-            // Mettre à jour la quantité dans la base de données
-            $product = $this->entityManager->getRepository(Product::class)->find($productId);
-            if ($product) {
-                $product->setQuantity($quantity);
-                $this->entityManager->flush();
-            } else {
-                $this->logger->warning("Product ID: $productId not found in database");
-            }
         } else {
-            $this->logger->warning("Product ID: $productId not found in cart");
+            // Si le produit n'existe pas dans le panier, vous pouvez gérer cette situation ici
+            // Par exemple, vous pouvez lever une exception ou ajouter le produit au panier
+            throw new Exception("Product with ID $productId not found in cart");
         }
 
-        // Ajout de logs pour vérifier le contenu du panier après mise à jour
-        $this->logger->info("Cart content after update: " . json_encode($cart));
-
-        $this->getSession()->set('cart', $cart);
+        $this->saveCart($cart);
     }
-
     public function clearCart(): void
     {
         $this->getSession()->remove('cart');
@@ -138,6 +115,11 @@ class CartService
         }
 
         return $count;
+    }
+
+    private function saveCart(array $cart): void
+    {
+        $this->getSession()->set('cart', $cart);
     }
 
     private function getSession(): SessionInterface
