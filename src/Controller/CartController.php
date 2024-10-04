@@ -141,8 +141,6 @@ class CartController extends AbstractController
         $cartService->clearCart();
 
         // Rediriger vers une page de confirmation ou afficher la facture
-        return $this->render('invoice/show.html.twig', [
-            'invoice' => $invoice,
-        ]);
+        return $this->redirectToRoute('app_invoice_show', ['id' => $invoice->getId()]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Invoice;
 use App\Form\InvoiceType;
+use App\Repository\InvoiceProductRepository;
 use App\Repository\InvoiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,49 +23,14 @@ class InvoiceController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_invoice_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $invoice = new Invoice();
-        $form = $this->createForm(InvoiceType::class, $invoice);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($invoice);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_invoice_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('invoice/new.html.twig', [
-            'invoice' => $invoice,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_invoice_show', methods: ['GET'])]
-    public function show(Invoice $invoice): Response
+    public function show(Invoice $invoice, InvoiceProductRepository $invoiceProductRep): Response
     {
+        // lister les produits de la facture
+        $products = $invoiceProductRep->findBy(['invoice' => $invoice]);
         return $this->render('invoice/show.html.twig', [
             'invoice' => $invoice,
-        ]);
-    }
-
-    #[Route('/{id}/edit', name: 'app_invoice_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
-    {
-        $form = $this->createForm(InvoiceType::class, $invoice);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_invoice_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->render('invoice/edit.html.twig', [
-            'invoice' => $invoice,
-            'form' => $form,
+            'products' => $products,
         ]);
     }
 
