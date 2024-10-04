@@ -137,6 +137,9 @@ class CartController extends AbstractController
             $discount
         );
 
+        // Vider le panier
+        $cartService->clearCart();
+
         // Rediriger vers une page de confirmation ou afficher la facture
         return $this->render('invoice/show.html.twig', [
             'invoice' => $invoice,
