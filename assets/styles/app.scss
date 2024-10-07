@@ -822,6 +822,44 @@ tr {
     align-items: center;
 }
 
+// ------------------------------------------ca------------------------
+.choice-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.strong-ca{
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.invoice-ca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem
+}
+
+.index-ca {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    width: 70vw;
+    border-radius: 15px;
+    background-color: $backgroungColor2;
+    align-items: center;
+}
+
+
+.two-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2vh;
+}
 // ----------------------destkop-----------------------------------------------------------------------------------
 
 @media screen and (min-width: 780px) {
@@ -1143,6 +1181,21 @@ tr {
     .p-invoices-total{
         margin-right: 1rem;
         justify-self: end;
+    }
+
+    .two-buttons {
+        display: flex;
+        justify-content: flex-start;
+        width: 70%;
+        margin-left: 25vw;
+        margin-bottom: 2vh;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .ca{
+        width: 70%;
+        margin-left: 25vw;
     }
 }
 
