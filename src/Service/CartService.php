@@ -4,13 +4,17 @@ namespace App\Service;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Exception;
+
+// Add this line to import the Exception class
 
 class CartService
 {
     private RequestStack $requestStack;
 
-    public function __construct(RequestStack $requestStack)
-    {
+    public function __construct(
+        RequestStack $requestStack,
+    ) {
         $this->requestStack = $requestStack;
     }
 
@@ -23,19 +27,21 @@ class CartService
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity'] += $quantity;
         } else {
+            // Assurez-vous que l'ID du produit est utilisé comme clé
             $cart[$productId] = [
-                'productName' => $productName,
-                'price' => $price,
+                'productId' => $productId,
                 'quantity' => $quantity,
+                'price' => $price, // Exemple de récupération du prix du produit
+                'productName' => $productName // Exemple de récupération du nom du produit
             ];
         }
 
-        $this->getSession()->set('cart', $cart);
+        $this->saveCart($cart);
     }
 
     public function getCart(): array
     {
-        $cart = $this->getSession()->get('cart');
+        $cart = $this->getSession()->get('cart', []);
         $cartData = [];
 
         if ($cart) {
@@ -54,21 +60,27 @@ class CartService
 
     public function removeFromCart(int $productId): void
     {
-        $cart = $this->getCart();
-        unset($cart[$productId]);
-        $this->getSession()->set('cart', $cart);
+        $cart = $this->getSession()->get('cart', []);
+        if (isset($cart[$productId])) {
+            unset($cart[$productId]);
+            $this->saveCart($cart);
+        }
     }
 
     public function updateQuantity(int $productId, int $quantity): void
     {
-        $cart = $this->getCart();
+        $cart = $this->getSession()->get('cart', []);
 
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity'] = $quantity;
-            $this->getSession()->set('cart', $cart);
+        } else {
+            // Si le produit n'existe pas dans le panier, vous pouvez gérer cette situation ici
+            // Par exemple, vous pouvez lever une exception ou ajouter le produit au panier
+            throw new Exception("Product with ID $productId not found in cart");
         }
-    }
 
+        $this->saveCart($cart);
+    }
     public function clearCart(): void
     {
         $this->getSession()->remove('cart');
@@ -103,6 +115,11 @@ class CartService
         }
 
         return $count;
+    }
+
+    private function saveCart(array $cart): void
+    {
+        $this->getSession()->set('cart', $cart);
     }
 
     private function getSession(): SessionInterface

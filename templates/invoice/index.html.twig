@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des factures
+{% endblock %}
+
+{% block body %}
+	<p class="titre">Liste des factures</p>
+
+	{% for invoice in pagination %}
+		<div class="index-invoice">
+			<a href="{{ path('app_invoice_show', {'id': invoice.id}) }}" role="button" class="p-invoice-bold to-invoice">{{ invoice.numInvoice }}</a>
+			<ul class="invoice-date-name">
+				<li class="p-product-table">{{ invoice.date|date('d/m/Y') }}</li>
+				<li class="p-product-table">{{ invoice.customer.firstname }}
+					{{ invoice.customer.lastname }}</li>
+			</ul>
+			<p class="p-invoice-bold p-invoices-total">{{ invoice.total }} €</p>
+		</div>
+	{% endfor %}
+
+	<div class="pagina">
+		{{ knp_pagination_render(pagination) }}
+	</div>
+
+{% endblock %}

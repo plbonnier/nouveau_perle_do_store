@@ -22,8 +22,18 @@ class DiscountType extends AbstractType
                 ],
                 'label' => 'Réduction',
             ])
-        ->add('apply', SubmitType::class, [
-            'label' => false,
+            ->add('apply', SubmitType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'fa-solid fa-check no-button',
+                    // Assurez-vous que 'aria-hidden' n'est pas ajouté
+                ],
+            ]);
+    }
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'csrf_protection' => false,
         ]);
     }
 }
