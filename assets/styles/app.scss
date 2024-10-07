@@ -10,6 +10,7 @@ $backgroundColorNavMobile: #ffebe4;
 $backgroundColorNavDesktop: #fefefe;
 $backgroungColorCard: #ffffff;
 $trait: #b8b5b573;
+$backgoungColor3: #c49a6c;
 // }
 
 /* Pink Dark scheme (Forced) */
@@ -738,6 +739,89 @@ tr {
     margin: 0 0 0 2vw;
 }
 
+.pagina {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 5rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.page,
+.previous,
+.next,
+.last,
+.first {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+
+    a {
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: $buttonColor;
+        background-color: $backgroungColor2;
+    }
+}
+
+.current {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: $backgroungColor2;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+.index-invoice {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    padding: 0.5rem;
+    margin: 2vh;
+    width: 90vw;
+    border-radius: 15px;
+    background-color: $backgroungColor2;
+    align-items: center
+}
+
+.p-invoice-bold {
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        bold,
+        1.5);
+}
+
+.to-invoice {
+    background-color: $backgoungColor3;
+    border-radius: 5px;
+    width: 6rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invoice-date-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 // ----------------------destkop-----------------------------------------------------------------------------------
 
 @media screen and (min-width: 780px) {
@@ -903,7 +987,6 @@ tr {
         top: 0%;
         margin: 0;
         padding: 0.5rem;
-        height: fit-content;
         width: 100%;
     }
 
@@ -1030,6 +1113,36 @@ tr {
 
     .mar {
         margin: 0 0 5vh 2vw;
+    }
+
+    .index-invoice {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        justify-items: stretch;
+        padding: 0.5rem;
+        margin-left: 25vw;
+        width: 72%;
+        height: 6rem;
+    }
+
+    .p-invoice-bold {
+        font-size: 1.5rem;
+    }
+
+    .to-invoice{
+        width: 10rem;
+        height: 4rem;
+        margin-left: 1rem;
+    }
+
+    .pagina {
+        margin-left: 25vw;
+    }
+
+    .p-invoices-total{
+        margin-right: 1rem;
+        justify-self: end;
     }
 }
 

@@ -1,42 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Invoice index{% endblock %}
+{% block title %}Liste des factures
+{% endblock %}
 
 {% block body %}
-    <h1>Invoice index</h1>
+	<p class="titre">Liste des factures</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>NumInvoice</th>
-                <th>Date</th>
-                <th>Total</th>
-                <th>Discount</th>
-                <th>PayementType</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for invoice in invoices %}
-            <tr>
-                <td>{{ invoice.id }}</td>
-                <td>{{ invoice.numInvoice }}</td>
-                <td>{{ invoice.date ? invoice.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ invoice.total }}</td>
-                <td>{{ invoice.discount }}</td>
-                <td>{{ invoice.payementType }}</td>
-                <td>
-                    <a href="{{ path('app_invoice_show', {'id': invoice.id}) }}">show</a>
+	{% for invoice in pagination %}
+		<div class="index-invoice">
+			<a href="{{ path('app_invoice_show', {'id': invoice.id}) }}" role="button" class="p-invoice-bold to-invoice">{{ invoice.numInvoice }}</a>
+			<ul class="invoice-date-name">
+				<li class="p-product-table">{{ invoice.date|date('d/m/Y') }}</li>
+				<li class="p-product-table">{{ invoice.customer.firstname }}
+					{{ invoice.customer.lastname }}</li>
+			</ul>
+			<p class="p-invoice-bold p-invoices-total">{{ invoice.total }} €</p>
+		</div>
+	{% endfor %}
 
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="pagina">
+		{{ knp_pagination_render(pagination) }}
+	</div>
 
 {% endblock %}
