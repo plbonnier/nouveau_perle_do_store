@@ -15,7 +15,9 @@ class ProductFixtures extends Fixture
             'price' => 80.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_LABRADORITE'
+            'material' => 'material_LABRADORITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'LABRADORITE',
@@ -23,7 +25,9 @@ class ProductFixtures extends Fixture
             'price' => 42.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_LABRADORITE'
+            'material' => 'material_LABRADORITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'LABRADORITE',
@@ -31,7 +35,9 @@ class ProductFixtures extends Fixture
             'price' => 38.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_LABRADORITE'
+            'material' => 'material_LABRADORITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE DE LUNE',
@@ -39,7 +45,9 @@ class ProductFixtures extends Fixture
             'price' => 50.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_PIERRE DE LUNE'
+            'material' => 'material_PIERRE DE LUNE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE DE LUNE',
@@ -47,7 +55,9 @@ class ProductFixtures extends Fixture
             'price' => 72.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_PIERRE DE LUNE'
+            'material' => 'material_PIERRE DE LUNE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE DE LUNE ORANGÉE',
@@ -55,7 +65,9 @@ class ProductFixtures extends Fixture
             'price' => 90.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_PIERRE DE LUNE'
+            'material' => 'material_PIERRE DE LUNE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'OPALE',
@@ -63,7 +75,9 @@ class ProductFixtures extends Fixture
             'price' => 60.00,
             'quantity' => 2,
             'category' => 'category_AUTRES',
-            'material' => 'material_AUTRES'
+            'material' => 'material_AUTRES',
+            'tva' => false,
+            'purchasePrice' => 20.50
         ],
         [
             'name' => 'OPALE',
@@ -71,7 +85,9 @@ class ProductFixtures extends Fixture
             'price' => 94.50,
             'quantity' => 2,
             'category' => 'category_AUTRES',
-            'material' => 'material_AUTRES'
+            'material' => 'material_AUTRES',
+            'tva' => false,
+            'purchasePrice' => 40
         ],
         [
             'name' => 'OPALE',
@@ -79,7 +95,9 @@ class ProductFixtures extends Fixture
             'price' => 100.00,
             'quantity' => 2,
             'category' => 'category_AUTRES',
-            'material' => 'material_AUTRES'
+            'material' => 'material_AUTRES',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'OPALE',
@@ -87,7 +105,9 @@ class ProductFixtures extends Fixture
             'price' => 100.00,
             'quantity' => 2,
             'category' => 'category_AUTRES',
-            'material' => 'material_AUTRES'
+            'material' => 'material_AUTRES',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF ROND CHRYSOCOLLE',
@@ -95,7 +115,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_CHRYSOCOLLE'
+            'material' => 'material_CHRYSOCOLLE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF COEUR OEIL DE LUCIE',
@@ -103,7 +125,9 @@ class ProductFixtures extends Fixture
             'price' => 33.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_OEIL DE LUCIE'
+            'material' => 'material_OEIL DE LUCIE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF ROND MULTI',
@@ -111,7 +135,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_JASPE'
+            'material' => 'material_JASPE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF ROND OPALE BLEUE',
@@ -119,7 +145,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_OPALE'
+            'material' => 'material_OPALE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF TRIANGLE JASPE K2',
@@ -127,7 +155,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_JASPE'
+            'material' => 'material_JASPE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF MARQUISE FELDSPATH',
@@ -135,7 +165,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_FELDSPATH'
+            'material' => 'material_FELDSPATH',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF GOUTTE MOOKAITE',
@@ -143,7 +175,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_JASPE'
+            'material' => 'material_JASPE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF ROND AGATE DENTRITE',
@@ -151,7 +185,9 @@ class ProductFixtures extends Fixture
             'price' => 18.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_AGATE'
+            'material' => 'material_AGATE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PENDENTIF ROND OPALE DENTRITE',
@@ -159,7 +195,9 @@ class ProductFixtures extends Fixture
             'price' => 15.00,
             'quantity' => 2,
             'category' => 'category_PENDENTIF',
-            'material' => 'material_OPALE'
+            'material' => 'material_OPALE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'QUARTZ ROSE BRUT',
@@ -167,7 +205,9 @@ class ProductFixtures extends Fixture
             'price' => 2.00,
             'quantity' => 2,
             'category' => 'category_MINERAUX',
-            'material' => 'material_QUARTZ'
+            'material' => 'material_QUARTZ',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'QUARTZ BLANC BRUT',
@@ -175,7 +215,9 @@ class ProductFixtures extends Fixture
             'price' => 2.00,
             'quantity' => 2,
             'category' => 'category_MINERAUX',
-            'material' => 'material_QUARTZ'
+            'material' => 'material_QUARTZ',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AVENTURINE VERTE',
@@ -183,7 +225,9 @@ class ProductFixtures extends Fixture
             'price' => 2.00,
             'quantity' => 2,
             'category' => 'category_MINERAUX',
-            'material' => 'material_AVENTURINE VERTE'
+            'material' => 'material_AVENTURINE VERTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'JASPE ZEBRE',
@@ -191,7 +235,9 @@ class ProductFixtures extends Fixture
             'price' => 2.00,
             'quantity' => 2,
             'category' => 'category_MINERAUX',
-            'material' => 'material_JASPE'
+            'material' => 'material_JASPE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'LAPIS LAZULI',
@@ -199,7 +245,9 @@ class ProductFixtures extends Fixture
             'price' => 75.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_LAPIS LAZULI'
+            'material' => 'material_LAPIS LAZULI',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'LAPIS LAZULI',
@@ -207,7 +255,9 @@ class ProductFixtures extends Fixture
             'price' => 130.00,
             'quantity' => 2,
             'category' => 'category_PIERRES POLIES',
-            'material' => 'material_LAPIS LAZULI'
+            'material' => 'material_LAPIS LAZULI',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SELENITE CASCADE S',
@@ -215,7 +265,9 @@ class ProductFixtures extends Fixture
             'price' => 12.00,
             'quantity' => 2,
             'category' => 'category_SELENITE',
-            'material' => 'material_SELENITE'
+            'material' => 'material_SELENITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SELENITE CASCADE M',
@@ -223,7 +275,9 @@ class ProductFixtures extends Fixture
             'price' => 16.00,
             'quantity' => 2,
             'category' => 'category_SELENITE',
-            'material' => 'material_SELENITE'
+            'material' => 'material_SELENITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SPHERE SELENITE',
@@ -231,7 +285,9 @@ class ProductFixtures extends Fixture
             'price' => 25.00,
             'quantity' => 2,
             'category' => 'category_SELENITE',
-            'material' => 'material_SELENITE'
+            'material' => 'material_SELENITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PALET SELENITE METATRON',
@@ -239,7 +295,9 @@ class ProductFixtures extends Fixture
             'price' => 20.00,
             'quantity' => 2,
             'category' => 'category_SELENITE',
-            'material' => 'material_SELENITE'
+            'material' => 'material_SELENITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PALET SELENITE',
@@ -247,7 +305,9 @@ class ProductFixtures extends Fixture
             'price' => 17.00,
             'quantity' => 2,
             'category' => 'category_SELENITE',
-            'material' => 'material_SELENITE'
+            'material' => 'material_SELENITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BOUGEOIR SELENITE',
@@ -255,7 +315,9 @@ class ProductFixtures extends Fixture
             'price' => 20.00,
             'quantity' => 2,
             'category' => 'category_BOUGEOIR',
-            'material' => 'material_SELENITE'
+            'material' => 'material_SELENITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'POINTE CALCITE',
@@ -263,7 +325,9 @@ class ProductFixtures extends Fixture
             'price' => 22.00,
             'quantity' => 2,
             'category' => 'category_POINTE',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'POINTE CALCITE',
@@ -271,7 +335,9 @@ class ProductFixtures extends Fixture
             'price' => 20.00,
             'quantity' => 2,
             'category' => 'category_POINTE',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'POINTE CALCITE',
@@ -279,7 +345,9 @@ class ProductFixtures extends Fixture
             'price' => 25.00,
             'quantity' => 2,
             'category' => 'category_POINTE',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'POINTE QUARTZ',
@@ -287,7 +355,9 @@ class ProductFixtures extends Fixture
             'price' => 35.00,
             'quantity' => 2,
             'category' => 'category_POINTE',
-            'material' => 'material_QUARTZ'
+            'material' => 'material_QUARTZ',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE',
@@ -295,7 +365,9 @@ class ProductFixtures extends Fixture
             'price' => 75.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE',
@@ -303,7 +375,9 @@ class ProductFixtures extends Fixture
             'price' => 40.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE',
@@ -311,7 +385,9 @@ class ProductFixtures extends Fixture
             'price' => 60.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE',
@@ -319,7 +395,9 @@ class ProductFixtures extends Fixture
             'price' => 50.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE',
@@ -327,7 +405,9 @@ class ProductFixtures extends Fixture
             'price' => 48.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE',
@@ -335,7 +415,9 @@ class ProductFixtures extends Fixture
             'price' => 55.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE SOCLE',
@@ -343,7 +425,9 @@ class ProductFixtures extends Fixture
             'price' => 15.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'AMETHYSTE SOCLE',
@@ -351,7 +435,9 @@ class ProductFixtures extends Fixture
             'price' => 25.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -359,7 +445,9 @@ class ProductFixtures extends Fixture
             'price' => 10.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -367,7 +455,9 @@ class ProductFixtures extends Fixture
             'price' => 15.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -375,7 +465,9 @@ class ProductFixtures extends Fixture
             'price' => 13.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -383,7 +475,9 @@ class ProductFixtures extends Fixture
             'price' => 20.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -391,7 +485,9 @@ class ProductFixtures extends Fixture
             'price' => 20.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -399,7 +495,9 @@ class ProductFixtures extends Fixture
             'price' => 13.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -407,7 +505,9 @@ class ProductFixtures extends Fixture
             'price' => 15.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PLAQUE AMETHYSTE',
@@ -415,7 +515,9 @@ class ProductFixtures extends Fixture
             'price' => 15.00,
             'quantity' => 2,
             'category' => 'category_GÉODE',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SOCLE QUARTZ ROSE',
@@ -423,7 +525,9 @@ class ProductFixtures extends Fixture
             'price' => 12.00,
             'quantity' => 2,
             'category' => 'category_DECO',
-            'material' => 'material_QUARTZ ROSE'
+            'material' => 'material_QUARTZ ROSE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SOCLE AVENTURINE VERTE',
@@ -431,7 +535,9 @@ class ProductFixtures extends Fixture
             'price' => 12.00,
             'quantity' => 2,
             'category' => 'category_DECO',
-            'material' => 'material_AVENTURINE VERTE'
+            'material' => 'material_AVENTURINE VERTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BOUGEOIR AGATE',
@@ -439,7 +545,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BOUGEOIR',
-            'material' => 'material_AGATE'
+            'material' => 'material_AGATE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BOUGEOIR AGATE',
@@ -447,7 +555,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BOUGEOIR',
-            'material' => 'material_AGATE'
+            'material' => 'material_AGATE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SPHERE QUARTZ ROSE',
@@ -455,7 +565,9 @@ class ProductFixtures extends Fixture
             'price' => 130.00,
             'quantity' => 2,
             'category' => 'category_OEUF / BOULE',
-            'material' => 'material_QUARTZ ROSE'
+            'material' => 'material_QUARTZ ROSE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SPHERE CHRYSOCOLLE',
@@ -463,7 +575,9 @@ class ProductFixtures extends Fixture
             'price' => 90.00,
             'quantity' => 2,
             'category' => 'category_OEUF / BOULE',
-            'material' => 'material_CHRYSOCOLLE'
+            'material' => 'material_CHRYSOCOLLE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'SPHERE CHRYSOCOLLE',
@@ -471,7 +585,9 @@ class ProductFixtures extends Fixture
             'price' => 50.00,
             'quantity' => 2,
             'category' => 'category_OEUF / BOULE',
-            'material' => 'material_CHRYSOCOLLE'
+            'material' => 'material_CHRYSOCOLLE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET PERLE',
@@ -479,7 +595,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_PERLE'
+            'material' => 'material_PERLE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET JADE NEPHRITE',
@@ -487,7 +605,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_JADE'
+            'material' => 'material_JADE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET QUARTZ ROSE ENFANT',
@@ -495,7 +615,9 @@ class ProductFixtures extends Fixture
             'price' => 12.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_QUARTZ ROSE'
+            'material' => 'material_QUARTZ ROSE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET OEIL DE TIGRE 6MM',
@@ -503,7 +625,9 @@ class ProductFixtures extends Fixture
             'price' => 16.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_OEIL DE TIGRE'
+            'material' => 'material_OEIL DE TIGRE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET AMETHYSTE ENFANT',
@@ -511,7 +635,9 @@ class ProductFixtures extends Fixture
             'price' => 13.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_AMETHYSTE'
+            'material' => 'material_AMETHYSTE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET OEIL DE TAUREAU',
@@ -519,7 +645,9 @@ class ProductFixtures extends Fixture
             'price' => 20.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_OEIL DE TAUREAU'
+            'material' => 'material_OEIL DE TAUREAU',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET CALCITE',
@@ -527,7 +655,9 @@ class ProductFixtures extends Fixture
             'price' => 22.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET CORNALINE',
@@ -535,7 +665,9 @@ class ProductFixtures extends Fixture
             'price' => 20.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_CORNALINE'
+            'material' => 'material_CORNALINE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET OEIL DE TIGRE 8MM',
@@ -543,7 +675,9 @@ class ProductFixtures extends Fixture
             'price' => 22.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_OEIL DE TIGRE'
+            'material' => 'material_OEIL DE TIGRE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET QUARTZ ROSE',
@@ -551,7 +685,9 @@ class ProductFixtures extends Fixture
             'price' => 16.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_QUARTZ ROSE'
+            'material' => 'material_QUARTZ ROSE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET NACRE',
@@ -559,7 +695,9 @@ class ProductFixtures extends Fixture
             'price' => 25.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_NACRE'
+            'material' => 'material_NACRE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET PHRENITE - 6mm',
@@ -567,7 +705,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_PREHNITE'
+            'material' => 'material_PREHNITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET TURQUOISE PÉROU',
@@ -575,7 +715,9 @@ class ProductFixtures extends Fixture
             'price' => 48.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_TURQUOISE'
+            'material' => 'material_TURQUOISE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET PIERRE DE LUNE',
@@ -583,7 +725,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_PIERRE DE LUNE'
+            'material' => 'material_PIERRE DE LUNE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BRACELET AMAZONITE',
@@ -591,7 +735,9 @@ class ProductFixtures extends Fixture
             'price' => 35.00,
             'quantity' => 2,
             'category' => 'category_BRACELET',
-            'material' => 'material_AMAZONITE'
+            'material' => 'material_AMAZONITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'COEUR COUPLE',
@@ -599,7 +745,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BOIS',
-            'material' => 'material_AUTRES'
+            'material' => 'material_AUTRES',
+            'tva' => false,
+            'purchasePrice' => 12.5
         ],
         [
             'name' => 'PLATEAU OM',
@@ -607,7 +755,9 @@ class ProductFixtures extends Fixture
             'price' => 35.00,
             'quantity' => 2,
             'category' => 'category_BOIS',
-            'material' => 'material_AUTRES'
+            'material' => 'material_AUTRES',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BOUDDHA RELAX A GENOU',
@@ -615,7 +765,9 @@ class ProductFixtures extends Fixture
             'price' => 40.00,
             'quantity' => 2,
             'category' => 'category_BOIS',
-            'material' => 'material_AUTRES'
+            'material' => 'material_AUTRES',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE CRISTAL DE ROCHE',
@@ -623,7 +775,9 @@ class ProductFixtures extends Fixture
             'price' => 5.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_CRISTAL DE ROCHE'
+            'material' => 'material_CRISTAL DE ROCHE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'COLLIER CALCITE ORANGE 6mm',
@@ -631,7 +785,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_COLLIER',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE ONYX',
@@ -639,7 +795,9 @@ class ProductFixtures extends Fixture
             'price' => 5.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_ONYX'
+            'material' => 'material_ONYX',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE ONYX',
@@ -647,7 +805,9 @@ class ProductFixtures extends Fixture
             'price' => 6.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_ONYX'
+            'material' => 'material_ONYX',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE OEIL DE TIGRE - S',
@@ -655,7 +815,9 @@ class ProductFixtures extends Fixture
             'price' => 3.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_OEIL DE TIGRE'
+            'material' => 'material_OEIL DE TIGRE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE OEIL DE TIGRE - L',
@@ -663,7 +825,9 @@ class ProductFixtures extends Fixture
             'price' => 5.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_OEIL DE TIGRE'
+            'material' => 'material_OEIL DE TIGRE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE OEIL DE TIGRE -L',
@@ -671,7 +835,9 @@ class ProductFixtures extends Fixture
             'price' => 6.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_OEIL DE TIGRE'
+            'material' => 'material_OEIL DE TIGRE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE OEIL DE TIGRE - L',
@@ -679,7 +845,9 @@ class ProductFixtures extends Fixture
             'price' => 7.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_OEIL DE TIGRE'
+            'material' => 'material_OEIL DE TIGRE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'BOUGEOIR EN SEL FER FORGÉ',
@@ -687,7 +855,9 @@ class ProductFixtures extends Fixture
             'price' => 30.00,
             'quantity' => 2,
             'category' => 'category_BOUGEOIR',
-            'material' => 'material_SEL HIMALAYA'
+            'material' => 'material_SEL HIMALAYA',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE AGATE BOTSWANA',
@@ -695,16 +865,19 @@ class ProductFixtures extends Fixture
             'price' => 6.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_AGATE'
+            'material' => 'material_AGATE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE AGATE DU BOTSWANA',
             'ref' => 87,
             'price' => 3.00,
             'quantity' => 2,
-
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_AGATE'
+            'material' => 'material_AGATE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE LABRADORITE',
@@ -712,7 +885,9 @@ class ProductFixtures extends Fixture
             'price' => 10.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_LABRADORITE'
+            'material' => 'material_LABRADORITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE CALCITE',
@@ -720,7 +895,9 @@ class ProductFixtures extends Fixture
             'price' => 6.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE CALCITE',
@@ -728,7 +905,9 @@ class ProductFixtures extends Fixture
             'price' => 5.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE CALCITE',
@@ -736,7 +915,9 @@ class ProductFixtures extends Fixture
             'price' => 3.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_CALCITE'
+            'material' => 'material_CALCITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE UNAKITE',
@@ -744,7 +925,9 @@ class ProductFixtures extends Fixture
             'price' => 7.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_UNAKITE'
+            'material' => 'material_UNAKITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE UNAKITE',
@@ -752,7 +935,9 @@ class ProductFixtures extends Fixture
             'price' => 6.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_UNAKITE'
+            'material' => 'material_UNAKITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE UNAKITE',
@@ -760,7 +945,9 @@ class ProductFixtures extends Fixture
             'price' => 4.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_UNAKITE'
+            'material' => 'material_UNAKITE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE CORNALINE',
@@ -768,7 +955,9 @@ class ProductFixtures extends Fixture
             'price' => 4.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_CORNALINE'
+            'material' => 'material_CORNALINE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
         [
             'name' => 'PIERRE ROULÉE QUARTZ ROSE MADAGASCAR',
@@ -776,81 +965,10 @@ class ProductFixtures extends Fixture
             'price' => 7.00,
             'quantity' => 2,
             'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_QUARTZ ROSE'
+            'material' => 'material_QUARTZ ROSE',
+            'tva' => true,
+            'purchasePrice' => null
         ],
-        [
-            'name' => 'PIERRE ROULÉE ANGELITE',
-            'ref' => 97,
-            'price' => 8.00,
-            'quantity' => 2,
-            'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_ANGELITE'
-        ],
-        [
-            'name' => 'PIERRE ROULÉE TOURMALINE NOIR',
-            'ref' => 98,
-            'price' => 6.00,
-            'quantity' => 2,
-            'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_TOURMALINE'
-        ],
-        [
-            'name' => 'PIERRE ROULÉE TOURMALINE NOIR',
-            'ref' => 99,
-            'price' => 7.00,
-            'quantity' => 2,
-            'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_TOURMALINE'
-        ],
-        [
-            'name' => 'PIERRE ROULÉE LAPIS LAZULI',
-            'ref' => 100,
-            'price' => 10.00,
-            'quantity' => 2,
-            'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_LAPIS LAZULI'
-        ],
-        [
-            'name' => 'PIERRE ROULÉE LAPIS LAZULI',
-            'ref' => 101,
-            'price' => 7.00,
-            'quantity' => 2,
-            'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_LAPIS LAZULI'
-        ],
-        [
-            'name' => 'PIERRE ROULÉE LAPIS LAZULI',
-            'ref' => 102,
-            'price' => 6.00,
-            'quantity' => 2,
-            'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_LAPIS LAZULI'
-        ],
-        [
-            'name' => 'PIERRE ROULÉE LAPIS LAZULI',
-            'ref' => 103,
-            'price' => 4.00,
-            'quantity' => 2,
-            'category' => 'category_PIERRES ROULÉES',
-            'material' => 'material_LAPIS LAZULI'
-        ],
-        [
-            'name' => 'TRANCHE D\'AGATE',
-            'ref' => 104,
-            'price' => 1.00,
-            'quantity' => 2,
-            'category' => 'category_AGATE TRANCHE',
-            'material' => 'material_AGATE'
-        ],
-        [
-            'name' => 'CALCITE BRUT',
-            'ref' => 105,
-            'price' => 225.00,
-            'quantity' => 2,
-            'category' => 'category_MINERAUX',
-            'material' => 'material_CALCITE'
-        ]
-        //105
     ];
 
     public function load(ObjectManager $manager): void
@@ -863,6 +981,8 @@ class ProductFixtures extends Fixture
             $product->setquantity($productFixture['quantity']);
             $product->setCategory($this->getReference($productFixture['category']));
             $product->setMaterial($this->getReference($productFixture['material']));
+            $product->setTva($productFixture['tva']);
+            $product->setpurchasePrice($productFixture['purchasePrice']);
             $manager->persist($product);
         }
         $manager->flush();

@@ -95,7 +95,7 @@
 						{{ form_row(discountForm.apply) }}
 						{{ form_end(discountForm) }}
 						<!-- Champ caché pour la valeur de la réduction -->
-						<input type="hidden" name="discount-final" id="discount-final" value="">
+						<input name="discount-final" id="discount-final" value="">
 					</form>
 				</section>
 
@@ -103,7 +103,7 @@
 					<span id="cart-total" name="total">{{ sum }}
 						€</span>
 					<!-- Champ caché pour le total -->
-					<input  type="hidden" name="total" id="total-input" value="{{ sum }}">
+					<input name="total" id="total-input" value="{{ sum }}">
 				</h3>
 
 				<section class="cart-customer">
