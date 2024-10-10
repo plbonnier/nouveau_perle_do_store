@@ -36,6 +36,12 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: InvoiceProduct::class)]
     private Collection $invoiceProducts;
 
+    #[ORM\Column]
+    private ?bool $tva = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $purchasePrice = null;
+
     public function __construct()
     {
         $this->invoiceProducts = new ArrayCollection();
@@ -128,6 +134,30 @@ class Product
                 $invoiceProduct->setProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isTva(): ?bool
+    {
+        return $this->tva;
+    }
+
+    public function setTva(bool $tva): static
+    {
+        $this->tva = $tva;
+
+        return $this;
+    }
+
+    public function getPurchasePrice(): ?float
+    {
+        return $this->purchasePrice;
+    }
+
+    public function setPurchasePrice(?float $purchasePrice): static
+    {
+        $this->purchasePrice = $purchasePrice;
 
         return $this;
     }

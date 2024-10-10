@@ -123,24 +123,24 @@ class CartController extends AbstractController
     ): Response {
         $customerId = (int) $request->request->get('customer');
         $paymentMethod = $request->request->get('payement');
-        $discount = (float) $request->request->get('discount-final'); // Récupérer la valeur de discount
+        $discountPercentage = (float) $request->request->get('discount-final'); // Récupérer la valeur de discount
         $total = (float) $request->request->get('total'); // Récupérer le total calculé
-
+// dd($discountPercentage);
         $cart = $cartService->getCart();
 
-        // Générer la facture
-        $invoice = $invoiceService->createInvoice(
+        // Générer les factures
+        [$invoiceWithTva] = $invoiceService->createInvoicesFromCart(
             $customerId,
             $cart,
             $paymentMethod,
             $total,
-            $discount
+            $discountPercentage
         );
 
         // Vider le panier
         $cartService->clearCart();
 
-        // Rediriger vers une page de confirmation ou afficher la facture
-        return $this->redirectToRoute('app_invoice_show', ['id' => $invoice->getId()]);
+        // Rediriger vers une page de confirmation ou afficher les factures
+        return $this->redirectToRoute('app_invoice_show', ['id' => $invoiceWithTva->getId()]);
     }
 }

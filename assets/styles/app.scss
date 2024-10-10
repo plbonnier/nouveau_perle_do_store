@@ -405,7 +405,6 @@ article {
     position: relative;
     top: -4vh;
     width: 85%;
-    // height: 100%;
 }
 
 .show-page-customer {
@@ -605,6 +604,14 @@ td {
 tr {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    border-bottom: 2px solid $trait;
+}
+
+.grid-tvam{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
     border-bottom: 2px solid $trait;
@@ -1129,8 +1136,7 @@ tr {
 
     // ---------------------------------invoice-----------------------
     .total-invoice {
-        align-self: center;
-        justify-self: end;
+        margin-right: 3vw;
     }
 
     .invoice-font-size {
