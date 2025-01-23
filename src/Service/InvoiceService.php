@@ -37,8 +37,7 @@ class InvoiceService
             if ($product->isTva()) {
                 $productsWithTva[] = ['product' => $product, 'quantity' => $item['quantity']];
             } else {
-                $productsWithoutTva[] = ['product' => $product, 'quantity' => $item['quantity']];
-                ;
+                $productsWithoutTva[] = ['product' => $product, 'quantity' => $item['quantity']];;
             }
         }
 
@@ -97,7 +96,10 @@ class InvoiceService
 
         $invoice->setPayementType($paymentMethod);
         $invoice->setDiscount($discount ?? 0); // Utiliser 0 si discount est null
-        $invoice->setTotal($total);
+
+        //formattage du total pour avoir exactement 2 chiffres après la virgule
+        $formattedTotal = round($total, 2);
+        $invoice->setTotal($formattedTotal);
 
         foreach ($cart as $item) {
             $product = $item['product'];
