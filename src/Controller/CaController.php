@@ -61,8 +61,8 @@ class CaController extends AbstractController
         $date = $yearString ? new DateTime($yearString . '-01-01') : new DateTime();
 
         // Définir les dates de début et de fin de l'année
-        $start = (clone $date)->modify('first day of this year')->setTime(0, 0, 0);
-        $end = (clone $date)->modify('last day of this year')->setTime(23, 59, 59);
+        $start = (clone $date)->modify('first day of January' . $date->format('Y'))->setTime(0, 0, 0);
+        $end = (clone $date)->modify('last day of December' . $date->format('Y'))->setTime(23, 59, 59);
 
         $caa = $caService->calculateCaByYear($invoiceRepository, $start, $end);
         $invoices = $invoiceRepository->findByYear($start, $end);
