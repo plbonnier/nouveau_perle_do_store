@@ -12,11 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/material')]
 class MaterialController extends AbstractController
 {
     #[Route('/{categoryId<\d+>}', name: 'app_material_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(
         MaterialRepository $materialRepository,
         int $categoryId,
@@ -32,6 +34,7 @@ class MaterialController extends AbstractController
     }
 
     #[Route('/new', name: 'app_material_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -75,6 +78,7 @@ class MaterialController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_material_edit', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function edit(
         Request $request,
         Material $material,

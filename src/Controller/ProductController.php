@@ -13,11 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/product')]
 class ProductController extends AbstractController
 {
     #[Route('/{categoryId<\d+>}/{materialId<\d+>}', name: 'app_product_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(
         ProductRepository $productRepository,
         int $categoryId,
@@ -41,6 +43,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_USER')]
     public function new(
         Request $request,
         EntityManagerInterface $entityManager,
@@ -89,6 +92,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function show(
         Request $request,
         Product $product,
@@ -134,6 +138,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_product_delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Product $product, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $product->getId(), $request->getPayload()->getString('_token'))) {
