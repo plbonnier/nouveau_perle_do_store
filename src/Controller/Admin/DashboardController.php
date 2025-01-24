@@ -2,7 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
+use App\Entity\Customer;
 use App\Entity\Invoice;
+use App\Entity\InvoiceProduct;
+use App\Entity\Material;
+use App\Entity\Product;
+use App\Entity\TypeCustomer;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -19,7 +26,7 @@ class DashboardController extends AbstractDashboardController
     
 
     $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-    return $this->redirect($adminUrlGenerator->setController(InvoiceCrudController::class)->generateUrl());
+    return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
 
     }
 
@@ -32,7 +39,15 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
+        yield MenuItem::linktoRoute('retour au site', 'fa fa-circle-left', 'app_category_index');
         yield MenuItem::linkToDashboard('Tableau de bord', 'fa fa-home');
-        yield MenuItem::linkToCrud('Liste des facture', 'fas fa-list', Invoice::class);
+        yield MenuItem::linkToCrud('Liste des utilisateurs', 'fas fa-users', User::class);
+        yield MenuItem::linkToCrud('Liste des catégories', 'fas fa-list', Category::class);
+        yield MenuItem::linkToCrud('Liste des matériaux', 'fas fa-list', Material::class);
+        yield MenuItem::linkToCrud('Liste des produits', 'fas fa-list', Product::class);
+        yield MenuItem::linkToCrud('Liste des factures', 'fas fa-list', Invoice::class);
+        yield MenuItem::linkToCrud('Liste des produits dans facture', 'fas fa-list', InvoiceProduct::class);
+        yield MenuItem::linkToCrud('Liste des clients', 'fas fa-male fa-female', Customer::class);
+        yield MenuItem::linkToCrud('Liste des type de clients', 'fas fa-list', TypeCustomer::class);
     }
 }
