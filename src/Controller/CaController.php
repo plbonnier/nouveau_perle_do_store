@@ -9,10 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class CaController extends AbstractController
 {
     #[Route('/ca', name: 'app_ca')]
+    #[IsGranted('ROLE_USER')]
     public function index(
         CaService $caService,
         InvoiceRepository $invoiceRepository,
@@ -32,6 +34,7 @@ class CaController extends AbstractController
     }
 
     #[Route('/ca/mensuel', name: 'app_ca_monthly')]
+    #[IsGranted('ROLE_USER')]
     public function monthly(CaService $caService, InvoiceRepository $invoiceRepository, Request $request): Response
     {
         $monthString = $request->query->get('month');
@@ -55,6 +58,7 @@ class CaController extends AbstractController
     }
 
     #[Route('/ca/annuel', name: 'app_ca_year')]
+    #[IsGranted('ROLE_USER')]
     public function yearly(CaService $caService, InvoiceRepository $invoiceRepository, Request $request): Response
     {
         $yearString = $request->query->get('year');

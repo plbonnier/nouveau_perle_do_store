@@ -7,6 +7,17 @@
 			<li><a href=""><i class="nav-icon fa-regular fa-calendar"></i></a></li>
 			<li><a href="{{ path('app_invoice_index') }}"><i class="nav-icon fa-solid fa-receipt"></i></a></li>
 			<li><a href="{{ path('app_cart') }}"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
+						{% if is_granted("ROLE_ADMIN") %}
+			<li>
+				<a href="{# {{ path('app_admin') }} #}">
+					<i class="nav-icon fa-solid fa-user-group"></i></a>
+			</li>
+			{% endif %}
+			{% if app.user %}
+				<li class="logout">
+					<a href="{{ path('app_logout') }}"><i class="nav-icon fa-solid fa-power-off"></i></a>
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 
@@ -38,16 +49,18 @@
 				<a href="{{ path('app_cart') }}">
 					<i class="nav-icon fa-solid fa-cart-shopping"></i>Panier</a>
 			</li>
+			{% if is_granted("ROLE_ADMIN") %}
 			<li>
-				<a href="/user">
-					<i class="nav-icon fa-solid fa-user-group"></i>Gestion utilisateur</a>
+				<a href="{# {{ path('app_admin') }} #}">
+					<i class="nav-icon fa-solid fa-user-group"></i>Gestion administrateur</a>
 			</li>
-			{# {% if user %}
+			{% endif %}
+			{% if app.user %}
 				<li class="logout">
-					<a href="/logout">
+					<a href="{{ path('app_logout') }}">
 						<i class="nav-icon fa-solid fa-power-off"></i>Deconnexion</a>
-				</li> #}
-			{# {% endif %} #}
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 {% endblock %}

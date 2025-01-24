@@ -12,11 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/invoice')]
 class InvoiceController extends AbstractController
 {
     #[Route('/', name: 'app_invoice_index', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function index(
         InvoiceRepository $invoiceRepository,
         PaginatorInterface $paginator,
@@ -35,6 +37,7 @@ class InvoiceController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_invoice_show', methods: ['GET'])]
+    #[IsGranted('ROLE_USER')]
     public function show(Invoice $invoice, InvoiceProductRepository $invoiceProductRep): Response
     {
         // lister les produits de la facture
@@ -45,14 +48,14 @@ class InvoiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_invoice_delete', methods: ['POST'])]
-    public function delete(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $invoice->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($invoice);
-            $entityManager->flush();
-        }
+    // #[Route('/{id}', name: 'app_invoice_delete', methods: ['POST'])]
+    // public function delete(Request $request, Invoice $invoice, EntityManagerInterface $entityManager): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete' . $invoice->getId(), $request->getPayload()->getString('_token'))) {
+    //         $entityManager->remove($invoice);
+    //         $entityManager->flush();
+    //     }
 
-        return $this->redirectToRoute('app_invoice_index', [], Response::HTTP_SEE_OTHER);
-    }
+    //     return $this->redirectToRoute('app_invoice_index', [], Response::HTTP_SEE_OTHER);
+    // }
 }
