@@ -12,10 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Exception;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class CartController extends AbstractController
 {
     #[Route('/cart', name: 'app_cart')]
+    #[IsGranted('ROLE_USER')]
     public function index(CartService $cartService, CustomerRepository $customerRepository): Response
     {
         $customers = $customerRepository->findAll();
@@ -108,6 +110,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/clear', name: 'app_cart_clear')]
+    #[IsGranted('ROLE_USER')]
     public function clear(CartService $cartService): Response
     {
         $cartService->clearCart();

@@ -339,7 +339,9 @@ article {
 }
 
 #category_name,
-#material_name {
+#material_name,
+#password,
+#username {
     background-color: $backgroungColor2;
     width: 75%;
     height: 3rem;
