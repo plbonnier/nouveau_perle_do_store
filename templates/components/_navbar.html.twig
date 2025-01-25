@@ -9,7 +9,7 @@
 			<li><a href="{{ path('app_cart') }}"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
 						{% if is_granted("ROLE_ADMIN") %}
 			<li>
-				<a href="{# {{ path('app_admin') }} #}">
+				<a href="{{ path('admin') }}">
 					<i class="nav-icon fa-solid fa-user-group"></i></a>
 			</li>
 			{% endif %}
@@ -51,7 +51,7 @@
 			</li>
 			{% if is_granted("ROLE_ADMIN") %}
 			<li>
-				<a href="{# {{ path('app_admin') }} #}">
+				<a href="{{ path('admin') }}">
 					<i class="nav-icon fa-solid fa-user-group"></i>Gestion administrateur</a>
 			</li>
 			{% endif %}
