@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: InvoiceRepository::class)]
 class Invoice
@@ -29,9 +30,11 @@ class Invoice
     #[ORM\Column]
     private ?float $discount = null;
 
+    #[Assert\NotBlank(message: 'Vous devez indiquer un moyen de paiement.')]
     #[ORM\Column(length: 50)]
     private ?string $payementType = null;
 
+    #[Assert\NotBlank(message: 'Vous devez indiquer un client.')]
     #[ORM\ManyToOne(inversedBy: 'invoices')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Customer $customer = null;

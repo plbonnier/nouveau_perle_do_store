@@ -7,6 +7,7 @@ use App\Traits\PropertyEntityTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -16,16 +17,19 @@ class Product
     #[ORM\Column]
     private ?int $ref = null;
 
+    #[Assert\NotBlank(message: 'Vous devez entrer un prix.')]
     #[ORM\Column]
     private ?float $price = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $quantity = null;
 
+    #[Assert\NotBlank(message: 'Vous devez choisir une catégorie.')]
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+    #[Assert\NotBlank(message: 'Vous devez indiquer le type de la pierre.')]
     #[ORM\ManyToOne(inversedBy: 'products')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Material $material = null;
