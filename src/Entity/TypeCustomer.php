@@ -32,6 +32,11 @@ class TypeCustomer
         $this->customers = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->getType();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
