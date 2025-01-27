@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -42,12 +43,22 @@ class ProductType extends AbstractType
                 'label' => 'Nom du produit',
             ])
             ->add('price', NumberType::class, [
-                'label' => 'Prix du produit',
+                'label' => 'Prix de vente (en euros)',
                 // 'html5' => true,
                 'attr' => [
                     'step' => 0.01,
                     'min' => 0.01,
                 ],
+            ])
+            ->add('tva', CheckboxType::class, [
+                'label' => 'TVA',
+                'required' => false,
+                'attr' => [
+                    'class' => 'form-check-input',
+                ],
+            ])
+            ->add('purchasePrice', NumberType::class, [
+                'label' => 'Prix d\'achat (en euros)',
             ])
             ->add('quantity', NumberType::class, [
                 'label' => 'Quantité en stock',
