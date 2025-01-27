@@ -47,6 +47,15 @@ class Product
         $this->invoiceProducts = new ArrayCollection();
     }
 
+    public function getLabel(): string
+    {
+        return sprintf('%d - %s', $this->id, $this->name);
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 
     public function getRef(): ?int
     {

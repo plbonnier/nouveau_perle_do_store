@@ -24,6 +24,7 @@ class CustomerType extends AbstractType
                     'Madame' => 'Madame',
                     'Monsieur' => 'Monsieur',
                     'Monsieur et Madame' => 'Monsieur et Madame',
+                    'Société' => 'Société',
                 ],
                 'placeholder' => 'Choisir une civilité',
                 'label' => 'Civilité',
