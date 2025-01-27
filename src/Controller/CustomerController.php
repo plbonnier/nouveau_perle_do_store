@@ -54,9 +54,11 @@ class CustomerController extends AbstractController
         Customer $customer
     ): Response {
         $typeCustomer = $customer->getType();
+        $invoices = $customer->getInvoices();
         return $this->render('customer/show.html.twig', [
             'customer' => $customer,
             'typeCustomer' => $typeCustomer,
+            'invoices' => $invoices
         ]);
     }
 

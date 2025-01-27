@@ -410,9 +410,6 @@ article {
 }
 
 .show-page-customer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
     width: 90vw;
     height: auto;
     @include myText($fontText,
@@ -464,6 +461,22 @@ article {
     margin-top: -1rem;
 }
 
+.customer-show-invoice {
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $backgroungColor2;
+    border-radius: 15px;
+    height: 2rem;
+    width: 50%;
+}
+
+.customer-invoices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    justify-items: center;
+}
 // -------------------------product-------------------
 .quantity-value {
     width: 65%;
