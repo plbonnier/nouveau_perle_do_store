@@ -33,7 +33,7 @@ class Product
     /**
      * @var Collection<int, InvoiceProduct>
      */
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: InvoiceProduct::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: InvoiceProduct::class, cascade: ['remove'])]
     private Collection $invoiceProducts;
 
     #[ORM\Column]

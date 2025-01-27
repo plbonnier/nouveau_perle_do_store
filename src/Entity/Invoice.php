@@ -39,7 +39,7 @@ class Invoice
     /**
      * @var Collection<int, InvoiceProduct>
      */
-    #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: InvoiceProduct::class)]
+    #[ORM\OneToMany(mappedBy: 'invoice', targetEntity: InvoiceProduct::class, cascade: ['remove'])]
     private Collection $invoiceProducts;
 
     public function __construct()
