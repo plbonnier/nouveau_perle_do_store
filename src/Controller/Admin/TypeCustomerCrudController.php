@@ -4,15 +4,24 @@ namespace App\Controller\Admin;
 
 use App\Entity\TypeCustomer;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class TypeCustomerCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
         return TypeCustomer::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('type de client')
+            ->setEntityLabelInPlural('types de client')
+            ->setPageTitle(Crud::PAGE_INDEX, 'Liste des %entity_label_plural%')
+            ->setPageTitle(Crud::PAGE_NEW, 'Ajouter un nouveau %entity_label_singular%')
+            ->setPageTitle(Crud::PAGE_EDIT, 'Modifier un %entity_label_singular%')
+            ->setDefaultSort(['id' => 'ASC']); // Tri par ID dans l'ordre croissant
     }
 
     /*
