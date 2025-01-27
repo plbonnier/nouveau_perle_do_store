@@ -21,7 +21,7 @@ class ProductType extends AbstractType
         $builder
             ->add('category', EntityType::class, [
                 'class' => Category::class,
-                'label' => 'Catégorie du produit',
+                'label' => 'Catégorie',
                 'choice_label' => 'name',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
@@ -31,7 +31,7 @@ class ProductType extends AbstractType
             ])
             ->add('material', EntityType::class, [
                 'class' => Material::class,
-                'label' => 'Matériau du produit',
+                'label' => 'Matériau',
                 'choice_label' => 'name',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
@@ -40,10 +40,10 @@ class ProductType extends AbstractType
                 'placeholder' => 'Choisir un matériau',
             ])
             ->add('name', TextType::class, [
-                'label' => 'Nom du produit',
+                'label' => 'Nom',
             ])
             ->add('price', NumberType::class, [
-                'label' => 'Prix de vente (en euros)',
+                'label' => 'Prix de vente',
                 // 'html5' => true,
                 'attr' => [
                     'step' => 0.01,
@@ -51,21 +51,23 @@ class ProductType extends AbstractType
                 ],
             ])
             ->add('tva', CheckboxType::class, [
-                'label' => 'TVA',
+                'label' => 'Acheté avec TVA?',
                 'required' => false,
                 'attr' => [
                     'class' => 'form-check-input',
                 ],
             ])
             ->add('purchasePrice', NumberType::class, [
-                'label' => 'Prix d\'achat (en euros)',
+                'label' => 'Prix d\'achat',
+                'required' => false,
             ])
             ->add('quantity', NumberType::class, [
-                'label' => 'Quantité en stock',
+                'label' => 'Quantité',
                 'attr' => [
                     'step' => 1,
                     'min' => 0,
                 ],
+                'required' => false,
             ])
         ;
     }
