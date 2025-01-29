@@ -8,13 +8,12 @@
 	<form method="post">
 
 		{% if app.user %}
-			<div class="mb-3">
+			<h1 class="m-5 font-weight-normal">
 				Vous êtes connecté
-				{{ app.user.userIdentifier }}, cliqué sur
-				<a href="{{ path('app_logout') }}">
+				{{ app.user.userIdentifier }}, cliqué sur <a href="{{ path('app_logout') }}">
 					<i class="nav-icon fa-solid fa-power-off"></i>
 					pour vous déconnecter</a>
-			</div>
+			</h1>
 		{% else %}
 
 			<h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
