@@ -66,11 +66,11 @@
 								<td class="total">{{ item.price * item.quantity }}
 									€</td>
 								<td class="action">
-                <form action="{{ path('app_cart_remove', {productId: item.productId}) }}" method="post">
-                    <button type="submit" class="action-trash no-button">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
-                </form>
+									<form action="{{ path('app_cart_remove', {productId: item.productId}) }}" method="post">
+										<button type="submit" class="action-trash no-button">
+											<i class="fa-solid fa-trash"></i>
+										</button>
+									</form>
 								</td>
 							</tr>
 						{% endfor %}
@@ -97,6 +97,13 @@
 						<!-- Champ caché pour la valeur de la réduction -->
 						<input name="discount-final" id="discount-final" value="" type="hidden">
 					</form>
+					{% for label, messages in app.flashes %}
+						<div class="alert alert-{{ label }}">
+							{% for message in messages %}
+								{{ message }}
+							{% endfor %}
+						</div>
+					{% endfor %}
 				</section>
 
 				<h3 class="cart-total">Total :

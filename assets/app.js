@@ -22,3 +22,10 @@ application.register('quantity', QuantityController);
 application.register('discount', DiscountController);
 application.register('modal', ModalController);
 application.register('cart', CartController);
+
+setTimeout(function() {
+    const flashMessage = document.querySelector('div.alert');
+    if (flashMessage) {
+        flashMessage.remove();
+    }
+}, 5000);
