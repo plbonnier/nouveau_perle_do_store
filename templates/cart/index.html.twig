@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier
+{% endblock %}
+
+{% block body %}
+	<div class="cart">
+		{% if cart|length > 0 %}
+			<h1 class="cart-title">Panier</h1>
+			{% set sum = 0 %}
+			{% set reduce = 0 %}
+
+			<form action="{{ path('app_cart_invoice') }}" method='POST' data-controller="discount">
+				<section class="cart-customer">
+					<label for="customers" class="p-product">Choix du client:</label>
+					<select id="customers" name="customer" data-action="change->discount#updateDiscount" class="discount-choice">
+						<option value="" disabled selected>Sélection</option>
+						{% for customer in customers %}
+							<option value="{{ customer.id }}" data-discount="{{ customer.type.discount }}">
+								<span class="no-show">{{ customer.id }}</span>
+								{{ customer.lastname }}
+								{{ customer.firstname }}
+							</option>
+						{% endfor %}
+					</select>
+
+					<label for="discount">Réduction de base à appliquer au client:</label>
+					<p id="discount" data-discount-target="discount">Pas de réduction</p>
+				</section>
+
+				<p class="p-total-product">Vous avez
+					<span id="product-total" data-controller="cart" data-cart-target="productTotal">{{ totalProducts }}</span>
+					articles dans votre panier</p>
+
+				<table>
+					<thead>
+						<tr>
+							<th>Produit</th>
+							<th>Prix</th>
+							<th>Quantité</th>
+							<th>Total</th>
+							<th>Supprimer ce produit</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for productId, item in cart %}
+							{% set sum = sum + item.price * item.quantity %}
+							<tr class="cart-body" data-product-id="{{ item.productId }}">
+								<th>{{ item.productName }}
+									-
+									{{ item.productId }}</th>
+								<td class="price">{{ item.price }}
+									€</td>
+								<td>
+									<form action="{{ path('app_cart_update', {productId: productId}) }}" method="post">
+										<div class="quantity" data-controller="quantity">
+											<button data-action="click->quantity#decrement" class="minus">-</button>
+											<input type="number" name="quantity" data-quantity-target="quantity" value="{{ item.quantity }}" class="quantity-value" min="1">
+											<button data-action="click->quantity#increment" class="minus">+</button>
+											<button class="no-button" type="button" data-action="click->quantity#updateQuantity">
+												<i class="fa-solid fa-check"></i>
+											</button>
+										</div>
+									</form>
+								</td>
+								<td class="total">{{ item.price * item.quantity }}
+									€</td>
+								<td class="action">
+									<form action="{{ path('app_cart_remove', {productId: item.productId}) }}" method="post">
+										<button type="submit" class="action-trash no-button">
+											<i class="fa-solid fa-trash"></i>
+										</button>
+									</form>
+								</td>
+							</tr>
+						{% endfor %}
+
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Sous-Total</td>
+							<td id="subtotal">{{ sum }}
+								€</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<section>
+					<form action="{{ path('app_cart_discount') }}" method="post" data-controller="discount" data-action="submit->discount#applyDiscount" class="discount-form">
+						{{ form_start(discountForm) }}
+						{{ form_label(discountForm.discount) }}
+						{{ form_errors(discountForm.discount) }}
+						{{ form_widget(discountForm.discount, {'attr': {'class': 'discount-choice', 'data-discount-target': 'discount'}}) }}
+						{{ form_row(discountForm.apply) }}
+						{{ form_end(discountForm) }}
+						<!-- Champ caché pour la valeur de la réduction -->
+						<input name="discount-final" id="discount-final" value="" type="hidden">
+					</form>
+					{% for label, messages in app.flashes %}
+						<div class="alert alert-{{ label }}">
+							{% for message in messages %}
+								{{ message }}
+							{% endfor %}
+						</div>
+					{% endfor %}
+				</section>
+
+				<h3 class="cart-total">Total :
+					<span id="cart-total" name="total">{{ sum }}
+						€</span>
+					<!-- Champ caché pour le total -->
+					<input name="total" id="total-input" value="{{ sum }}" type="hidden">
+				</h3>
+
+				<section class="cart-customer">
+					<p class="p-product">Moyen de paiement:</p>
+					<div class="cart-payement">
+						<div><input type="radio" id="cb" name="payement" value="carte bancaire">
+							<label for="cb" class="p-payement">CB</label>
+						</div>
+						<div><input type="radio" id="espece" name="payement" value="espèce">
+							<label for="espece" class="p-payement">Espèce</label>
+						</div>
+						<div><input type="radio" id="virement" name="payement" value="virement">
+							<label for="virement" class="p-payement">Virement</label>
+						</div>
+						<div><input type="radio" id="cheque" name="payement" value="chèque">
+							<label for="cheque" class="p-payement">Chèque</label>
+						</div>
+					</div>
+				</section>
+
+				<button type="submit" class="btn add-button-customer">Payer et générer la facture</button>
+			</form>
+
+			<div class="twobuttons">
+				<a href="{{ path('app_cart_clear') }}" class="add-button-customer">Vider le panier</a>
+			</div>
+		{% else %}
+			<p class="p-product">Votre panier est vide</p>
+		{% endif %}
+	</div>
+{% endblock %}

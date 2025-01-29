@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout d'un matériau
+{% endblock %}
+
+{% block body %}
+	<h1>Ajouter un nouveau matériau</h1>
+
+	{{ include('material/_form.html.twig') }}
+
+	{% if referer %}
+		<div class="twobuttons">
+			<a href="{{ referer }}" class="add-button-customer">
+				Liste des matériaux</a>
+		</div>
+	{% endif %}
+{% endblock %}

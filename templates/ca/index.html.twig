@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% set months = {
+    'January': 'Janvier',
+    'February': 'Février',
+    'March': 'Mars',
+    'April': 'Avril',
+    'May': 'Mai',
+    'June': 'Juin',
+    'July': 'Juillet',
+    'August': 'Août',
+    'September': 'Septembre',
+    'October': 'Octobre',
+    'November': 'Novembre',
+    'December': 'Décembre'
+} %}
+
+{% set selected_date = selected_date|date("j F Y") %}
+{% set parts = selected_date|split(' ') %}
+{% set month = months[parts[1]] %}
+{% set formatted_date = parts[0] ~ ' ' ~ month ~ ' ' ~ parts[2] %}
+{% block title %}Chiffre d'affaires journalier
+{% endblock %}
+{% block body %}
+	<p class="titre">Chiffre d'affaires journalier</p>
+	<div class="two-buttons">
+		<a href="{{ path('app_ca_monthly') }}" role="button" class="add-button-customer">Ca mensuel</a>
+		<a href="{{ path('app_ca_year') }}" role="button" class="add-button-customer">Ca annuel</a>
+	</div>
+	<form method="get" action="{{ path('app_ca') }}" class="choice-date">
+		<label for="date" class="p-product">Sélectionnez une date :</label>
+		<input type="date" id="date" name="date" value="{{ selected_date }}">
+		<button type="submit">Voir</button>
+	</form>
+
+	<div class="ca">
+		<p class="p-product align strong-ca">Chiffre d'affaires pour le
+			{{ formatted_date }}
+			:
+			{{ ca }}
+			€</p>
+
+		<p class="p-product align">Liste des factures du
+			{{ formatted_date }}</p>
+		<ul class="invoice-ca">
+			{% for invoice in invoices %}
+				<li class="p-product align index-ca">
+					<a href="{{ path('app_invoice_show', {'id': invoice.id}) }}" role="button">Facture n°
+						{{ invoice.numInvoice }}
+						-
+						{{ invoice.total }}
+						€
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Product
+{% endblock %}
+
+{% block body %}
+	<div class="block-page">
+		<h3>
+			{{ product.name}}</h3>
+		<h4>P{{ product.ref }}</h4>
+		<article class="show-customer">
+			<p>Prix :</p>
+			<p>{{ product.price }}
+				€</p>
+			<p>Quantité :
+			</p>
+			<p>{{ product.quantity }}</p>
+		</article>
+	</div>
+
+	<div class="twobuttons">
+		{% if referer %}
+			<a href="{{ referer }}" role="button" class="add-button-customer"class="btn btn-secondary">Retour à la liste des produits</a>
+		{% endif %}
+		<a href="{{ path('app_product_edit', {'id': product.id}) }}" role="button" class="add-button-customer">Modifier le produit</a>
+	</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des catégories
+{% endblock %}
+
+{% block body %}
+	<div class="customer-block">
+		{% for category in categories %}
+			<article class="article-category">
+				<a href="{{ path('app_material_index', { categoryId: category.id}) }}">
+					<strong>{{ category.name }}</strong>
+				</a>
+				<a href="{{ path('app_category_edit', { id: category.id }) }}" role="button" class="edit-button-category">
+					<i class="fa-solid fa-pen"></i>
+				</a>
+			</article>
+		{% endfor %}
+	</div>
+	<div class="twobuttons">
+	<a href="{{ path('app_category_new') }}" role="button" class="add-button-customer">Nouvelle categorie</a>
+	<a href="{{ path('app_product_new') }}" class="add-button-customer">Nouveau produit</a>
+</div>
+{% endblock %}

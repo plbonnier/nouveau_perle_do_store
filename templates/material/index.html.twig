@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des matériaux
+{% endblock %}
+
+{% block body %}
+	<p class="titre">
+		<a href="{{path('app_category_index')}}">
+			{{category.name}}
+		</a>
+	</p>
+	<div class="customer-block">
+		{% for material in materials %}
+			<article class="article-category">
+				<a href="{{ path('app_product_index', {categoryId: categoryId, materialId: material.id}) }}">
+					<strong>{{ material.name }}</strong>
+				</a>
+				<a href="{{ path('app_material_edit', { 'id': material.id, 'categoryId': category.id }) }}" role="button" class="edit-button-category">
+					<i class="fa-solid fa-pen"></i>
+				</a>
+			</article>
+		{% endfor %}
+	</div>
+<div class="twobuttons">
+	<a href="{{ path('app_material_new') }}" role="button" class="add-button-customer">Nouveau matériau</a>
+	<a href="{{ path('app_product_new') }}" role="button" class="add-button-customer">Nouveau produit</a>
+</div>
+{% endblock %}

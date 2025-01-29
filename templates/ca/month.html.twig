@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% set months = {
+    '01': 'Janvier',
+    '02': 'Février',
+    '03': 'Mars',
+    '04': 'Avril',
+    '05': 'Mai',
+    '06': 'Juin',
+    '07': 'Juillet',
+    '08': 'Août',
+    '09': 'Septembre',
+    '10': 'Octobre',
+    '11': 'Novembre',
+    '12': 'Décembre'
+} %}
+
+{% set parts = selected_date|split('-') %}
+{% set month = months[parts[1]] %}
+{% set formatted_date = month ~ ' ' ~ parts[0] %}
+
+{% block title %}Chiffre d'affaires mensuel
+{% endblock %}
+
+{% block body %}
+	<p class="titre">Chiffre d'affaires mensuel</p>
+	<div class="two-buttons">
+		<a href="{{ path('app_ca') }}" role="button" class="add-button-customer">Ca journalier</a>
+		<a href="{{ path('app_ca_year') }}" role="button" class="add-button-customer">Ca annuel</a>
+	</div>
+	<div class="ca">
+		<form method="get" action="{{ path('app_ca_monthly') }}" class="choice-date">
+			<label for="month" class="p-product">Sélectionnez un mois :</label>
+			<input type="month" id="month" name="month" value="{{ selected_date }}">
+			<button type="submit">Voir</button>
+		</form>
+
+		<p class="p-product align strong-ca">Chiffre d'affaires pour le mois de
+			{{ formatted_date }}
+			:
+			{{ ca }}
+			€</p>
+	</div>
+{% endblock %}

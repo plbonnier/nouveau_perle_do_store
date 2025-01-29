@@ -1,0 +1,26 @@
+<!-- Bouton pour ouvrir la modal -->
+<button class="add-button-customer" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Supprimer le client</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="staticBackdropLabel">Suppression de recette</h1>
+            </div>
+            <div class="modal-body">
+                Etes-vous sûr de supprimer la recette
+                {{ customer.firstname }}
+                {{ customer.lastname }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="button-cancel" data-bs-dismiss="modal">Annuler</button>
+                <!-- Formulaire de suppression -->
+                <form method="post" action="{{ path('app_customer_delete', {'id': customer.id}) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ customer.id) }}">
+                    <button type="submit" class="button-delete">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

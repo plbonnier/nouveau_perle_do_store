@@ -4,11 +4,13 @@
 
 $backgroungColor: #f9f9f9;
 $backgroungColor2: rgba(255, 235, 228, 0.56);
-$buttonColor:#ffebe4;
-$fontColor:#333333;
-$backgroundColorNavMobile:#ffebe4;
-$backgroundColorNavDesktop:#fefefe;
-$backgroungColorCard:#ffffff;
+$buttonColor: #ffebe4;
+$fontColor: #333333;
+$backgroundColorNavMobile: #ffebe4;
+$backgroundColorNavDesktop: #fefefe;
+$backgroungColorCard: #ffffff;
+$trait: #b8b5b573;
+$backgoungColor3: #c49a6c;
 // }
 
 /* Pink Dark scheme (Forced) */
@@ -31,26 +33,25 @@ $fontText: verdana;
     list-style: none;
     scroll-behavior: smooth;
     font-family: $fontText;
-    color:$fontColor;
+    color: $fontColor;
 }
 
-body{
+body {
     background-color: $backgroungColor;
 }
 
 main {
-    height : 80 vh;
+    margin-bottom: 15vh;
 }
+
 // ------------------mixins------------------------
 
-@mixin myText(
-    $fontFamily,
+@mixin myText($fontFamily,
     $fontColorText,
     $fontSize,
     $fontStyle,
     $fontWeight,
-    $lineHeight
-) {
+    $lineHeight) {
     font-family: $fontFamily;
     color: $fontColorText;
     font-size: $fontSize;
@@ -60,13 +61,172 @@ main {
 }
 
 // --------------------icone------------------------
+.fa-pen,
+.fa-ban,
+.fa-circle-check,
+.fa-trash-can {
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+// -----------------text---------------
+strong {
+    color: $fontColor;
+    justify-content: center;
+    position: relative;
+    height: 1px;
+    top: -0.2em;
+}
+
+h1 {
+    text-align: center;
+    @include myText(($fontText),
+        ($fontColor),
+        2.25rem,
+        normal,
+        400,
+        1.5);
+}
+
+.titre {
+    position: relative;
+    text-align: center;
+    bottom: 2rem;
+    @include myText(($fontText),
+        ($fontColor),
+        1.5rem,
+        normal,
+        400,
+        1.5);
+}
+
+// ----------------------------------------modal---------------------------------
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+    background-color: $backgroungColor;
+}
+
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 1rem;
+    pointer-events: none;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: $backgroungColor2;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+.modal-body {
+    padding: 1rem;
+}
+
+.modal-header,
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+
+.modal-title {
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+// -----------button----------------
+.button-cancel {
+    background-color: $backgroungColor;
+    border-radius: 15px;
+    border-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+    padding: 12px 16px;
+}
+
+.button-delete {
+    background-color: red;
+    border-radius: 15px;
+    border-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+    padding: 12px 16px;
+}
+
+a.edit-button-category {
+    background-color: $buttonColor ;
+    border-color: transparent;
+    border-radius: 15px;
+}
+
+.btn-edit,
+.btn-edit-customer {
+    background-color: $backgroungColor2;
+    width: 75%;
+    height: 2rem;
+    border-radius: 15px;
+}
+
+.btn-edit-customer {
+    grid-column: 1 / 3;
+    justify-self: center;
+}
+
+.add-cart {
+    width: 70%;
+    height: 2rem;
+    border-radius: 8px;
+    background-color: $buttonColor;
+
+    &:hover {
+        background-color: $backgroungColor2;
+    }
+}
+
+.minus {
+    display: none;
+    background-color: $buttonColor;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    &:hover {
+        background-color: $backgroungColor2;
+    }
+}
 
 /* ---------------------navbar------------------------ */
 .logo-desktop {
     display: none;
 }
 
-.navbar-desktop{
+.navbar-desktop {
     display: none;
 }
 
@@ -113,26 +273,747 @@ nav ul {
     justify-self: center;
 }
 
-// .date-header {
-//     display: grid;
-//     grid-row: 2;
-//     grid-column-start: 1;
-//     grid-column-end: 4;
-//     justify-items: center;
-//     font-size: calc(12px + 0.390625vw);
-// }
-
 .fa-magnifying-glass {
     display: grid;
     justify-items: end;
 }
 
-// ----------------------destkop------------------------
+// -------------article----------------
+article {
+    font-size: 2rem;
+    text-align: center;
+    background-color: $backgroundColorNavDesktop;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+// -------------------------category--------------------
+.article-category {
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    top: -5vh;
+    left: 2.5vw;
+    padding: 1rem;
+    border-radius: 15px;
+    margin: 1rem 0;
+    width: 95vw;
+}
+
+.add-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 6vw;
+    width: 90vw;
+    height: 40vh;
+    background-color: $backgroundColorNavDesktop;
+    padding: 2rem 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    gap: 1rem;
+}
+
+.add-category div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+}
+
+.add-category div label {
+    width: 75%;
+    height: 3rem;
+    text-align: center;
+    @include myText(($fontText),
+        ($fontColor),
+        2rem,
+        normal,
+        400,
+        1.5);
+}
+
+#category_name,
+#material_name,
+#password,
+#username {
+    background-color: $backgroungColor2;
+    width: 75%;
+    height: 3rem;
+    text-align: center;
+    border-radius: 15px;
+}
+
+// ------------------------------customer-------------------
+.twobuttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    position: fixed;
+    bottom: 10vh;
+    left: 5vw;
+}
+
+.add-button-customer {
+    background-color: $buttonColor;
+    border-radius: 15px;
+    border-color: transparent;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+    padding: 12px 16px;
+}
+
+.add-link-customer {
+    margin-top: 1rem;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+}
+
+.show-customer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80vw;
+    background-color: $backgroungColor;
+    padding: 2rem 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    gap: 1rem;
+    @include myText($fontText,
+        $fontColor,
+        1rem,
+        normal,
+        400,
+        1);
+    margin-top: 1rem;
+}
+
+.block-page article {
+    position: relative;
+    top: -4vh;
+    width: 85%;
+}
+
+.show-page-customer {
+    width: 90vw;
+    height: auto;
+    @include myText($fontText,
+        $fontColor,
+        1rem,
+        normal,
+        400,
+        1);
+    margin-top: 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 1rem 0 1rem 0;
+}
+
+.show-page-customer p:first-child {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    align-self: center;
+}
+
+.form-group {
+    position: relative;
+    left: 6vw;
+    width: 90vw;
+    height: 70vh;
+    background-color: $backgroundColorNavDesktop;
+    padding: 2rem 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.form-group div {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group div ul {
+    display: flex;
+    grid-column: 1 / 3;
+}
+
+.form-group div ul li {
+    color: red;
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: -1rem;
+}
+
+.customer-show-invoice {
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $backgroungColor2;
+    border-radius: 15px;
+    height: 2rem;
+    width: 50%;
+}
+
+.customer-invoices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    justify-items: center;
+}
+// -------------------------product-------------------
+.quantity-value {
+    width: 65%;
+    height: 2rem;
+    border-radius: 8px;
+    background-color: $backgroungColor2;
+    text-align: center;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+}
+
+.p-product {
+    @include myText(($fontText),
+        ($fontColor),
+        1.5rem,
+        normal,
+        400,
+        1.5);
+}
+
+.p-product-table {
+    @include myText(($fontText),
+        ($fontColor),
+        0.75rem,
+        normal,
+        400,
+        1.5);
+}
+
+.p-name-table {
+    @include myText(($fontText),
+        ($fontColor),
+        0.75rem,
+        normal,
+        bold,
+        1.5);
+}
+
+.add-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 6vw;
+    width: 90vw;
+    height: 60vh;
+    background-color: $backgroundColorNavDesktop;
+    padding: 2rem 1rem;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    gap: 1rem;
+}
+
+.add-product div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 2rem;
+}
+
+.add-product div label{
+    width: 75%;
+    height: 1rem;
+    @include myText(($fontText),
+        ($fontColor),
+        1.25rem,
+        normal,
+        400,
+        1);
+}
+
+
+.form-group label {
+    width: 75%;
+    height: 1rem;
+    text-align: center;
+    @include myText(($fontText),
+        ($fontColor),
+        1.25rem,
+        normal,
+        400,
+        1);
+}
+
+.add-product div input,
+.form-control {
+    background-color: $backgroungColor2;
+    text-align: center;
+    border-radius: 15px;
+    height: 2rem;
+    width: 75%;
+    @include myText(($fontText),
+        ($fontColor),
+        0.75rem,
+        normal,
+        400,
+        1);
+}
+
+.add-product div select {
+    background-color: $backgroungColor2;
+    text-align: center;
+    border-radius: 15px;
+    height: 2rem;
+    width: 75%;
+    @include myText(($fontText),
+        ($fontColor),
+        0.75rem,
+        normal,
+        400,
+        1);
+}
+
+.block-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#product_tva {
+    width: 1rem;
+    height: 1rem;
+    background-color: $backgroungColor2;
+    border-radius: 15px;
+}
+
+.add-product > div > div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+} 
+// --------------------------------------cart-----------------------------------
+.cart {
+    width: 90vw;
+    margin-left: 5vw;
+}
+
+table {
+    margin: 1vh auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+th,
+td {
+    @include myText(($fontText),
+        ($fontColor),
+        0.9rem,
+        normal,
+        400,
+        1.5);
+}
+
+tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    border-bottom: 2px solid $trait;
+}
+
+.grid-tvam{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    border-bottom: 2px solid $trait;
+}
+
+.cart-body {
+    border-bottom: 1px solid $trait;
+}
+
+.action {
+    display: flex;
+    justify-content: center;
+}
+
+.fa-check {
+    color: green;
+}
+
+.action-trash {
+    padding-top: 5px;
+}
+
+.no-button {
+    border: none;
+    background-color: transparent;
+}
+
+.cart-total {
+    text-align: end;
+    margin-right: 5%;
+    margin-top: 2rem;
+}
+
+.discount-form {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.discount-choice {
+    width: 40%;
+    height: 2rem;
+    border-radius: 8px;
+    background-color: $backgroungColor2;
+    text-align: center;
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        400,
+        1.5);
+}
+
+.cart-customer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.p-payement,
+.p-total-product {
+    text-align: center;
+    margin: 1rem 0;
+    @include myText(($fontText),
+        ($fontColor),
+        0.75rem,
+        normal,
+        400,
+        1.5);
+}
+
+.cart-payement {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-bottom: 2rem;
+}
+
+//--------------------------invoice-------------------------------------------------
+.container-head-invoice,
+.container-name-invoice {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 2rem;
+    justify-items: center;
+    align-items: center;
+}
+
+.container-head-invoice img {
+    grid-row: 1/3;
+    align-self: center;
+    justify-self: center;
+    margin: 3vh 5vw;
+}
+
+.container-head-invoice h2 {
+    margin: 0;
+    justify-self: center;
+    font-size: 1rem;
+}
+
+.container-head-invoice p {
+    margin: 0;
+    justify-self: center;
+}
+
+.img-invoice {
+    width: 40vw;
+    height: auto;
+}
+
+.society {
+    text-align: center;
+}
+
+.table-invoice {
+    border: solid;
+    width: 95vw;
+}
+
+.align {
+    text-align: center;
+}
+
+.mar {
+    margin: 0 0 0 2vw;
+}
+
+.pagina {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 5rem;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.page,
+.previous,
+.next,
+.last,
+.first {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+
+    a {
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: $buttonColor;
+        background-color: $backgroungColor2;
+    }
+}
+
+.current {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: $backgroungColor2;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+}
+
+.index-invoice {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+    justify-items: center;
+    padding: 0.5rem;
+    margin: 2vh;
+    width: 90vw;
+    border-radius: 15px;
+    background-color: $backgroungColor2;
+    align-items: center
+}
+
+.p-invoice-bold {
+    @include myText(($fontText),
+        ($fontColor),
+        1rem,
+        normal,
+        bold,
+        1.5);
+}
+
+.to-invoice {
+    background-color: $backgoungColor3;
+    border-radius: 5px;
+    width: 6rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invoice-date-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+// ------------------------------------------ca------------------------
+.choice-date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.strong-ca{
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.invoice-ca {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem
+}
+
+.index-ca {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    width: 70vw;
+    border-radius: 15px;
+    background-color: $backgroungColor2;
+    align-items: center;
+}
+
+.two-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2vh;
+}
+
+// --------------------------alert--------------------------------
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+#product div li {
+    color: red;
+}
+
+// ----------------------destkop-----------------------------------------------------------------------------------
 
 @media screen and (min-width: 780px) {
-    
+
+    // ---------------------icone-----------------------
+    .fa-pen,
+    .fa-ban,
+    .fa-circle-check,
+    .fa-trash-can,
+    .fa-check {
+        padding: 0;
+        font-size: 1.25rem;
+    }
+
+    // -----------------------text------------------
+    strong {
+        font-size: calc(14px + 0.390625vw);
+        height: 5vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .p-product,
+    .p-product-table {
+        @include myText(($fontText),
+            ($fontColor),
+            calc(12px + 0.390625vw),
+            normal,
+            400,
+            1.5);
+    }
+
+    .p-name-table {
+        @include myText(($fontText),
+            ($fontColor),
+            calc(12px + 0.390625vw),
+            normal,
+            bold,
+            1.5);
+    }
+
+    h1 {
+        display: flex;
+        position: fixed;
+        top: 6vh;
+        left: 30vw;
+    }
+
+    // ----------------------------------------modal---------------------------------
+    .modal {
+        left: 25vw;
+    }
+
+    .modal-content {
+        align-content: space-between;
+        width: 73%;
+    }
+
+    .modal-body {
+        margin-top: 5rem;
+    }
+
+    // ------------------button----------------
+    a.edit-button-category {
+        display: flex;
+        width: 3.5rem;
+        justify-content: center;
+        align-items: center;
+        height: 3.5rem;
+
+        &:hover {
+            background-color: $backgroungColor2;
+        }
+    }
+
+    .btn-edit,
+    .btn-edit-customer {
+        &:hover {
+            background-color: $backgroungColor;
+        }
+    }
+
+    .minus {
+        display: inline-block;
+    }
+
     /* ---------------------navbar------------------------ */
-    
+
     .navbar-mobile {
         display: none;
     }
@@ -160,10 +1041,9 @@ nav ul {
         height: 65%;
         width: fit-content;
     }
-    
+
     .navbar-desktop a {
-        @include myText(
-            ($fontText), 
+        @include myText(($fontText),
             ($fontColor),
             .75rem,
             normal,
@@ -189,8 +1069,9 @@ nav ul {
         height: 10vh;
         width: 100%;
         padding-left: 30%;
+        background-color: $backgroungColor;
     }
-    
+
     .a-logo-header {
         display: none;
     }
@@ -203,5 +1084,219 @@ nav ul {
         display: flex;
         justify-content: space-between;
     }
-    
+
+    // ----------------------category--------------
+    .article-category {
+        left: 5%;
+        top: 0%;
+        margin: 0;
+        padding: 0.5rem;
+        width: 100%;
+    }
+
+    .add-category {
+        top: 5vh;
+        left: 30vw;
+        width: 65vw;
+    }
+
+    .add-link-customer {
+        &:hover {
+            color: $buttonColor;
+        }
+    }
+
+    .form-group {
+        left: 25vw;
+        top: 6vh;
+        width: 73vw;
+    }
+
+    // -------------------customer----------------
+    .customer-block {
+        position: relative;
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        top: 5vh;
+        width: 60%;
+        left: 30%;
+    }
+
+    .twobuttons {
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        left: 25vw;
+        bottom: 1vh;
+        text-align: center;
+    }
+
+    article {
+        height: auto;
+    }
+
+    .block-page article {
+        position: relative;
+        top: 2vh;
+        padding: 1rem;
+    }
+
+    // ----------------------product-------------------
+    .add-product {
+        top: 5vh;
+        left: 30vw;
+        width: 65vw;
+    }
+
+    .block-page {
+        margin-left: 23vw;
+    }
+
+    .show-customer {
+        width: 60vw;
+    }
+
+    // ---------------------------------cart-----------------------------------
+    .cart-title {
+        left: 58vw;
+    }
+
+    .cart {
+        position: relative;
+        left: 19vw;
+        width: 75vw;
+    }
+
+    .cart-total {
+        margin-right: 9.5vw;
+    }
+
+    .discount-form {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 1rem;
+        margin: 2rem 9.5vw 0 0;
+    }
+
+    .discount-choice {
+        width: 30%;
+    }
+
+    .cart-payement {
+        width: 70%;
+        margin-bottom: 2rem;
+    }
+
+    .p-payement {
+        font-size: 1.1rem;
+    }
+
+    // ---------------------------------invoice-----------------------
+    .total-invoice {
+        margin-right: 3vw;
+    }
+
+    .invoice-font-size {
+        font-size: 1rem;
+    }
+
+    .header-invoice {
+        margin: 2vh 2vw;
+    }
+
+    .container-head-invoice h2 {
+        font-size: 2rem;
+    }
+
+    .table-invoice {
+        margin-bottom: 2rem;
+    }
+
+    .mar {
+        margin: 0 0 5vh 2vw;
+    }
+
+    .index-invoice {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        justify-items: stretch;
+        padding: 0.5rem;
+        margin-left: 25vw;
+        width: 72%;
+        height: 6rem;
+    }
+
+    .p-invoice-bold {
+        font-size: 1.5rem;
+    }
+
+    .to-invoice{
+        width: 10rem;
+        height: 4rem;
+        margin-left: 1rem;
+    }
+
+    .pagina {
+        margin-left: 25vw;
+    }
+
+    .p-invoices-total{
+        margin-right: 1rem;
+        justify-self: end;
+    }
+
+    .two-buttons {
+        display: flex;
+        justify-content: flex-start;
+        width: 70%;
+        margin-left: 25vw;
+        margin-bottom: 2vh;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .ca{
+        width: 70%;
+        margin-left: 25vw;
+    }
+}
+
+// ------------------------media queries pour print----------------------------------
+@media print {
+    .society {
+        margin-top: 2rem;
+    }
+
+    body header {
+        display: none;
+    }
+
+    .add-button-customer {
+        display: none;
+    }
+
+    .p-product {
+        @include myText(($fontText),
+            ($fontColor),
+            1rem,
+            normal,
+            400,
+            1.5);
+    }
+
+    .p-name-table {
+        @include myText(($fontText),
+            ($fontColor),
+            1rem,
+            normal,
+            bold,
+            1.5);
+    }
+
+    .container-head-invoice h2 {
+        font-size: 2rem;
+    }
 }

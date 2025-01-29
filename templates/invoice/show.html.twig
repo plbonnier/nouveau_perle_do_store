@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Facture n°{{ invoice.numInvoice }}
+{% endblock %}
+
+{% block body %}
+	{% block navbar %}{% endblock %}
+	{% block header %}{% endblock %}
+	<div class="container-head-invoice">
+		<img src="{{ asset('/build/images/main.623ca7c1.svg') }}" alt="logo de perle do" class="logo-invoice"/>
+		<h2>Facture n°F{{ invoice.numInvoice }}</h2>
+		<p class="p-product-table">Date:
+			{{ invoice.date|date('d/m/Y') }}</p>
+	</div>
+
+	<div class="container-name-invoice">
+		<div>
+			<ul>
+				<li>
+					<h3 class="society">Perle DO</h3>
+				</li>
+				<li class="p-product-table align">SAS au capital de 1 000 €</li>
+				<li class="p-product-table align">75-77 avenue Victor Hugo</li>
+				<li class="p-product-table align">69160 Tassin La Demi-Lune</li>
+				<li class="p-product-table align">Siret : 978 254 878 00017</li>
+				<li class="p-product-table align">N° TVA : FR61978254878</li>
+			</ul>
+		</div>
+		<ul>
+			<li class="p-product-table">{{ invoice.customer.lastname }}
+				{{ invoice.customer.firstname }}</li>
+			<li class="p-product-table">{{ invoice.customer.adress }}</li>
+			<li class="p-product-table">{{ invoice.customer.zipcode }}
+				{{ invoice.customer.city }}</li>
+			<li class="p-product-table">C{{ invoice.customer.id }}</li>
+		</ul>
+	</div>
+
+	{% set sum = 0 %}
+	{% set hasTva = false %}
+	{% set hasTvam = false %}
+
+	{# Vérification s'il y a des produits avec TVA ou non #}
+	{% for product in products %}
+		{% if product.product.tva %}
+			{% set hasTva = true %}
+		{% else %}
+			{% set hasTvam = true %}
+		{% endif %}
+	{% endfor %}
+
+	{# Facture avec TVA #}
+	{% if hasTva %}
+		<table role="grid" class="table-invoice">
+			<thead>
+				<tr>
+					<th scope="col" class="p-name-table">Référence</th>
+					<th scope="col" class="p-name-table">Nom du produit</th>
+					<th scope="col" class="p-name-table">Prix Unitaire HT</th>
+					<th scope="col" class="p-name-table">Quantité</th>
+					<th scope="col" class="p-name-table">Montant TTC</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					{% set montantTTC = product.product.price * product.quantity %}
+					{# {% set montantTTC = montantHT * 1.2 %} #}
+					{% set sum = sum + montantTTC %}
+					<tr>
+						<td class="p-product-table">P{{ product.product.id }}</td>
+						<td class="p-product-table">{{ product.product.name }}</td>
+						<td class="p-product-table">{{ product.product.price }}</td>
+						<td class="p-product-table">{{ product.quantity }}</td>
+						<td class="p-product-table">{{ montantTTC|number_format(2) }}
+							€</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="container-name-invoice">
+			<div>
+				<p class="p-product-table">Echéance :
+					{{ invoice.date|date('d/m/Y') }}</p>
+				<p class="p-product-table">Règlement :
+					{{ invoice.payementType }}</p>
+			</div>
+			<div class="total-invoice">
+				<ul>
+					<li class="p-product-table">Sous-Total :
+						{{ sum|number_format(2) }}
+						€</li>
+					<li class="p-product-table">Remise :
+						{{ invoice.discount * 100 }}
+						%</li>
+					<li class="p-product-table">Total :
+						{{ invoice.total }}
+						€</li>
+					<li class="p-product-table">Dont TVA :
+						{{ (invoice.total - (invoice.total / 1.2))|number_format(2) }}
+						€</li>
+				</ul>
+			</div>
+		</div>
+	{% endif %}
+
+	{# Facture avec tva sur marge #}
+	{% if hasTvam %}
+		<table role="grid" class="table-invoice">
+			<thead>
+				<tr class="grid-tvam">
+					<th scope="col" class="p-name-table">Référence</th>
+					<th scope="col" class="p-name-table">Nom du produit</th>
+					<th scope="col" class="p-name-table">Prix d'achat</th>
+					<th scope="col" class="p-name-table">Quantité</th>
+					<th scope="col" class="p-name-table">Prix Unitaire</th>
+					<th scope="col" class="p-name-table">Montant</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					{% set montant = product.product.price * product.quantity %}
+					{% set sum = sum + montant %}
+					<tr class="grid-tvam">
+						<td class="p-product-table">P{{ product.product.id }}</td>
+						<td class="p-product-table">{{ product.product.name }}</td>
+						<td class="p-product-table">{{ product.product.tva }}</td>
+						<td class="p-product-table">{{ product.quantity }}</td>
+						<td class="p-product-table">{{ product.product.price }}</td>
+						<td class="p-product-table">{{ montant|number_format(2) }}
+							€</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<div class="container-name-invoice">
+			<div>
+				<p class="p-product-table">Echéance :
+					{{ invoice.date|date('d/m/Y') }}</p>
+				<p class="p-product-table">Règlement :
+					{{ invoice.payementType }}</p>
+				<p class="p-product-table">TVA acquittée sur la marge – article 297 du CGI</p>
+			</div>
+			<div class="total-invoice">
+				<ul>
+					<li class="p-product-table">Sous-Total :
+						{{ sum|number_format(2) }}
+						€</li>
+					<li class="p-product-table">Remise :
+						{{ invoice.discount * 100 }}
+						%</li>
+					<li class="p-product-table">Total :
+						{{ invoice.total|number_format(2)  }}
+						€</li>
+				</ul>
+			</div>
+		</div>
+	{% endif %}
+
+	<div class="mar">
+		<a href="{{ path('app_invoice_index') }}" role="button" class="add-button-customer">Retour aux factures</a>
+	</div>
+{% endblock %}

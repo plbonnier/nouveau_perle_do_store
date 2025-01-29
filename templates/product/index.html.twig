@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits
+{% endblock %}
+
+{% block body %}
+	<p class="titre">
+		<a href="{{path('app_category_index')}}">
+			{{category.name}}
+		</a>
+		/
+		<a href="{{ path('app_material_index', { categoryId: category.id}) }}">
+			{{material.name}}
+		</a>
+	</p>
+
+	<div class="customer-block">
+		{% for product in products %}
+			<article class="article-category">
+				<a href="{{ path('app_product_show', {id: product.id}) }}">
+					<strong>{{ product.name }}</strong>
+				</a>
+				<p class="p-product">{{ product.price }}
+					€</p>
+				<p class="p-product">P{{ product.ref }}</p>
+				<form action="{{ path('app_cart_add', { productId: product.id }) }}" method="post" class="product-quantity">
+                <input type="hidden" name="productId" value="{{ product.id }}">
+                <input type="hidden" name="productName" value="{{ product.name }}">
+                <input type="hidden" name="price" value="{{ product.price }}">
+                <div class="quantity" data-controller="quantity">
+                    <button data-action="click->quantity#decrement" class="minus">-</button>
+                    <input type="number" name="quantity" data-quantity-target="quantity" value="0" class="quantity-value" min="0">
+                    <button data-action="click->quantity#increment" class="minus">+</button>
+                </div>
+                <input type="submit" value="ajouter au panier" class="add-cart">
+            </form>
+			</article>
+		{% endfor %}
+	</div>
+	<div class="twobuttons">
+		<a href="{{ path('app_product_new') }}" class="add-button-customer">Nouveau produit</a>
+	</div>
+{% endblock %}

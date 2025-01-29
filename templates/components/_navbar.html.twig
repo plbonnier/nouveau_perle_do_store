@@ -1,12 +1,23 @@
 {% block navbar %}
 	<nav class="navbar-mobile">
 		<ul>
-			<li><a href="/categories"><i class="nav-icon fa-regular fa-file-lines"></i></a></li>
-			<li><a href="/customers"><i class="nav-icon fa-regular fa-user"></i></a></li>
-			<li><a href=""><i class="nav-icon fa-solid fa-chart-column"></i></a></li>
+			<li><a href="{{ path('app_category_index') }}"><i class="nav-icon fa-regular fa-file-lines"></i></a></li>
+			<li><a href="{{ path('app_customer_index') }}"><i class="nav-icon fa-regular fa-user"></i></a></li>
+			<li><a href="{{ path('app_ca') }}"><i class="nav-icon fa-solid fa-chart-column"></i></a></li>
 			<li><a href=""><i class="nav-icon fa-regular fa-calendar"></i></a></li>
-			<li><a href="/invoices"><i class="nav-icon fa-solid fa-receipt"></i></a></li>
-			<li><a href="/shop"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
+			<li><a href="{{ path('app_invoice_index') }}"><i class="nav-icon fa-solid fa-receipt"></i></a></li>
+			<li><a href="{{ path('app_cart') }}"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
+						{% if is_granted("ROLE_ADMIN") %}
+			<li>
+				<a href="{{ path('admin') }}">
+					<i class="nav-icon fa-solid fa-user-group"></i></a>
+			</li>
+			{% endif %}
+			{% if app.user %}
+				<li class="logout">
+					<a href="{{ path('app_logout') }}"><i class="nav-icon fa-solid fa-power-off"></i></a>
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 
@@ -15,39 +26,41 @@
 
 		<ul>
 			<li>
-				<a href="/categories">
+				<a href="{{ path('app_category_index') }}">
 					<i class="nav-icon fa-regular fa-file-lines"></i>Produits</a>
 			</li>
 			<li>
-				<a href="/customers">
+				<a href="{{ path('app_customer_index') }}">
 					<i class="nav-icon fa-regular fa-user"></i>Fiches clients</a>
 			</li>
 			<li>
-				<a href="">
+				<a href="{{ path('app_ca') }}">
 					<i class="nav-icon fa-solid fa-chart-column"></i>Chiffre d'affaire</a>
 			</li>
 			<li>
-				<a href="">
+				<a href="#">
 					<i class="nav-icon fa-regular fa-calendar"></i>Evènements</a>
 			</li>
 			<li>
-				<a href="/invoices">
+				<a href="{{ path('app_invoice_index') }}">
 					<i class="nav-icon fa-solid fa-receipt"></i>Factures</a>
 			</li>
 			<li>
-				<a href="/shop">
+				<a href="{{ path('app_cart') }}">
 					<i class="nav-icon fa-solid fa-cart-shopping"></i>Panier</a>
 			</li>
+			{% if is_granted("ROLE_ADMIN") %}
 			<li>
-				<a href="/user">
-					<i class="nav-icon fa-solid fa-user-group"></i>Gestion utilisateur</a>
+				<a href="{{ path('admin') }}">
+					<i class="nav-icon fa-solid fa-user-group"></i>Gestion administrateur</a>
 			</li>
-			{# {% if user %}
+			{% endif %}
+			{% if app.user %}
 				<li class="logout">
-					<a href="/logout">
+					<a href="{{ path('app_logout') }}">
 						<i class="nav-icon fa-solid fa-power-off"></i>Deconnexion</a>
-				</li> #}
-			{# {% endif %} #}
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 {% endblock %}
