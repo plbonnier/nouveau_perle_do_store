@@ -67,7 +67,6 @@ class CartController extends AbstractController
         $quantity = $request->request->get('quantity');
 
         $cartService->addToCart($productId, $productName, $price, $quantity);
-        // dd($cartService->getCart());
         return $this->redirectToRoute('app_category_index');
     }
 
@@ -128,7 +127,6 @@ class CartController extends AbstractController
         $paymentMethod = $request->request->get('payement');
         $discountPercentage = (float) $request->request->get('discount-final'); // Récupérer la valeur de discount
         $total = (float) $request->request->get('total'); // Récupérer le total calculé
-// dd($discountPercentage);
         $cart = $cartService->getCart();
 
         // Générer les factures

@@ -23,15 +23,9 @@ application.register('discount', DiscountController);
 application.register('modal', ModalController);
 application.register('cart', CartController);
 
-
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            // Display a message to the user instead of using console.log
-            alert('Formulaire soumis');
-            this.submit();
-        });
+setTimeout(function() {
+    const flashMessage = document.querySelector('div.alert');
+    if (flashMessage) {
+        flashMessage.remove();
     }
-});
+}, 5000);

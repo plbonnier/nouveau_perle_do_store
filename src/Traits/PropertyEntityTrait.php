@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 trait PropertyEntityTrait
 {
@@ -11,6 +12,8 @@ trait PropertyEntityTrait
     #[ORM\Column]
     private ?int $id = null;
 
+    
+    #[Assert\NotBlank(message: 'Vous devez entrer un nom.')]
     #[ORM\Column(length: 150)]
     private ?string $name = null;
 

@@ -54,9 +54,11 @@ class CustomerController extends AbstractController
         Customer $customer
     ): Response {
         $typeCustomer = $customer->getType();
+        $invoices = $customer->getInvoices();
         return $this->render('customer/show.html.twig', [
             'customer' => $customer,
             'typeCustomer' => $typeCustomer,
+            'invoices' => $invoices
         ]);
     }
 
@@ -77,18 +79,5 @@ class CustomerController extends AbstractController
             'customer' => $customer,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_customer_delete', methods: ['POST'])]
-    #[IsGranted('ROLE_USER')]
-    public function delete(Request $request, Customer $customer, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete' . $customer->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($customer);
-            $entityManager->flush();
-            $this->addFlash('success', 'Le client a été supprimé avec succès.');
-        }
-
-        return $this->redirectToRoute('app_customer_index', [], Response::HTTP_SEE_OTHER);
     }
 }

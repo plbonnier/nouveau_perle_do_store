@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CustomerRepository::class)]
 #[ORM\HasLifecycleCallbacks]
@@ -24,6 +25,7 @@ class Customer
     #[ORM\Column(length: 40, nullable: true)]
     private ?string $civility = null;
 
+    #[Assert\NotBlank(message: 'Vous devez entrer le nom du client.')]
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
@@ -48,6 +50,7 @@ class Customer
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
+    #[Assert\NotBlank(message: 'Vous devez indiquer le type de client.')]
     #[ORM\ManyToOne(inversedBy: 'customers')]
     #[ORM\JoinColumn(nullable: false)]
     private ?TypeCustomer $type = null;

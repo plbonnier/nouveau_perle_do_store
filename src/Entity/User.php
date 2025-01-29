@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_USERNAME', fields: ['username'])]
@@ -16,7 +17,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[Assert\Length(
+        min: 4,
+        max: 180,
+        minMessage: 'Le pseudo doit faire au minimum {{ limit }} caractères',
+        maxMessage: 'Le pseudo doit faire au maximum {{ limit }} caractères'
+    )]
+    #[Assert\NotBlank(message: 'Vous devez entrer un pseudo.')]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $username = null;
 
     /**
@@ -28,6 +36,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      */
+    #[Assert\Length(
+        min: 8,
+        minMessage: 'Le mot de passe doit contenir au minimum {{ limit }} caractères'
+    )]
+    #[Assert\Regex(
+        pattern: '/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).+$/',
+        message: 'Le pseudo doit contenir au moins une lettre, un chiffre et un caractère spécial.'
+    )]
     #[ORM\Column]
     private ?string $password = null;
 

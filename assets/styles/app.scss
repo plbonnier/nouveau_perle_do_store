@@ -410,9 +410,6 @@ article {
 }
 
 .show-page-customer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
     width: 90vw;
     height: auto;
     @include myText($fontText,
@@ -464,6 +461,22 @@ article {
     margin-top: -1rem;
 }
 
+.customer-show-invoice {
+    display : flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $backgroungColor2;
+    border-radius: 15px;
+    height: 2rem;
+    width: 50%;
+}
+
+.customer-invoices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    justify-items: center;
+}
 // -------------------------product-------------------
 .quantity-value {
     width: 65%;
@@ -528,10 +541,21 @@ article {
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 1rem;
+    gap: 2rem;
 }
 
-.add-product div label,
+.add-product div label{
+    width: 75%;
+    height: 1rem;
+    @include myText(($fontText),
+        ($fontColor),
+        1.25rem,
+        normal,
+        400,
+        1);
+}
+
+
 .form-group label {
     width: 75%;
     height: 1rem;
@@ -580,7 +604,21 @@ article {
     justify-content: center;
 }
 
+#product_tva {
+    width: 1rem;
+    height: 1rem;
+    background-color: $backgroungColor2;
+    border-radius: 15px;
+}
 
+.add-product > div > div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+} 
 // --------------------------------------cart-----------------------------------
 .cart {
     width: 90vw;
@@ -863,12 +901,31 @@ tr {
     align-items: center;
 }
 
-
 .two-buttons {
     display: flex;
     justify-content: space-around;
     margin-bottom: 2vh;
 }
+
+// --------------------------alert--------------------------------
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+#product div li {
+    color: red;
+}
+
 // ----------------------destkop-----------------------------------------------------------------------------------
 
 @media screen and (min-width: 780px) {
