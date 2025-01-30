@@ -20,20 +20,23 @@
 				<a href="{{ path('app_product_show', {id: product.id}) }}">
 					<strong>{{ product.name }}</strong>
 				</a>
+				{% if not product.tva %}
+					<p class="p-product">Produit soumis à la TVA sur marge</p>
+				{% endif %}
 				<p class="p-product">{{ product.price }}
 					€</p>
 				<p class="p-product">P{{ product.ref }}</p>
 				<form action="{{ path('app_cart_add', { productId: product.id }) }}" method="post" class="product-quantity">
-                <input type="hidden" name="productId" value="{{ product.id }}">
-                <input type="hidden" name="productName" value="{{ product.name }}">
-                <input type="hidden" name="price" value="{{ product.price }}">
-                <div class="quantity" data-controller="quantity">
-                    <button data-action="click->quantity#decrement" class="minus">-</button>
-                    <input type="number" name="quantity" data-quantity-target="quantity" value="0" class="quantity-value" min="0">
-                    <button data-action="click->quantity#increment" class="minus">+</button>
-                </div>
-                <input type="submit" value="ajouter au panier" class="add-cart">
-            </form>
+					<input type="hidden" name="productId" value="{{ product.id }}">
+					<input type="hidden" name="productName" value="{{ product.name }}">
+					<input type="hidden" name="price" value="{{ product.price }}">
+					<div class="quantity" data-controller="quantity">
+						<button data-action="click->quantity#decrement" class="minus">-</button>
+						<input type="number" name="quantity" data-quantity-target="quantity" value="0" class="quantity-value" min="0">
+						<button data-action="click->quantity#increment" class="minus">+</button>
+					</div>
+					<input type="submit" value="ajouter au panier" class="add-cart">
+				</form>
 			</article>
 		{% endfor %}
 	</div>
