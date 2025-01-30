@@ -12,6 +12,14 @@
 			<p>Prix :</p>
 			<p>{{ product.price }}
 				€</p>
+			{% if not product.tva %}
+				<p>Produit soumis à la TVA sur marge</p>
+				{% if is_granted('ROLE_ADMIN') %}
+					<p>Prix d'achat :
+						{{ product.purchasePrice }}
+						€</p>
+				{% endif %}
+			{% endif %}
 			<p>Quantité :
 			</p>
 			<p>{{ product.quantity }}</p>
@@ -20,7 +28,7 @@
 
 	<div class="twobuttons">
 		{% if referer %}
-			<a href="{{ referer }}" role="button" class="add-button-customer"class="btn btn-secondary">Retour à la liste des produits</a>
+			<a href="{{ referer }}" role="button" class="add-button-customer" class="btn btn-secondary">Retour à la liste des produits</a>
 		{% endif %}
 		<a href="{{ path('app_product_edit', {'id': product.id}) }}" role="button" class="add-button-customer">Modifier le produit</a>
 	</div>
