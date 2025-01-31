@@ -97,13 +97,6 @@
 						<!-- Champ caché pour la valeur de la réduction -->
 						<input name="discount-final" id="discount-final" value="" type="hidden">
 					</form>
-					{% for label, messages in app.flashes %}
-						<div class="alert alert-{{ label }}">
-							{% for message in messages %}
-								{{ message }}
-							{% endfor %}
-						</div>
-					{% endfor %}
 				</section>
 
 				<h3 class="cart-total">Total :
