@@ -27,6 +27,18 @@ class UserFixtures extends Fixture
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPassword($this->passwordHasher->hashPassword($admin, 'Admin*1234'));
         $manager->persist($admin);
+
+        $ngoc = new User();
+        $ngoc->setUsername('ngoc');
+        $ngoc->setRoles(['ROLE_ADMIN']);
+        $ngoc->setPassword($this->passwordHasher->hashPassword($ngoc, 'Ngoc*2016'));
+        $manager->persist($ngoc);
+
+        $pilou = new User();
+        $pilou->setUsername('pilou');
+        $pilou->setRoles(['ROLE_ADMIN']);
+        $pilou->setPassword($this->passwordHasher->hashPassword($pilou, 'Ngoc*2016'));
+        $manager->persist($pilou);
         
         $manager->flush();
     }
