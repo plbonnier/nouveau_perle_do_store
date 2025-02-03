@@ -26,7 +26,7 @@ class InvoiceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
 
-        return $result ? $result['numInvoice'] : 909;
+        return $result ? $result['numInvoice'] : 911;
     }
 
     public function findAllOrderByNulDesc(): array

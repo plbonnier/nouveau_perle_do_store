@@ -4,7 +4,7 @@
 			<li><a href="{{ path('app_category_index') }}"><i class="nav-icon fa-regular fa-file-lines"></i></a></li>
 			<li><a href="{{ path('app_customer_index') }}"><i class="nav-icon fa-regular fa-user"></i></a></li>
 			<li><a href="{{ path('app_ca') }}"><i class="nav-icon fa-solid fa-chart-column"></i></a></li>
-			<li><a href=""><i class="nav-icon fa-regular fa-calendar"></i></a></li>
+			{# <li><a href=""><i class="nav-icon fa-regular fa-calendar"></i></a></li> #}
 			<li><a href="{{ path('app_invoice_index') }}"><i class="nav-icon fa-solid fa-receipt"></i></a></li>
 			<li><a href="{{ path('app_cart') }}"><i class="nav-icon fa-solid fa-cart-shopping"></i></a></li>
 						{% if is_granted("ROLE_ADMIN") %}
@@ -37,10 +37,10 @@
 				<a href="{{ path('app_ca') }}">
 					<i class="nav-icon fa-solid fa-chart-column"></i>Chiffre d'affaire</a>
 			</li>
-			<li>
+			{# <li>
 				<a href="#">
 					<i class="nav-icon fa-regular fa-calendar"></i>Evènements</a>
-			</li>
+			</li> #}
 			<li>
 				<a href="{{ path('app_invoice_index') }}">
 					<i class="nav-icon fa-solid fa-receipt"></i>Factures</a>
