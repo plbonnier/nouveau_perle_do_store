@@ -7,7 +7,7 @@ export default class extends Controller {
     updateDiscount(event) {
         const selectedOption = event.target.options[event.target.selectedIndex];
         const discount = selectedOption.getAttribute('data-discount');
-        this.discountTarget.textContent = discount > 0 ? `${discount * 100}% de réduction` : 'Pas de réduction';
+        this.discountTarget.textContent = discount > 0 ? `${discount * 100}% de réduction` : 'pas de réduction';
     }
 
     applyDiscount(event) {
