@@ -65,7 +65,9 @@ class ProductCrudController extends AbstractCrudController
             BooleanField::new('tva', 'Achat avec tva'),
         ];
     }
-
+/**
+ * @param Product $entityInstance
+ */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if ($entityInstance instanceof Product) {

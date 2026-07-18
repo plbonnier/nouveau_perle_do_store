@@ -38,6 +38,9 @@ class UserCrudController extends AbstractCrudController
         ];
     }
 
+    /**
+     * @param User $entityInstance
+     */
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if ($entityInstance instanceof User) {
@@ -52,6 +55,9 @@ class UserCrudController extends AbstractCrudController
         parent::persistEntity($entityManager, $entityInstance);
     }
 
+    /**
+     * @param User $entityInstance
+     */
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
         if ($entityInstance instanceof User) {
