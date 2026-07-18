@@ -12,7 +12,7 @@ trait PropertyEntityTrait
     #[ORM\Column]
     private ?int $id = null;
 
-    
+
     #[Assert\NotBlank(message: 'Vous devez entrer un nom.')]
     #[ORM\Column(length: 150)]
     private ?string $name = null;

@@ -20,7 +20,8 @@ class ProductCrudController extends AbstractCrudController
 {
     public function __construct(
         private ProductRepository $productRepository
-    ) {}
+    ) {
+    }
     public static function getEntityFqcn(): string
     {
         return Product::class;

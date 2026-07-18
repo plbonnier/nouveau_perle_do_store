@@ -39,7 +39,7 @@ class UserFixtures extends Fixture
         $pilou->setRoles(['ROLE_ADMIN']);
         $pilou->setPassword($this->passwordHasher->hashPassword($pilou, 'Ngoc*2016'));
         $manager->persist($pilou);
-        
+
         $manager->flush();
     }
 }

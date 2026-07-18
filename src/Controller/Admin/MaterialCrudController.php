@@ -10,7 +10,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
 class MaterialCrudController extends AbstractCrudController
 {
-
     public function configureCrud(Crud $crud): Crud
     {
         return $crud

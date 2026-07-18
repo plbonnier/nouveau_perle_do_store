@@ -86,5 +86,4 @@ class CustomerCrudController extends AbstractCrudController
                 ->onlyOnDetail(),
         ];
     }
-
 }

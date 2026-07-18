@@ -28,7 +28,7 @@ class Category
     {
         return $this->getName();
     }
-    
+
     /**
      * @return Collection<int, Product>
      */

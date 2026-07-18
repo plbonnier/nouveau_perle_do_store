@@ -11,7 +11,6 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 
-
 class InvoiceProductCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string

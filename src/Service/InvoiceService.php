@@ -37,7 +37,8 @@ class InvoiceService
             if ($product->isTva()) {
                 $productsWithTva[] = ['product' => $product, 'quantity' => $item['quantity']];
             } else {
-                $productsWithoutTva[] = ['product' => $product, 'quantity' => $item['quantity']];;
+                $productsWithoutTva[] = ['product' => $product, 'quantity' => $item['quantity']];
+                ;
             }
         }
 

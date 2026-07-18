@@ -28,7 +28,7 @@ class Material
     {
         return $this->getName();
     }
-    
+
     /**
      * @return Collection<int, Product>
      */

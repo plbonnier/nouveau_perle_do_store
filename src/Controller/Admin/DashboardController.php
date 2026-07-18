@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+
 use function Symfony\Component\String\s;
 
 class DashboardController extends AbstractDashboardController
@@ -23,11 +24,10 @@ class DashboardController extends AbstractDashboardController
     #[Route('/admin', name: 'admin')]
     public function index(): Response
     {
-    
 
-    $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
-    return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
 
+        $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
+        return $this->redirect($adminUrlGenerator->setController(UserCrudController::class)->generateUrl());
     }
 
     public function configureDashboard(): Dashboard

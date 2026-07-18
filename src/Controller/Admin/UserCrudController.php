@@ -17,7 +17,8 @@ class UserCrudController extends AbstractCrudController
 {
     public function __construct(
         public UserPasswordHasherInterface $userPasswordHasher
-    ) {}
+    ) {
+    }
 
     public static function getEntityFqcn(): string
     {
@@ -32,7 +33,8 @@ class UserCrudController extends AbstractCrudController
             Field::new('password', 'Changer le mot de passe ?')
                 ->onlyOnForms()
                 ->setFormType(PasswordType::class)
-                ->setFormTypeOption('empty_data', ''), // Pour éviter de réinitialiser le mot de passe si le champ est vide
+                ->setFormTypeOption('empty_data', ''),
+                // Pour éviter de réinitialiser le mot de passe si le champ est vide
         ];
     }
 
